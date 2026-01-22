@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Vamos Hablando! - Component Library</title>
+    <!-- Montserrat: Regular (400) and SemiBold (600) only -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Color System */
+            --soft-cream: #F5E8D7;
+            --dark-emerald: #0D6059;
+            --deep-navy: #0E1A2B;
+            --light-blue: #CFE5EA;
+            
+            /* Global Rounding */
+            --radius: 12px;
+            --radius-small: 8px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #e5e5e5;
+            padding: 40px 20px;
+            color: var(--deep-navy);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            color: #777;
+            display: block;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        /* --- TEMPLATE A: BEIGE --- */
+        .beige-bg {
+            background-color: var(--soft-cream);
+            padding: 40px;
+            border-radius: var(--radius);
+        }
+
+        .beige-text-box {
+            border: 1px solid rgba(13, 96, 89, 0.15);
+            padding: 20px;
+            margin-bottom: 20px;
+            color: var(--dark-emerald);
+            border-radius: var(--radius-small);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .beige-accent {
+            color: var(--dark-emerald);
+            font-weight: 600;
+        }
+
+        .beige-pronunciation {
+            color: var(--dark-emerald);
+            font-size: 0.65em;
+            font-style: italic;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .beige-button-primary {
+            background-color: var(--dark-emerald);
+            color: var(--soft-cream);
+            border: none;
+            padding: 12px 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: var(--radius-small);
+            transition: transform 0.1s ease;
+        }
+
+        .beige-button-outline {
+            background: transparent;
+            color: var(--dark-emerald);
+            border: 1.5px solid var(--dark-emerald);
+            padding: 11px 27px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: var(--radius-small);
+        }
+
+        .beige-num-box {
+            background-color: var(--dark-emerald);
+            color: var(--soft-cream);
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: var(--radius-small);
+        }
+
+        /* --- TEMPLATE B: GREEN --- */
+        .green-bg {
+            background-color: var(--dark-emerald);
+            padding: 40px;
+            border-radius: var(--radius);
+        }
+
+        .green-text-box {
+            border: 1px solid rgba(207, 229, 234, 0.25);
+            padding: 20px;
+            margin-bottom: 20px;
+            color: var(--soft-cream);
+            border-radius: var(--radius-small);
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .green-accent {
+            color: var(--light-blue);
+            font-weight: 600;
+        }
+
+        .green-pronunciation {
+            color: var(--light-blue);
+            font-size: 0.65em;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .green-button-primary {
+            background-color: var(--soft-cream);
+            color: var(--dark-emerald);
+            border: none;
+            padding: 12px 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: var(--radius-small);
+        }
+
+        .green-button-outline {
+            background: transparent;
+            color: var(--light-blue);
+            border: 1.5px solid var(--light-blue);
+            padding: 11px 27px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: var(--radius-small);
+        }
+
+        .green-num-box {
+            background-color: var(--light-blue);
+            color: var(--dark-emerald);
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: var(--radius-small);
+        }
+
+        /* Interaction */
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Layout helpers */
+        .flex-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="section">
+        <span class="label">Beige post components</span>
+        <div class="beige-bg">
+            <div class="beige-text-box">
+                Learn how to say <span class="beige-accent">Good morning</span> in Spanish.
+                <span class="beige-pronunciation">/ˈbuenoːs ˈdi.as/</span>
+            </div>
+            
+            <div class="flex-group">
+                <div class="beige-num-box">01</div>
+                <div class="beige-num-box">02</div>
+                <div class="beige-num-box">03</div>
+            </div>
+
+            <div class="flex-group">
+                <button class="beige-button-primary">Next lesson</button>
+                <button class="beige-button-outline">Go back</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <span class="label">Green post components</span>
+        <div class="green-bg">
+            <div class="green-text-box">
+                Discover the most <span class="green-accent">important verbs</span> for daily use.
+                <span class="green-pronunciation">/im.porˈtan.te/</span>
+            </div>
+            
+            <div class="flex-group">
+                <div class="green-num-box">01</div>
+                <div class="green-num-box">02</div>
+                <div class="green-num-box">03</div>
+            </div>
+
+            <div class="flex-group">
+                <button class="green-button-primary">Start quiz</button>
+                <button class="green-button-outline">Resources</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
