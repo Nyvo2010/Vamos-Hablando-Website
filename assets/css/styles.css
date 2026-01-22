@@ -1,0 +1,360 @@
+/* Global Styles & Variables */
+:root {
+    /* Colors */
+    --color-cream: #F5E8D7;
+    --color-emerald: #0B5F58;
+    --color-navy: #0E1A2B;
+    --color-lightblue: #CFE4EA;
+
+    /* Fonts */
+    --font-main: 'Montserrat', sans-serif;
+    --weight-regular: 400;
+    --weight-semibold: 600; /* Use 500 if 600 makes it look too bold, but spec says SemiBold */
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    font-weight: var(--weight-regular);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Typography Utility */
+.text-center {
+    text-align: center;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--weight-regular); /* Default headings are regular as per spec "clean" */
+    margin-bottom: 1rem;
+}
+
+.text-accent {
+    font-weight: var(--weight-semibold);
+}
+
+.text-pronunciation {
+    font-style: italic; /* Optional per spec */
+    font-size: 0.65em;
+}
+
+/* Section Templates */
+
+/* Template A: Beige (Light) */
+.section-light {
+    background-color: var(--color-cream);
+    color: var(--color-navy);
+}
+
+.section-light h1, .section-light h2, .section-light h3 {
+    color: var(--color-navy);
+}
+
+.section-light .text-accent {
+    color: var(--color-emerald);
+}
+
+.section-light .btn-primary {
+    background-color: var(--color-emerald);
+    color: var(--color-cream);
+}
+
+.section-light .icon {
+    stroke: var(--color-emerald);
+}
+
+/* Template B: Green (Dark) */
+.section-dark {
+    background-color: var(--color-emerald);
+    color: var(--color-cream);
+}
+
+.section-dark h1, .section-dark h2, .section-dark h3 {
+    color: var(--color-cream);
+}
+
+.section-dark .text-accent {
+    color: var(--color-lightblue);
+}
+
+.section-dark .btn-primary {
+    background-color: var(--color-lightblue);
+    color: var(--color-emerald); /* Contrast adjustment for readability */
+    font-weight: var(--weight-semibold);
+}
+
+.section-dark .icon {
+    stroke: var(--color-cream);
+}
+
+
+/* Components */
+
+/* Header */
+header {
+    width: 100%;
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+.header-light {
+    background-color: var(--color-cream);
+}
+
+.header-dark {
+    background-color: var(--color-emerald);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-size: 1rem;
+    font-weight: var(--weight-regular);
+}
+
+.header-light .nav-links a {
+    color: var(--color-navy);
+}
+
+.header-light .nav-links a:hover,
+.header-light .nav-links a.active {
+    color: var(--color-emerald);
+    font-weight: var(--weight-semibold);
+}
+
+.header-dark .nav-links a {
+    color: var(--color-cream);
+}
+
+.header-dark .nav-links a:hover,
+.header-dark .nav-links a.active {
+    color: var(--color-lightblue);
+    font-weight: var(--weight-semibold);
+}
+
+/* Mobile Menu */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    transition: 0.3s;
+}
+
+.header-light .bar { background-color: var(--color-navy); }
+.header-dark .bar { background-color: var(--color-cream); }
+
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 50px; /* Rounded corners */
+    font-weight: var(--weight-semibold);
+    text-align: center;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-outline-light {
+    border-color: var(--color-emerald);
+    color: var(--color-emerald);
+}
+.btn-outline-light:hover {
+    background-color: var(--color-emerald);
+    color: var(--color-cream);
+}
+
+/* Layout Containers */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section {
+    padding: 4rem 0;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.cta-group {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Cards (Aanbod) */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.card {
+    padding: 2.5rem;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.section-light .card {
+    background-color: #fff; /* Slight variation or keep same? Spec says bg soft cream. Let's use a slightly lighter version or white card on beige is nice, OR border styles. */
+    /* Wait, spec says "Template A background Soft Cream". Cards usually sit on top. 
+       Let's keep cards clean. A border might be better to keep minimal premium feel without white blocks everywhere. */
+    border: 1px solid var(--color-emerald);
+    background-color: transparent;
+}
+/* Let's actually give cards a subtle background distinction or just outline */
+/* Based on "Minimal, premium": Simple cards with borders or shadow. */
+
+.section-light .card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.section-dark .card {
+    border: 1px solid var(--color-lightblue);
+    background-color: transparent;
+}
+.section-dark .card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+
+/* Footer */
+footer {
+    padding: 3rem 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        right: -100%;
+        top: 70px; /* Aligns with header height approx */
+        height: calc(100vh - 70px);
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        padding-top: 2rem;
+        transition: 0.3s;
+        z-index: 999;
+    }
+    
+    .header-light .nav-links {
+        background-color: var(--color-cream);
+    }
+
+    .header-dark .nav-links {
+        background-color: var(--color-emerald);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-nav {
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
