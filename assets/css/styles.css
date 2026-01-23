@@ -138,9 +138,13 @@ header {
 .nav-links {
     display: flex;
     gap: 2rem;
+    align-items: center; /* vertically center nav items */
 }
 
-.nav-links a {
+.nav-links a, .nav-links a.btn {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1; /* Ensure buttons and links align vertically */
     font-size: 1rem;
     font-weight: var(--weight-regular);
 }
@@ -206,6 +210,40 @@ header {
 .btn-outline-light:hover {
     background-color: var(--color-emerald);
     color: var(--color-cream);
+}
+
+/* Header-specific button tweaks */
+/* Make contact button compact in nav and ensure colors stay readable on hover */
+.nav-links a.btn.btn-primary {
+    padding: 0.45rem 1rem; /* slightly smaller to fit header */
+    border-radius: 30px;
+    display: inline-block;
+}
+
+/* Light header: filled emerald with cream text */
+.header-light .nav-links a.btn.btn-primary {
+    background-color: var(--color-emerald);
+    color: var(--color-cream);
+    border: 2px solid transparent;
+}
+.header-light .nav-links a.btn.btn-primary:hover {
+    color: var(--color-cream);
+    background-color: rgba(11, 95, 88, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Dark header: use cream background with emerald text for contrast */
+.header-dark .nav-links a.btn.btn-primary {
+    background-color: var(--color-cream);
+    color: var(--color-emerald);
+    border: 2px solid transparent;
+}
+.header-dark .nav-links a.btn.btn-primary:hover {
+    color: var(--color-emerald);
+    background-color: rgba(245, 232, 215, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 /* Layout Containers */
