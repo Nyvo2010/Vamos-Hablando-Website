@@ -2,15 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
-    if (hamburger) {
+    if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
+            // Toggle sliding menu
             navLinks.classList.toggle('active');
             
-            // Toggle hamburger animation if needed (simple x)
-            // Not strictly required for MVP functional
+            // Toggle rotation animation on icon
+            hamburger.classList.toggle('active');
         });
     }
-
-    // Header scroll background change (optional refinement)
-    // For now we keep it sticky and consistent based on page template
 });

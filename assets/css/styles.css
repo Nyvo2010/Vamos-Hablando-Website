@@ -124,74 +124,187 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    background-color: transparent; /* Let template classes handle bg */
     transition: background-color 0.3s;
 }
 
-.header-light {
-    background-color: var(--color-cream);
-}
+.header-light { background-color: var(--color-cream); }
+.header-dark { background-color: var(--color-emerald); }
 
-.header-dark {
-    background-color: var(--color-emerald);
-}
 
+/* --- Navigation --- */
+
+/* Desktop Navigation (Base styles handled by media queries below) */
 .nav-links {
     display: flex;
     gap: 2rem;
     align-items: center; /* vertically center nav items */
 }
 
-.nav-links a, .nav-links a.btn {
+.nav-links a {
     display: inline-flex;
     align-items: center;
     line-height: 1; /* Ensure buttons and links align vertically */
     font-size: 1rem;
     font-weight: var(--weight-regular);
+    transition: all 0.3s ease;
 }
 
+/* Light Header Desktop Colors */
 .header-light .nav-links a {
     color: var(--color-navy);
 }
-
 .header-light .nav-links a:hover,
 .header-light .nav-links a.active {
     color: var(--color-emerald);
     font-weight: var(--weight-semibold);
 }
 
+/* Dark Header Desktop Colors */
 .header-dark .nav-links a {
     color: var(--color-cream);
 }
-
 .header-dark .nav-links a:hover,
 .header-dark .nav-links a.active {
     color: var(--color-lightblue);
     font-weight: var(--weight-semibold);
 }
 
-/* Mobile Menu */
+/* --- Hamburger Menu Icon (Desktop Default: Hidden) --- */
 .hamburger {
     display: none;
     cursor: pointer;
-    flex-direction: column;
-    gap: 5px;
 }
 
-.bar {
-    width: 25px;
-    height: 3px;
-    transition: 0.3s;
+/* --- Mobile Navigation (Responsive Switch) --- */
+@media (max-width: 900px) {
+
+    /* --- Hamburger Menu Icon (Visible on Mobile) --- */
+    .hamburger {
+        /* Always visible on mobile */
+        display: flex;
+        /* Vertical bars arranged horizontally */
+        flex-direction: row; 
+        justify-content: center;
+        align-items: center;
+        
+        /* Square box dimensions */
+        width: 50px;
+        height: 50px;
+        
+        /* Styling: Green Border */
+        border: 2px solid var(--color-emerald);
+        border-radius: 8px;
+        background-color: transparent;
+        cursor: pointer;
+        
+        /* Animations - synced with nav panel */
+        transition: transform 0.5s ease-in-out;
+        z-index: 2000; /* Above nav panel */
+    }
+
+    /* Vertical bars styling (|||) */
+    .hamburger .bar {
+        width: 3px;
+        height: 20px; /* Vertical height */
+        background-color: var(--color-emerald);
+        margin: 0 3.5px; /* Spacing between bars */
+        border-radius: 2px;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Move left with the sidebar to stick to it */
+    .hamburger.active {
+        transform: translateX(calc(-320px + 5vw));
+    }
+
+    /* Dark Header Adaptations */
+    .header-dark .hamburger {
+        border-color: var(--color-cream);
+    }
+    .header-dark .hamburger .bar {
+        background-color: var(--color-cream);
+    }
+
+    /* --- Sliding Navigation Panel (Mobile Box Style) --- */
+    .nav-links {
+        /* Fixed Positioning for full screen height */
+        position: fixed;
+        top: 0;
+        left: auto;
+        right: -320px; /* Hidden off-screen right */
+        width: 320px; /* Sidebar width */
+        height: 100vh;
+        
+        /* Styling: Green Box */
+        background-color: var(--color-emerald);
+        
+        /* Flex layout for vertical centering */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem;
+        
+        /* Smooth Transition */
+        transition: right 0.5s ease-in-out;
+        z-index: 1500;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+    }
+
+    /* Active State - Slide In */
+    .nav-links.active {
+        right: 0;
+    }
+
+    /* Override Link Colors for Mobile Panel (Green Box Scheme) */
+    .nav-links li {
+        width: 100%;
+        list-style: none;
+    }
+
+    .nav-links a {
+        /* Block buttons */
+        display: block;
+        width: 100%;
+        padding: 1.2rem;
+        text-align: center;
+        
+        /* Beige background, Green Text */
+        background-color: var(--color-cream);
+        color: var(--color-emerald);
+        
+        font-weight: var(--weight-semibold);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* Force specific colors inside the mobile menu regardless of header class */
+    .header-light .nav-links a,
+    .header-dark .nav-links a {
+        color: var(--color-emerald);
+        background-color: var(--color-cream);
+    }
+
+    /* Hover effects */
+    .nav-links a:hover,
+    .nav-links a.active {
+        transform: translateY(-2px);
+        background-color: #fff; /* Lighter beige/white on hover */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        color: var(--color-emerald); /* Ensure text stays green */
+    }
 }
 
-.header-light .bar { background-color: var(--color-navy); }
-.header-dark .bar { background-color: var(--color-cream); }
 
 
-/* Buttons */
+/* General Buttons (Keep existing button class) */
 .btn {
     display: inline-block;
     padding: 0.8rem 2rem;
-    border-radius: 50px; /* Rounded corners */
+    border-radius: 50px;
     font-weight: var(--weight-semibold);
     text-align: center;
     border: 2px solid transparent;
@@ -203,8 +316,13 @@ header {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+.btn-primary {
+    background-color: var(--color-emerald);
+    color: var(--color-cream);
+}
+
 .btn-outline-light {
-    border-color: var(--color-emerald);
+    border-color: var(--color-emerald); /* Default context usually light bg */
     color: var(--color-emerald);
 }
 .btn-outline-light:hover {
@@ -212,38 +330,15 @@ header {
     color: var(--color-cream);
 }
 
-/* Header-specific button tweaks */
-/* Make contact button compact in nav and ensure colors stay readable on hover */
-.nav-links a.btn.btn-primary {
-    padding: 0.45rem 1rem; /* slightly smaller to fit header */
-    border-radius: 30px;
-    display: inline-block;
-}
-
-/* Light header: filled emerald with cream text */
-.header-light .nav-links a.btn.btn-primary {
+/* Section specific button overrides */
+.section-light .btn-primary {
     background-color: var(--color-emerald);
     color: var(--color-cream);
-    border: 2px solid transparent;
-}
-.header-light .nav-links a.btn.btn-primary:hover {
-    color: var(--color-cream);
-    background-color: rgba(11, 95, 88, 0.95);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-/* Dark header: use cream background with emerald text for contrast */
-.header-dark .nav-links a.btn.btn-primary {
+.section-dark .btn-primary {
     background-color: var(--color-cream);
     color: var(--color-emerald);
-    border: 2px solid transparent;
-}
-.header-dark .nav-links a.btn.btn-primary:hover {
-    color: var(--color-emerald);
-    background-color: rgba(245, 232, 215, 0.95);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 /* Layout Containers */
@@ -350,37 +445,8 @@ footer {
     gap: 1.5rem;
 }
 
-/* Responsiveness */
+/* Responsiveness - Text & Layout Adjustments */
 @media (max-width: 768px) {
-    .nav-links {
-        position: fixed;
-        right: -100%;
-        top: 70px; /* Aligns with header height approx */
-        height: calc(100vh - 70px);
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-        padding-top: 2rem;
-        transition: 0.3s;
-        z-index: 999;
-    }
-    
-    .header-light .nav-links {
-        background-color: var(--color-cream);
-    }
-
-    .header-dark .nav-links {
-        background-color: var(--color-emerald);
-    }
-    
-    .nav-links.active {
-        right: 0;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
     .hero h1 {
         font-size: 2.5rem;
     }
