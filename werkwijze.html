@@ -1,125 +1,210 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Werkwijze | ¡Vamos Hablando!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="icon" href="Images/Small icon Beige achtergrond.png" type="image/png">
+    <title>Werkwijze - ¡Vamos Hablando!</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="section-light">
 
-    <header class="header-light">
-        <div class="logo">
-            <a href="index.html" aria-label="Home">
-                <img src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!" style="height: 50px;">
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo logo-link" aria-label="¡Vamos Hablando! home">
+                <img src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando! logo" class="logo-image logo-desktop">
+                <img src="Images/Small icon Beige achtergrond.png" alt="¡Vamos Hablando! small icon" class="logo-image logo-mobile">
             </a>
-        </div>
-        <nav>
-            <div class="hamburger" role="button" tabindex="0" aria-label="Open menu" aria-expanded="false">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="aanbod.html" class="nav-link">Aanbod</a>
+                <a href="voor-wie.html" class="nav-link">Voor wie</a>
+                <a href="werkwijze.html" class="nav-link active">Werkwijze</a>
+                <a href="over-mij.html" class="nav-link">Over mij</a>
+                <a href="contact.html" class="nav-link">Contact</a>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="aanbod.html">Aanbod</a></li>
-                <li><a href="voor-wie.html" class="active">Voor wie</a></li>
-                <li><a href="over-mij.html">Over mij</a></li>
-                <li><a href="contact.html" class="btn btn-primary">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="section-light text-center" style="padding-top: 6rem;">
-        <div class="container">
-            <h1 class="text-accent">Mijn Werkwijze</h1>
-            <p style="max-width: 800px; margin: 0 auto;">Leren door te doen, in een context die betekenis geeft.</p>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
         </div>
-    </section>
-
-    <section class="section-light">
-        <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-            <div>
-                <h2 class="text-accent">Natuurlijk Leren</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend ligula nulla, at sodales diam molestie vitae. Aliquam finibus purus in posuere tempus. Vestibulum vel odio porta, varius tellus id, pellentesque risus. </p>
-                <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend ligula nulla, at sodales diam molestie vitae. Aliquam finibus purus in posuere tempus. Vestibulum vel odio porta, varius tellus id, pellentesque risus. </p>
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <a href="index.html" class="logo logo-link" aria-label="¡Vamos Hablando! home">
+                    <img src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando! logo" class="logo-image logo-desktop">
+                    <img src="Images/Small icon Beige achtergrond.png" alt="¡Vamos Hablando! small icon" class="logo-image logo-mobile">
+                </a>
+                <button class="mobile-menu-close" aria-label="Close menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
-            <div class="card" style="border: none; background-color: rgba(11, 95, 88, 0.05);">
-                <!-- Placeholder for an image or illustration -->
-                <div style="height: 300px; display: flex; align-items: center; justify-content: center; color: var(--color-emerald);">
-                    <img src="Images/Donkere versie logo Vamos Hablando.png" alt="Visual" style="max-width: 300px;">
+            <div class="mobile-nav-links">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="aanbod.html" class="mobile-nav-link">Aanbod</a>
+                <a href="voor-wie.html" class="mobile-nav-link">Voor wie</a>
+                <a href="werkwijze.html" class="mobile-nav-link active">Werkwijze</a>
+                <a href="over-mij.html" class="mobile-nav-link">Over mij</a>
+                <a href="contact.html" class="mobile-nav-link">Contact</a>
+            </div>
+            <div class="mobile-footer">
+                <p class="text-dark-emerald"
+                    style="font-size: 0.875rem; color: var(--color-dark-emerald); margin-bottom: 1rem;">¡Vamos Hablando!
+                </p>
+                <p style="font-size: 0.875rem; opacity: 0.6; line-height: 1.625;">Spaans leer je door het te gebruiken.
+                    Van de eerste kennismaking tot communicatie in Spanje.</p>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+        <section class="section section-beige">
+            <div class="section-container max-w-4xl space-y-16">
+                <div class="space-y-6">
+                    <h1 class="text-5xl md-text-7xl leading-tight">Mijn <span class="accent">werkwijze</span></h1>
+                    <div class="card"
+                        style="border-color: rgba(11, 95, 88, 0.1); background-color: rgba(11, 95, 88, 0.03);">
+                        <p class="text-2xl md-text-3xl leading-relaxed">
+                            Mijn werkwijze is gebaseerd op één uitgangspunt:
+                            <br />
+                            <span class="accent">taal leer je door haar betekenisvol te gebruiken, vanaf
+                                het begin.</span>
+                        </p>
+                    </div>
+                    <p class="text-xl md-text-2xl opacity-80 leading-relaxed max-w-3xl">
+                        Dat betekent dat Spaans niet los wordt aangeboden in woordenlijsten of grammatica-oefeningen,
+                        maar steeds in samenhang met context, intentie en interactie.
+                    </p>
+                </div>
+
+                <div class="space-y-12">
+                    <div class="group">
+                        <div class="flex flex-col md:flex-row md-items-start gap-6 md-gap-12">
+                            <h3 class="text-3xl md-text-4xl md-w-1-3"
+                                style="color: var(--color-dark-emerald); flex-shrink: 0;">
+                                Taal in context
+                            </h3>
+                            <p class="text-xl md-text-2xl opacity-80 leading-relaxed">
+                                Elke les vertrekt vanuit herkenbare situaties. Woorden en structuren krijgen direct
+                                betekenis doordat ze worden gebruikt in dialoog, luisteropdrachten en praktische
+                                toepassingen.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <div class="flex flex-col md:flex-row md-items-start gap-6 md-gap-12">
+                            <h3 class="text-3xl md-text-4xl md-w-1-3"
+                                style="color: var(--color-dark-emerald); flex-shrink: 0;">
+                                Begrip vóór productie
+                            </h3>
+                            <p class="text-xl md-text-2xl opacity-80 leading-relaxed">
+                                Eerst begrijpen wat er gezegd wordt, daarna reageren. Door te werken met begrijpelijke
+                                input ontstaat taalgebruik naarmate het vertrouwen groeit.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <div class="flex flex-col md:flex-row md-items-start gap-6 md-gap-12">
+                            <h3 class="text-3xl md-text-4xl md-w-1-3"
+                                style="color: var(--color-dark-emerald); flex-shrink: 0;">
+                                Geleide interactie
+                            </h3>
+                            <p class="text-xl md-text-2xl opacity-80 leading-relaxed">
+                                Spreken gebeurt niet zomaar, maar met duidelijke kaders. Door gerichte opdrachten en
+                                herhaling ontstaat rust en vertrouwen in het gebruik van de taal.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <div class="flex flex-col md:flex-row md-items-start gap-6 md-gap-12">
+                            <h3 class="text-3xl md-text-4xl md-w-1-3"
+                                style="color: var(--color-dark-emerald); flex-shrink: 0;">
+                                Opbouw en samenhang
+                            </h3>
+                            <p class="text-xl md-text-2xl opacity-80 leading-relaxed">
+                                Elke les bouwt voort op de vorige. Taal wordt herhaald in nieuwe contexten, waardoor
+                                kennis verdiept en verankerd wordt.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <div class="flex flex-col md:flex-row md-items-start gap-6 md-gap-12">
+                            <h3 class="text-3xl md-text-4xl md-w-1-3"
+                                style="color: var(--color-dark-emerald); flex-shrink: 0;">
+                                Reflectie en toepassing
+                            </h3>
+                            <p class="text-xl md-text-2xl opacity-80 leading-relaxed">
+                                We staan regelmatig stil bij wat werkt en waarom. De focus ligt op toepasbaarheid buiten
+                                de les: in gesprekken, op reis of in een internationale context.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section-dark">
-        <div class="container text-center">
-             <h2 class="text-accent">De Pijlers</h2>
-             <div class="card-grid">
-                 <div class="card">
-                     <h3 class="text-accent">Interactie</h3>
-                     <p>We praten mét elkaar, niet alleen tegen elkaar.</p>
-                 </div>
-                 <div class="card">
-                     <h3 class="text-accent">Context</h3>
-                     <p>Woorden leer je beter als ze betekenis hebben.</p>
-                 </div>
-                 <div class="card">
-                     <h3 class="text-accent">Plezier</h3>
-                     <p>Ontspanning zorgt voor betere opname van de stof.</p>
-                 </div>
-             </div>
-        </div>
-    </section>
-
-    <section class="hero-cta section-light">
-        <div class="container hero-content text-center">
-            <h2>Vragen? Laten we praten.</h2>
-            <p>Neem contact op voor een vrijblijvend kennismakingsgesprek.</p>
-            <div class="cta-group">
-                <a href="contact.html" class="btn btn-primary">Neem contact op</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="section-light site-footer">
-        <div class="container footer-content footer-grid">
-            <div class="footer-brand">
-                <img class="footer-logo" src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!">
-                <p class="brand-tagline">Spaans leren in context.</p>
-                <div class="footer-social" aria-label="Volg ons">
-                    <a class="social-link" href="#" aria-label="Instagram">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
-                    </a>
-                    <a class="social-link" href="#" aria-label="Facebook">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a4 4 0 0 0-4 4v3H8v4h3v8h4v-8h3l1-4h-4V6a1 1 0 0 1 1-1h3z"/></svg>
-                    </a>
-                    <a class="social-link" href="mailto:info@vamoshablando.nl" aria-label="Email">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
-                    </a>
+        <section class="section section-beige" style="min-height: 0; padding-top: 6rem; padding-bottom: 6rem;">
+            <div class="section-container max-w-4xl space-y-10">
+                <h2 class="text-4xl md-text-5xl leading-tight">
+                    Wil je ontdekken wat <span class="accent">¡Vamos Hablando!</span> voor jou kan betekenen?
+                </h2>
+                <p class="text-xl opacity-80 max-w-2xl">
+                    Of je nu als individu wilt starten of als school interesse hebt in een taalreis op maat, ik denk
+                    graag met je mee.
+                </p>
+                <div class="pt-4">
+                    <a href="contact.html" class="button button-primary">Plan een kennismaking</a>
                 </div>
             </div>
-            <div class="footer-links" aria-label="Footer links">
-                <a href="index.html">Home</a>
-                <a href="aanbod.html">Aanbod</a>
-                <a href="voor-wie.html">Voor wie</a>
-                <a href="taalreis-malaga.html">Taalreis Málaga</a>
-                <a href="over-mij.html">Over mij</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="space-y-6" style="grid-column: span 2;">
+                <a href="index.html" class="footer-logo logo-link" aria-label="¡Vamos Hablando! home">
+                    <img src="Images/Lichte versie logo Vamos Hablando.png" alt="¡Vamos Hablando! logo" class="logo-image logo-footer">
+                </a>
+                <p class="footer-text">
+                    Spaans leer je door het te gebruiken. Van online lessen tot contextgebonden taalreizen in Spanje.
+                </p>
             </div>
-            <div class="footer-contact">
-                <a href="contact.html" class="btn btn-outline-light">Neem contact op</a>
-                <p class="contact-info">E: <a href="mailto:info@vamoshablando.nl">info@vamoshablando.nl</a><br>M: <a href="tel:+31612345678">+31 6 12 34 56 78</a></p>
+            <div class="footer-column">
+                <h4>Navigatie</h4>
+                <ul class="footer-list">
+                    <li><a href="index.html" class="footer-link">Home</a></li>
+                    <li><a href="aanbod.html" class="footer-link">Aanbod</a></li>
+                    <li><a href="voor-wie.html" class="footer-link">Voor wie</a></li>
+                    <li><a href="werkwijze.html" class="footer-link">Werkwijze</a></li>
+                    <li><a href="over-mij.html" class="footer-link">Over mij</a></li>
+                    <li><a href="contact.html" class="footer-link">Contact</a></li>
+                </ul>
             </div>
-            <div class="footer-legal footer-small">
-                <a href="#">Privacy</a> · <a href="#">Cookies</a> · <span>© 2026 ¡Vamos Hablando!</span>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul class="footer-list">
+                    <li><a href="https://wa.me/your-number" class="footer-link">WhatsApp</a></li>
+                    <li><a href="https://instagram.com/your-profile" class="footer-link">Instagram</a></li>
+                    <li><a href="mailto:your-email" class="footer-link">E-mail</a></li>
+                </ul>
             </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 ¡Vamos Hablando!. Alle rechten voorbehouden.
         </div>
     </footer>
-
-    <script src="assets/js/script.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
