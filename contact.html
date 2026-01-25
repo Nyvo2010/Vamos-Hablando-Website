@@ -1,45 +1,57 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | ¡Vamos Hablando!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="icon" href="Images/Small icon Beige achtergrond.png" type="image/png">
     <style>
         .form-group {
             margin-bottom: 1.5rem;
         }
+
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
         }
-        input, textarea, select {
+
+        input,
+        textarea,
+        select {
             width: 100%;
             padding: 1rem;
             border: 1px solid var(--color-emerald);
-            border-radius: 8px; /* Slightly rounded per "subtle" */
+            border-radius: 8px;
+            /* Slightly rounded per "subtle" */
             font-family: inherit;
             background-color: transparent;
         }
-        input:focus, textarea:focus, select:focus {
-            outline: none;
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: 3px solid rgba(11, 95, 88, 0.12);
+            outline-offset: 2px;
             background-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 0 2px var(--color-emerald);
         }
-        
     </style>
 </head>
+
 <body class="section-light">
 
     <header class="header-light">
         <div class="logo">
-            <img src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!" style="height: 50px;">
+            <a href="index.html" aria-label="Home">
+                <img src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!" style="height: 50px;">
+            </a>
         </div>
         <nav>
-            <div class="hamburger">
+            <div class="hamburger" role="button" tabindex="0" aria-label="Open menu" aria-expanded="false">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -54,46 +66,54 @@
         </nav>
     </header>
 
-    <section class="section-light text-center">
+    <section class="section-light text-center section-padding">
         <div class="container">
-            <h1 class="text-accent">Contact</h1>
-            <p>Heb je een vraag over het aanbod of wil je kennis maken? Neem gerust contact op.</p>
+            <h1 class="text-accent mb-1">Contact</h1>
+            <p class="text-max-width">Heb je een vraag over het aanbod of wil je kennis maken? Neem gerust contact op.
+            </p>
         </div>
     </section>
 
-    <section class="section-light">
-        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem;">
-            
+    <section class="section-light section-padding">
+        <div class="container"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem;">
+
             <!-- Contact Info -->
             <div>
-                <h2 class="text-accent" style="margin-bottom: 2rem;">Gegevens</h2>
-                
-                <div style="display: flex; align-items: start; margin-bottom: 1.5rem;">
+                <h2 class="text-accent mb-2">Gegevens</h2>
+
+                <div style="display: flex; align-items: start;" class="mb-1">
                     <!-- Email Icon -->
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B5F58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 15px; margin-top: 3px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B5F58" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="margin-right: 15px; margin-top: 3px;">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                         <polyline points="22,6 12,13 2,6"></polyline>
                     </svg>
                     <div>
                         <strong>E-mail</strong><br>
-                        <a href="mailto:info@vamoshablando.nl" style="color: var(--color-navy); text-decoration: underline;">info@vamoshablando.nl</a>
+                        <a href="mailto:info@vamoshablando.nl"
+                            style="color: var(--color-navy); text-decoration: underline;">info@vamoshablando.nl</a>
                     </div>
                 </div>
 
-                <div style="display: flex; align-items: start; margin-bottom: 1.5rem;">
+                <div style="display: flex; align-items: start;" class="mb-1">
                     <!-- Phone Icon (Placeholder) -->
-                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B5F58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 15px; margin-top: 3px;">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B5F58" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="margin-right: 15px; margin-top: 3px;">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
                     </svg>
                     <div>
                         <strong>Telefoon</strong><br>
                         06 - 12345678 (Voorbeeld)
                     </div>
                 </div>
-                
-                <div style="display: flex; align-items: start; margin-bottom: 1.5rem;">
-                     <!-- Map/Loc Icon -->
-                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B5F58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 15px; margin-top: 3px;">
+
+                <div style="display: flex; align-items: start;" class="mb-1">
+                    <!-- Map/Loc Icon -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B5F58" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="margin-right: 15px; margin-top: 3px;">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                         <circle cx="12" cy="10" r="3"></circle>
                     </svg>
@@ -116,7 +136,7 @@
                         <label for="email">E-mailadres</label>
                         <input type="email" id="email" name="email" required>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="interest">Ik ben geïnteresseerd in:</label>
                         <select id="interest" name="interest">
                             <option value="algemeen">Algemene vraag</option>
@@ -133,28 +153,66 @@
                     <button type="submit" class="btn btn-primary">Versturen</button>
                 </form>
             </div>
-            
+
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="section-light" style="border-top: 1px solid var(--color-emerald);">
-        <div class="container footer-content">
-            <div class="brand">
-                <img src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!" style="height: 40px; margin-bottom: 1rem;">
-                <p>Spaans leren in context.</p>
+    <footer class="section-light site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <img class="footer-logo" src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!">
+                <p class="brand-tagline">Spaans leren in context.</p>
+                <div class="footer-social">
+                    <a class="social-link" href="#" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
+                        </svg>
+                    </a>
+                    <a class="social-link" href="#" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a4 4 0 0 0-4 4v3H8v4h3v8h4v-8h3l1-4h-4V6a1 1 0 0 1 1-1h3z" />
+                        </svg>
+                    </a>
+                    <a class="social-link" href="mailto:info@vamoshablando.nl" aria-label="Email">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <div class="footer-nav">
+            <div class="footer-links">
                 <a href="index.html">Home</a>
                 <a href="aanbod.html">Aanbod</a>
-                <a href="contact.html">Contact</a>
+                <a href="voor-wie.html">Voor wie</a>
+                <a href="taalreis-malaga.html">Taalreis Málaga</a>
+                <a href="over-mij.html">Over mij</a>
             </div>
-            <div class="contact-shortcut">
-                <a href="contact.html" class="btn btn-outline-light" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Neem contact op</a>
+            <div class="footer-contact">
+                <p class="contact-info">
+                    <strong>¡Vamos Hablando!</strong><br>
+                    E: <a href="mailto:info@vamoshablando.nl">info@vamoshablando.nl</a><br>
+                    M: <a href="tel:+31612345678">+31 6 12 34 56 78</a>
+                </p>
+                <a href="contact.html" class="btn btn-outline-light">Neem contact op</a>
+            </div>
+            <div class="footer-legal">
+                <span>© 2026 ¡Vamos Hablando! · Spaans leren in context.</span>
+                <div>
+                    <a href="#">Privacy</a>
+                    <a href="#">Cookies</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>

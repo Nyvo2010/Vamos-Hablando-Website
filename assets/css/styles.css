@@ -1,7 +1,8 @@
 /* Global Styles & Variables */
 :root {
     /* Colors */
-    --color-cream: #F5E8D7;
+    --color-cream: #F6E6C8;
+    /* Updated to match design spec */
     --color-emerald: #0B5F58;
     --color-navy: #0E1A2B;
     --color-lightblue: #CFE4EA;
@@ -9,7 +10,12 @@
     /* Fonts */
     --font-main: 'Montserrat', sans-serif;
     --weight-regular: 400;
-    --weight-semibold: 600; /* Use 500 if 600 makes it look too bold, but spec says SemiBold */
+    --weight-semibold: 600;
+    /* Use 500 if 600 makes it look too bold, but spec says SemiBold */
+
+    /* Global Rounding */
+    --radius: 20px;
+    --radius-small: 20px;
 }
 
 /* Reset */
@@ -30,6 +36,14 @@ body {
     overflow-x: hidden;
 }
 
+/* Demo helper class used by the component library page */
+.component-demo {
+    background-color: #e5e5e5;
+    padding: 40px 20px;
+    color: var(--color-navy);
+    line-height: 1.5;
+}
+
 a {
     text-decoration: none;
     transition: all 0.3s ease;
@@ -48,8 +62,15 @@ img {
 .text-center {
     text-align: center;
 }
-h1, h2, h3, h4, h5, h6 {
-    font-weight: var(--weight-regular); /* Default headings are regular as per spec "clean" */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: var(--weight-regular);
+    /* Default headings are regular as per spec "clean" */
     margin-bottom: 1rem;
 }
 
@@ -58,7 +79,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-pronunciation {
-    font-style: italic; /* Optional per spec */
+    font-style: italic;
+    /* Optional per spec */
     font-size: 0.65em;
 }
 
@@ -70,7 +92,9 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-navy);
 }
 
-.section-light h1, .section-light h2, .section-light h3 {
+.section-light h1,
+.section-light h2,
+.section-light h3 {
     color: var(--color-navy);
 }
 
@@ -93,7 +117,9 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-cream);
 }
 
-.section-dark h1, .section-dark h2, .section-dark h3 {
+.section-dark h1,
+.section-dark h2,
+.section-dark h3 {
     color: var(--color-cream);
 }
 
@@ -103,7 +129,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-dark .btn-primary {
     background-color: var(--color-lightblue);
-    color: var(--color-emerald); /* Contrast adjustment for readability */
+    color: var(--color-emerald);
+    /* Contrast adjustment for readability */
     font-weight: var(--weight-semibold);
 }
 
@@ -124,50 +151,106 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: transparent; /* Let template classes handle bg */
+    background-color: transparent;
+    /* Let template classes handle bg */
     transition: background-color 0.3s;
 }
 
-.header-light { background-color: var(--color-cream); }
-.header-dark { background-color: var(--color-emerald); }
+.header-light {
+    background-color: var(--color-cream);
+}
+
+.header-dark {
+    background-color: var(--color-emerald);
+}
 
 
-/* --- Navigation --- */
-
-/* Desktop Navigation (Base styles handled by media queries below) */
 .nav-links {
     display: flex;
     gap: 2rem;
-    align-items: center; /* vertically center nav items */
+    align-items: center;
 }
 
 .nav-links a {
     display: inline-flex;
     align-items: center;
-    line-height: 1; /* Ensure buttons and links align vertically */
+    line-height: 1;
+    /* Ensure buttons and links align vertically */
     font-size: 1rem;
     font-weight: var(--weight-regular);
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
+    padding: 0.45rem 0.6rem;
+    border-radius: var(--radius-small);
+    gap: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+/* When a nav link is intended as a CTA, apply .btn helper */
+.nav-links a.btn {
+    padding: 0.55rem 1.25rem;
+    border-radius: var(--radius-small);
+    font-weight: var(--weight-semibold);
+    border: 2px solid transparent;
 }
 
 /* Light Header Desktop Colors */
 .header-light .nav-links a {
     color: var(--color-navy);
 }
+
 .header-light .nav-links a:hover,
 .header-light .nav-links a.active {
     color: var(--color-emerald);
     font-weight: var(--weight-semibold);
 }
 
+/* Header CTA button (light) */
+.header-light .nav-links a.btn-primary {
+    background-color: var(--color-emerald);
+    color: var(--color-cream);
+    border-color: transparent;
+}
+
+.header-light .nav-links a.btn-outline-light {
+    border-color: var(--color-emerald);
+    color: var(--color-emerald);
+}
+
 /* Dark Header Desktop Colors */
 .header-dark .nav-links a {
     color: var(--color-cream);
 }
-.header-dark .nav-links a:hover,
-.header-dark .nav-links a.active {
-    color: var(--color-lightblue);
+
+/* Don't affect CTA buttons — plain links on dark header should only become bold (no color change) */
+.header-dark .nav-links a:not(.btn):hover,
+.header-dark .nav-links a:not(.btn).active {
+    color: var(--color-cream);
     font-weight: var(--weight-semibold);
+}
+
+/* Header CTA button (dark) */
+.header-dark .nav-links a.btn-primary {
+    /* Invert for dark header (green bg) so CTA has high contrast */
+    background-color: var(--color-emerald);
+    color: var(--color-cream);
+    border-color: transparent;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.header-dark .nav-links a.btn-primary:hover,
+.header-dark .nav-links a.btn-primary:focus,
+.header-dark .nav-links a.btn-primary.active {
+    opacity: 0.95;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(11, 95, 88, 0.12);
+    color: var(--color-cream);
+}
+
+.header-dark .nav-links a.btn-outline-light {
+    border-color: var(--color-cream);
+    color: var(--color-cream);
 }
 
 /* --- Hamburger Menu Icon (Desktop Default: Hidden) --- */
@@ -181,120 +264,243 @@ header {
 
     /* --- Hamburger Menu Icon (Visible on Mobile) --- */
     .hamburger {
-        /* Always visible on mobile */
-        display: flex;
-        /* Vertical bars arranged horizontally */
-        flex-direction: row; 
-        justify-content: center;
-        align-items: center;
-        
-        /* Square box dimensions */
-        width: 50px;
-        height: 50px;
-        
-        /* Styling: Green Border */
-        border: 2px solid var(--color-emerald);
-        border-radius: 8px;
-        background-color: transparent;
+        /* fixed, touch-friendly hit area but visually boxless */
+        position: fixed;
+        top: 14px;
+        right: 16px;
+        width: 44px;
+        height: 36px;
+        padding: 0;
+        display: block;
+        background: transparent;
+        border: none;
+        /* absolutely no box */
         cursor: pointer;
-        
-        /* Animations - synced with nav panel */
-        transition: transform 0.5s ease-in-out;
-        z-index: 2000; /* Above nav panel */
+        z-index: 9999;
+        /* disable tap highlight and any browser-native UI */
+        -webkit-tap-highlight-color: transparent;
+        -webkit-appearance: none;
+        appearance: none;
+        /* keep a small transform for click feedback */
+        transition: transform 0.18s ease;
     }
 
-    /* Vertical bars styling (|||) */
+    .hamburger:hover,
+    .hamburger:active {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Use absolute-positioned bars so the X overlaps perfectly */
     .hamburger .bar {
-        width: 3px;
-        height: 20px; /* Vertical height */
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 2px;
+        /* uniform, thinner lines to avoid anti-alias thickness differences */
         background-color: var(--color-emerald);
-        margin: 0 3.5px; /* Spacing between bars */
         border-radius: 2px;
-        transition: background-color 0.3s ease;
+        transition: transform 0.28s cubic-bezier(.22, .9, .2, 1), opacity 0.18s ease, background-color 0.18s ease;
+        backface-visibility: hidden;
+        /* reduce blurring on transforms */
     }
 
-    /* Move left with the sidebar to stick to it */
-    .hamburger.active {
-        transform: translateX(calc(-320px + 5vw));
+    .hamburger .bar:nth-child(1) {
+        top: 9px;
+        /* integer pixel to avoid subpixel blurring */
     }
 
-    /* Dark Header Adaptations */
-    .header-dark .hamburger {
-        border-color: var(--color-cream);
+    .hamburger .bar:nth-child(2) {
+        top: calc(50% - 1px);
     }
+
+    .hamburger .bar:nth-child(3) {
+        top: auto;
+        bottom: 9px;
+    }
+
+    /* Active (X) state: move first & third to center and rotate; hide middle */
+    .hamburger.active .bar:nth-child(1) {
+        top: calc(50% - 1.5px);
+        transform: translateX(-50%) rotate(45deg);
+        background-color: var(--color-cream);
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-50%) scaleX(0);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        top: calc(50% - 1.5px);
+        bottom: auto;
+        transform: translateX(-50%) rotate(-45deg);
+        background-color: var(--color-cream);
+    }
+
+    /* Remove any visible box/outline from the button in any state */
+    .hamburger,
+    .hamburger.active,
+    .hamburger:focus,
+    .hamburger:active {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+        border-radius: 0 !important;
+        -webkit-appearance: none;
+    }
+
+    /* Dark header: ensure lines are cream for contrast */
     .header-dark .hamburger .bar {
         background-color: var(--color-cream);
     }
 
-    /* --- Sliding Navigation Panel (Mobile Box Style) --- */
+    /* --- Full-screen Navigation Overlay (Mobile) --- */
     .nav-links {
-        /* Fixed Positioning for full screen height */
         position: fixed;
-        top: 0;
-        left: auto;
-        right: -320px; /* Hidden off-screen right */
-        width: 320px; /* Sidebar width */
+        inset: 0;
+        /* top:0; right:0; bottom:0; left:0; */
+        width: 100%;
         height: 100vh;
-        
-        /* Styling: Green Box */
         background-color: var(--color-emerald);
-        
-        /* Flex layout for vertical centering */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 1.5rem;
-        padding: 2rem;
-        
-        /* Smooth Transition */
-        transition: right 0.5s ease-in-out;
-        z-index: 1500;
-        box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+        padding: 3rem 2rem;
+        transform: translateX(100%);
+        /* hidden to the right */
+        transition: transform 0.45s cubic-bezier(.2, .9, .2, 1);
+        z-index: 2000;
+        box-shadow: none;
+        /* remove shadows */
     }
 
     /* Active State - Slide In */
     .nav-links.active {
-        right: 0;
+        transform: translateX(0);
     }
 
-    /* Override Link Colors for Mobile Panel (Green Box Scheme) */
     .nav-links li {
         width: 100%;
         list-style: none;
     }
 
+    /* Plain text nav items (no boxed backgrounds) */
     .nav-links a {
-        /* Block buttons */
         display: block;
         width: 100%;
-        padding: 1.2rem;
+        padding: 0.5rem 0;
         text-align: center;
-        
-        /* Beige background, Green Text */
-        background-color: var(--color-cream);
-        color: var(--color-emerald);
-        
-        font-weight: var(--weight-semibold);
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        color: var(--color-cream);
+        background-color: transparent;
+        font-weight: var(--weight-regular);
+        border-radius: 0;
+        transition: color 0.18s ease, transform 0.18s ease;
+        text-decoration: none;
+        font-size: 1.25rem;
     }
 
-    /* Force specific colors inside the mobile menu regardless of header class */
+    /* Make the CTA (e.g., Contact) stand out as a pill button (mobile: not full width) */
+    .nav-links a.btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.7rem 1.4rem;
+        border-radius: var(--radius-small);
+        background-color: var(--color-cream);
+        color: var(--color-emerald);
+        font-weight: var(--weight-semibold);
+        font-size: 1rem;
+        width: auto;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    /* Ensure readable colors regardless of header class */
     .header-light .nav-links a,
     .header-dark .nav-links a {
-        color: var(--color-emerald);
-        background-color: var(--color-cream);
+        color: var(--color-cream);
+        background-color: transparent;
     }
 
-    /* Hover effects */
+    /* Hover / Active: remove color/weight/transform changes globally for nav items */
     .nav-links a:hover,
+    .nav-links a:focus,
+    .nav-links a:active,
     .nav-links a.active {
+        color: currentColor !important;
+        transform: none !important;
+        font-weight: var(--weight-regular) !important;
+        text-decoration: none !important;
+    }
+
+    /* On dark header, ensure plain links also do not change weight or color */
+    .header-dark .nav-links a:not(.btn):hover,
+    .header-dark .nav-links a:not(.btn).active {
+        color: var(--color-cream) !important;
+        transform: none !important;
+        font-weight: var(--weight-regular) !important;
+    }
+
+    /* Ensure CTA buttons are stable (no lift or filter) */
+    .nav-links a.btn:hover,
+    .nav-links a.btn:focus,
+    .nav-links a.btn:active,
+    .nav-links a.btn.active {
+        transform: none !important;
+        filter: none !important;
+        opacity: 1 !important;
+        color: var(--color-emerald) !important;
+    }
+
+    /* If header is dark, ensure the mobile CTA keeps inverted (emerald bg / cream text) */
+    .header-dark .nav-links a.btn {
+        background-color: var(--color-emerald);
+        color: var(--color-cream);
+        border-color: transparent;
+    }
+
+    .header-dark .nav-links a.btn:hover,
+    .header-dark .nav-links a.btn.active {
+        color: var(--color-cream);
+        opacity: 0.95;
         transform: translateY(-2px);
-        background-color: #fff; /* Lighter beige/white on hover */
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        color: var(--color-emerald); /* Ensure text stays green */
+    }
+
+    /* === New: Keep header CTA visually stable: no hover/active/focus changes === */
+    /* Prevent header CTA (desktop and mobile header area) from changing on hover/click */
+    header .nav-links a.btn,
+    header .nav-links a.btn-primary {
+        transition: none !important;
+    }
+
+    header .nav-links a.btn:hover,
+    header .nav-links a.btn:focus,
+    header .nav-links a.btn:active,
+    header .nav-links a.btn-primary:hover,
+    header .nav-links a.btn-primary:focus,
+    header .nav-links a.btn-primary:active {
+        transform: none !important;
+        opacity: 1 !important;
+        box-shadow: none !important;
+        filter: none !important;
+    }
+
+    /* === New: Mobile menu CTA inversion (mobile overlay uses emerald background — force cream bg on CTA) */
+    .nav-links a.btn {
+        background-color: var(--color-cream) !important;
+        color: var(--color-emerald) !important;
+    }
+
+    /* Slight spacing for large screens but keep center alignment on mobile */
+    .nav-links .btn+li,
+    .nav-links li+li {
+        margin-top: 0.25rem;
     }
 }
 
@@ -302,57 +508,208 @@ header {
 
 /* General Buttons (Keep existing button class) */
 .btn {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.6rem;
+    border-radius: var(--radius-small);
     font-weight: var(--weight-semibold);
     text-align: center;
     border: 2px solid transparent;
     cursor: pointer;
+    transition: transform 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+    line-height: 1;
+    white-space: nowrap;
 }
 
-.btn:hover {
+/* Keep interactions subtle — shift only, no shadows anywhere */
+.btn:hover,
+.btn:focus {
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    outline: none;
 }
 
+.btn:focus-visible {
+    outline: 3px solid rgba(12, 95, 88, 0.15);
+    outline-offset: 2px;
+}
+
+/* Existing semantic classes - keep names but ensure they reuse the new component styles */
 .btn-primary {
     background-color: var(--color-emerald);
     color: var(--color-cream);
 }
 
 .btn-outline-light {
-    border-color: var(--color-emerald); /* Default context usually light bg */
+    border-color: var(--color-emerald);
+    /* Default context usually light bg */
     color: var(--color-emerald);
 }
+
 .btn-outline-light:hover {
     background-color: var(--color-emerald);
     color: var(--color-cream);
 }
 
-/* Section specific button overrides */
+/* --- Reusable post-component classes (from example-components.html) --- */
+.beige-bg {
+    background-color: var(--color-cream);
+    padding: 40px;
+    border-radius: var(--radius);
+}
+
+.beige-text-box {
+    border: 1px solid rgba(13, 96, 89, 0.15);
+    padding: 20px;
+    margin-bottom: 20px;
+    color: var(--color-emerald);
+    border-radius: var(--radius-small);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.beige-accent {
+    color: var(--color-emerald);
+    font-weight: var(--weight-semibold);
+}
+
+.beige-pronunciation {
+    color: var(--color-emerald);
+    font-size: 0.65em;
+    font-style: italic;
+    display: block;
+    margin-top: 4px;
+}
+
+.beige-button-primary {
+    background-color: var(--color-emerald);
+    color: var(--color-cream);
+    border: none;
+    padding: 12px 28px;
+    font-family: var(--font-main);
+    font-weight: var(--weight-semibold);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: var(--radius-small);
+    transition: transform 0.1s ease;
+}
+
+.beige-button-outline {
+    background: transparent;
+    color: var(--color-emerald);
+    border: 1.5px solid var(--color-emerald);
+    padding: 11px 27px;
+    font-family: var(--font-main);
+    font-weight: var(--weight-semibold);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: var(--radius-small);
+}
+
+.beige-num-box {
+    background-color: var(--color-emerald);
+    color: var(--color-cream);
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--weight-semibold);
+    font-size: 14px;
+    border-radius: var(--radius-small);
+}
+
+.green-bg {
+    background-color: var(--color-emerald);
+    padding: 40px;
+    border-radius: var(--radius);
+}
+
+.green-text-box {
+    border: 1px solid rgba(207, 229, 234, 0.25);
+    padding: 20px;
+    margin-bottom: 20px;
+    color: var(--color-cream);
+    border-radius: var(--radius-small);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.green-accent {
+    color: var(--color-lightblue);
+    font-weight: var(--weight-semibold);
+}
+
+.green-pronunciation {
+    color: var(--color-lightblue);
+    font-size: 0.65em;
+    display: block;
+    margin-top: 4px;
+}
+
+.green-button-primary {
+    background-color: var(--color-cream);
+    color: var(--color-emerald);
+    border: none;
+    padding: 12px 28px;
+    font-family: var(--font-main);
+    font-weight: var(--weight-semibold);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: var(--radius-small);
+}
+
+.green-button-outline {
+    background: transparent;
+    color: var(--color-lightblue);
+    border: 1.5px solid var(--color-lightblue);
+    padding: 11px 27px;
+    font-family: var(--font-main);
+    font-weight: var(--weight-semibold);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: var(--radius-small);
+}
+
+.green-num-box {
+    background-color: var(--color-lightblue);
+    color: var(--color-emerald);
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--weight-semibold);
+    font-size: 14px;
+    border-radius: var(--radius-small);
+}
+
 .section-light .btn-primary {
     background-color: var(--color-emerald);
     color: var(--color-cream);
+    border-radius: var(--radius-small);
 }
 
 .section-dark .btn-primary {
     background-color: var(--color-cream);
     color: var(--color-emerald);
+    border-radius: var(--radius-small);
 }
 
-/* Layout Containers */
+
+.site-footer .btn-outline-light {
+    font-weight: var(--weight-semibold);
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 5%;
 }
 
 section {
     padding: 4rem 0;
 }
 
-/* Hero Section */
 .hero {
     min-height: 80vh;
     display: flex;
@@ -386,7 +743,37 @@ section {
     flex-wrap: wrap;
 }
 
-/* Cards (Aanbod) */
+.hero-cta {
+    padding: 3rem 0;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-cta .hero-content {
+    max-width: 900px;
+}
+
+.hero-cta h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-cta p {
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+    color: inherit;
+}
+
+@media (max-width: 768px) {
+    .hero-cta h2 {
+        font-size: 1.6rem;
+    }
+}
+
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -396,7 +783,7 @@ section {
 
 .card {
     padding: 2.5rem;
-    border-radius: 20px;
+    border-radius: var(--radius);
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -404,14 +791,15 @@ section {
 }
 
 .section-light .card {
-    background-color: #fff; /* Slight variation or keep same? Spec says bg soft cream. Let's use a slightly lighter version or white card on beige is nice, OR border styles. */
+    background-color: #fff;
+    /* Slight variation or keep same? Spec says bg soft cream. Let's use a slightly lighter version or white card on beige is nice, OR border styles. */
     /* Wait, spec says "Template A background Soft Cream". Cards usually sit on top. 
        Let's keep cards clean. A border might be better to keep minimal premium feel without white blocks everywhere. */
     border: 1px solid var(--color-emerald);
     background-color: transparent;
 }
-/* Let's actually give cards a subtle background distinction or just outline */
-/* Based on "Minimal, premium": Simple cards with borders or shadow. */
+
+
 
 .section-light .card:hover {
     transform: translateY(-5px);
@@ -422,43 +810,284 @@ section {
     border: 1px solid var(--color-lightblue);
     background-color: transparent;
 }
+
 .section-dark .card:hover {
     transform: translateY(-5px);
     background-color: rgba(255, 255, 255, 0.05);
 }
 
 
-/* Footer */
 footer {
-    padding: 3rem 0;
+    padding: 2.5rem 0;
+    border-top: 1px solid transparent;
 }
 
-.footer-content {
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-areas:
+        "brand links contact"
+        "legal legal legal";
+    gap: 3rem 2rem;
+    align-items: start;
+}
+
+.footer-brand {
+    grid-area: brand;
+}
+
+.footer-links {
+    grid-area: links;
+}
+
+.footer-contact {
+    grid-area: contact;
+}
+
+.footer-legal {
+    grid-area: legal;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(11, 95, 88, 0.1);
+}
+
+.footer-logo {
+    height: 60px;
+    width: auto;
+    margin-bottom: 1.5rem;
+}
+
+.brand-tagline {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-emerald);
+    font-weight: var(--weight-semibold);
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(11, 95, 88, 0.05);
+    color: var(--color-emerald);
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: var(--color-emerald);
+    color: var(--color-cream);
+    transform: translateY(-3px);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--color-navy);
+    font-weight: var(--weight-regular);
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--color-emerald);
+    padding-left: 5px;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-info {
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.contact-info a {
+    color: var(--color-emerald);
+    font-weight: var(--weight-semibold);
+}
+
+.footer-legal {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 2rem;
+    align-items: center;
+    font-size: 0.85rem;
+    opacity: 0.7;
 }
 
-.footer-nav {
-    display: flex;
-    gap: 1.5rem;
+.footer-legal a {
+    color: inherit;
+    margin-right: 1rem;
+}
+
+/* Margin and Spacing Utilities */
+.section-padding {
+    padding: 6rem 0;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mb-3 {
+    margin-bottom: 3rem;
+}
+
+.mb-4 {
+    margin-bottom: 4rem;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mt-3 {
+    margin-top: 3rem;
+}
+
+.mt-4 {
+    margin-top: 4rem;
+}
+
+.text-max-width {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Make outline button adapt to footer theme */
+.footer-contact .btn-outline-light {
+    border-color: var(--color-emerald);
+    color: var(--color-emerald);
+    margin-top: 1rem;
+}
+
+.footer-contact .btn-outline-light:hover {
+    background: var(--color-emerald);
+    color: var(--color-cream);
+}
+
+.footer-small {
+    width: 100%;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.8;
 }
 
 /* Responsiveness - Text & Layout Adjustments */
+
+/* Page-specific layout for About / Over Mij */
+.about-grid {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "profile-image profile-heading"
+        "profile-image profile-text";
+}
+
+.profile-image {
+    grid-area: profile-image;
+}
+
+.profile-heading {
+    grid-area: profile-heading;
+    align-self: start;
+}
+
+.profile-text {
+    grid-area: profile-text;
+}
+
+/* Ensure images keep aspect ratio and don't stretch. Desktop: fixed visual height, mobile: auto */
+.profile-image .profile-img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    /* Keep natural width when possible */
+    height: 400px;
+    /* Visual height for desktop */
+    object-fit: cover;
+    /* crop rather than stretch if needed */
+}
+
 @media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "brand"
+            "links"
+            "contact"
+            "legal";
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .footer-brand,
+    .footer-links,
+    .footer-contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .footer-legal {
+        flex-direction: column-reverse;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-legal div {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .section-padding {
+        padding: 4rem 0;
+    }
+
     .hero h1 {
         font-size: 2.5rem;
     }
-    
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .footer-nav {
-        justify-content: center;
-        flex-direction: column;
-        gap: 1rem;
+
+    /* About Section Mobile */
+    .about-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "profile-heading"
+            "profile-image"
+            "profile-text";
+        gap: 2rem;
     }
 }

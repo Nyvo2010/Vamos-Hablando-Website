@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Over mij | ¡Vamos Hablando!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="icon" href="Images/Small icon Beige achtergrond.png" type="image/png">
 </head>
+
 <body class="section-light">
 
     <header class="header-light">
         <div class="logo">
-            <img src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!" style="height: 50px;">
+            <a href="index.html" aria-label="Home">
+                <img src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!" style="height: 50px;">
+            </a>
         </div>
         <nav>
-            <div class="hamburger">
+            <div class="hamburger" role="button" tabindex="0" aria-label="Open menu" aria-expanded="false">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -30,49 +34,108 @@
         </nav>
     </header>
 
-    <section class="section-light">
-        <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-             <div class="card" style="border: none; background-color: rgba(11, 95, 88, 0.05); height: 400px; display: flex; align-items: center; justify-content: center;">
-                <!-- Placeholder for profile picture -->
-                 <img src="Images/Docent Foto Bas Wanders_bg.png" alt="¡Vamos Hablando!" style="height: 400px;">
+    <section class="section-light section-padding">
+        <div class="container about-grid">
+            <div class="profile-image">
+                <img class="profile-img" src="Images/Docent Foto Bas Wanders_bg.png" alt="Bas - ¡Vamos Hablando!">
             </div>
-            
-            <div>
-                <h1 class="text-accent" style="margin-bottom: 2rem;">Over mij</h1>
-                <p>Welkom bij ¡Vamos Hablando!.</p>
-                <br>
-                <p>Mijn naam is Bas en ik geef al bijna tien jaar les in de Spaanse taal. In die jaren heb ik gewerkt in binnen- en buitenland, met uiteenlopende doelgroepen: van middelbare scholieren tot volwassenen en van klassikaal onderwijs tot privélessen.</p>
-                <br>
-                <p>In mijn werk merkte ik dat traditioneel taalonderwijs vaak leidt tot veel kennis over de taal, maar dat het daadwerkelijk gebruiken ervan achterblijft. Daarnaast sluiten lesmethodes niet altijd aan op hoe Spaans in het dagelijks leven wordt gesproken. Juist die kloof tussen kennis en gebruik vormde voor mij de aanleiding om mijn lessen anders in te richten. </p>
-                <br>
-                <p>Mijn focus ligt op het overdragen van taal binnen context, met communicatie als doel. Door te werken met herkenbare situaties en betekenisvol taalgebruik ontstaat er samenhang en wordt Spaans functioneel inzetbaar, vanaf het begin.</p>
-                <br>
-                <p>In mijn lessen en programma’s staat rust, opbouw en toepasbaarheid centraal, zodat deelnemers stap voor stap leren functioneren in het Spaans, in en buiten de les.</p>
-                <div style="margin-top: 2rem;">
+
+            <div class="profile-heading">
+                <h1 class="text-accent mb-2">Over mij</h1>
+            </div>
+
+            <div class="profile-text">
+                <p class="mb-1">Welkom bij ¡Vamos Hablando!.</p>
+
+                <p class="mb-1">Mijn naam is Bas en ik geef al bijna tien jaar les in de Spaanse taal. In die jaren heb
+                    ik gewerkt in binnen- en buitenland, met uiteenlopende doelgroepen: van middelbare scholieren tot
+                    volwassenen en van klassikaal onderwijs tot privélessen.</p>
+
+                <p class="mb-1">In mijn werk merkte ik dat traditioneel taalonderwijs vaak leidt tot veel kennis over de
+                    taal, maar dat het daadwerkelijk gebruiken ervan achterblijft. Daarnaast sluiten lesmethodes niet
+                    altijd aan op hoe Spaans in het dagelijks leven wordt gesproken. Juist die kloof tussen kennis en
+                    gebruik vormde voor mij de aanleiding om mijn lessen anders in te richten. </p>
+
+                <p class="mb-1">Mijn focus ligt op het overdragen van taal binnen context, met communicatie als doel.
+                    Door te werken met herkenbare situaties en betekenisvol taalgebruik ontstaat er samenhang en wordt
+                    Spaans functioneel inzetbaar, vanaf het begin.</p>
+
+                <p class="mb-2">In mijn lessen en programma’s staat rust, opbouw en toepasbaarheid centraal, zodat
+                    deelnemers stap voor stap leren functioneren in het Spaans, in en buiten de les.</p>
+
+                <div class="mt-2">
                     <a href="contact.html" class="btn btn-primary">Neem contact op</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="section-light" style="border-top: 1px solid var(--color-emerald);">
-        <div class="container footer-content">
-            <div class="brand">
-                <img src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!" style="height: 40px; margin-bottom: 1rem;">
-                <p>Spaans leren in context.</p>
+    <section class="section-light section-padding">
+        <div class="container text-center">
+            <h2 class="mb-1">Vragen? Laten we praten.</h2>
+            <p class="mb-2">Neem contact op voor een vrijblijvend kennismakingsgesprek.</p>
+            <div class="cta-group">
+                <a href="contact.html" class="btn btn-primary">Neem contact op</a>
             </div>
-            <div class="footer-nav">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section-light site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <img class="footer-logo" src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!">
+                <p class="brand-tagline">Spaans leren in context.</p>
+                <div class="footer-social">
+                    <a class="social-link" href="#" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
+                        </svg>
+                    </a>
+                    <a class="social-link" href="#" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a4 4 0 0 0-4 4v3H8v4h3v8h4v-8h3l1-4h-4V6a1 1 0 0 1 1-1h3z" />
+                        </svg>
+                    </a>
+                    <a class="social-link" href="mailto:info@vamoshablando.nl" aria-label="Email">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
                 <a href="index.html">Home</a>
                 <a href="aanbod.html">Aanbod</a>
-                <a href="contact.html">Contact</a>
+                <a href="voor-wie.html">Voor wie</a>
+                <a href="taalreis-malaga.html">Taalreis Málaga</a>
+                <a href="over-mij.html">Over mij</a>
             </div>
-            <div class="contact-shortcut">
-                <a href="contact.html" class="btn btn-outline-light" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Neem contact op</a>
+            <div class="footer-contact">
+                <p class="contact-info">
+                    <strong>¡Vamos Hablando!</strong><br>
+                    E: <a href="mailto:info@vamoshablando.nl">info@vamoshablando.nl</a><br>
+                    M: <a href="tel:+31612345678">+31 6 12 34 56 78</a>
+                </p>
+                <a href="contact.html" class="btn btn-outline-light">Neem contact op</a>
+            </div>
+            <div class="footer-legal">
+                <span>© 2026 ¡Vamos Hablando! · Spaans leren in context.</span>
+                <div>
+                    <a href="#">Privacy</a>
+                    <a href="#">Cookies</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>
