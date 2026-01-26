@@ -550,8 +550,9 @@ a {
 }
 
 @media (min-width: 1024px) {
+    /* Slightly reduce flag size on desktop so it's a touch smaller than before */
     .flag-image {
-        max-width: 360px; /* larger on wide screens */
+        max-width: 340px; /* reduced from 360px to make the flag a tiny bit smaller on desktop */
     }
 }
 
