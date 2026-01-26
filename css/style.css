@@ -16,13 +16,23 @@
 /* VARIABLES: design tokens (colors, fonts, transitions) */
 :root {
     --color-soft-cream: #F6E6C8;
-    --color-dark-emerald: #0B5F58;
+    --color-dark-emerald: #0A6058;
     --color-deep-navy: #0E1A2B;
     --color-light-blue: #CFE4EA;
     --background: var(--color-soft-cream);
     --foreground: var(--color-deep-navy);
     --font-sans: 'Montserrat', sans-serif;
     --transition-speed: 0.5s;
+
+    /* Global layout tokens for consistent gutters and section spacing */
+    --page-gutter: 1.5rem;
+    /* horizontal side padding (mobile default) */
+    --section-vertical: 6rem;
+    /* vertical padding for sections (mobile default) */
+    --navbar-padding-x: 1rem;
+    /* internal horizontal padding for the navbar pill */
+    --content-max-width: 56rem;
+    /* aligns with .max-w-4xl used in body */
 }
 
 .dark {
@@ -73,7 +83,7 @@ a {
 
 /* LAYOUT: section spacing and layout */
 .section {
-    padding: 6rem 1.5rem;
+    padding: var(--section-vertical) var(--page-gutter);
     min-height: 60vh;
     display: flex;
     flex-direction: column;
@@ -81,14 +91,22 @@ a {
 }
 
 @media (min-width: 768px) {
-    .section {
-        padding: 8rem 4rem;
+
+    /* increase global gutter and vertical spacing on larger screens */
+    :root {
+        --page-gutter: 4rem;
+        --section-vertical: 8rem;
+        --navbar-padding-x: 1.25rem;
     }
 }
 
 @media (min-width: 1024px) {
-    .section {
-        padding: 8rem 4rem;
+
+    /* on very wide screens, give a bit more horizontal breathing room */
+    :root {
+        --page-gutter: 6rem;
+        --section-vertical: 8rem;
+        --navbar-padding-x: 1.5rem;
     }
 }
 
@@ -127,7 +145,24 @@ a {
 .section-green {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
+    /* Slightly larger than before so the section breathes a little more */
+    min-height: auto;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
 }
+
+@media (min-width: 768px) {
+    /* A bit more vertical spacing on larger screens */
+    .section-green {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    /* Reduce horizontal gap between text and flag specifically for the green intro */
+    .section-green .section-container {
+        gap: 0.5rem; /* tightened to bring the flag much closer to the text */
+    }
+} 
 
 .accent {
     color: inherit;
@@ -151,6 +186,10 @@ a {
     font-size: 1.125rem;
     transition: all 0.3s ease;
     gap: 0.75rem;
+    /* Prevent the label from breaking onto two lines */
+    white-space: nowrap;
+    /* Ensure a sensible minimum width so short labels don't collapse */
+    min-width: 8.5rem;
 }
 
 .button-primary {
@@ -166,6 +205,126 @@ a {
 .button-primary:hover {
     opacity: 0.9;
     transform: translateY(-1px);
+}
+
+.button-small {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 9999px;
+}
+
+/* Prevent button overflow on very small screens - keep labels on one line */
+@media (max-width: 420px) {
+    .button {
+        padding: 0.7rem 1rem;
+        font-size: 1rem;
+        min-width: 6.5rem;
+    }
+}
+
+/* Add spacing around buttons inside cards (e.g., Aanbod page) */
+.card .button {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Utility: outline button variant for secondary actions */
+.button-outline {
+    border: 2px solid var(--color-dark-emerald);
+    color: var(--color-dark-emerald);
+    background: transparent;
+}
+
+.section-green .button-outline {
+    border-color: var(--color-soft-cream);
+    color: var(--color-soft-cream);
+}
+
+.button-outline:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+}
+
+/* Icon utilities */
+.icon-hero {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--color-dark-emerald);
+}
+
+.section-green .icon-hero {
+    color: var(--color-soft-cream);
+}
+
+.icon-card {
+    font-size: 3rem;
+    color: var(--color-dark-emerald);
+    display: block;
+}
+
+.list-icon {
+    font-size: 2rem;
+    color: var(--color-dark-emerald);
+    flex-shrink: 0;
+}
+
+.inline-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.inline-group {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.section-beige .inline-icon {
+    color: var(--color-dark-emerald);
+}
+
+/* Accent and pricing helpers */
+.icon-hero-accent {
+    color: var(--color-light-blue);
+}
+
+.section-green .icon-hero-accent {
+    color: var(--color-light-blue);
+}
+
+.text-accent {
+    color: var(--color-light-blue);
+}
+
+.price-amount {
+    color: var(--color-soft-cream);
+    font-weight: 600;
+}
+
+.no-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Small helpers */
+.text-center {
+    text-align: center;
+}
+
+/* Simple grid helpers used throughout HTML */
+.grid {
+    display: grid;
+}
+
+.gap-8 { gap: 2rem; }
+.gap-10 { gap: 2.5rem; }
+
+@media (min-width: 768px) {
+    .md-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .md-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 }
 
 .inline-link {
@@ -218,14 +377,12 @@ a {
     min-height: 200px;
     gap: 3rem;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid transparent;
+    border: 1px solid rgba(11, 95, 88, 0.06);
     text-decoration: none !important;
 }
 
 .contact-card:hover {
-    background-color: rgba(11, 95, 88, 0.08);
-    border-color: rgba(11, 95, 88, 0.1);
-    transform: translateY(-8px);
+    box-shadow: 0 4px 12px rgba(11, 95, 88, 0.05);
 }
 
 .contact-icon {
@@ -264,19 +421,74 @@ a {
     }
 }
 
+.price-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 220px;
+    border: 1px solid rgba(14, 26, 43, 0.06);
+    box-shadow: 0 8px 20px rgba(14, 26, 43, 0.04);
+    background-color: rgba(11,95,88,0.04);
+    color: var(--color-deep-navy);
+}
+
+@media (min-width: 768px) {
+    .price-card {
+        min-height: 260px;
+    }
+}
+
+/* Invert visuals based on surrounding section (match secondary boxes behaviour, inverted) */
+.section-green .price-card {
+    /* 90% green + 10% beige (slightly lighter than background) */
+    background-color: #236D63; /* mix of 90% #0B5F58 + 10% #F6E6C8 */
+    color: var(--color-soft-cream);
+    border: 1px solid rgba(246,230,200,0.06); /* subtle beige border */
+    box-shadow: 0 8px 18px rgba(11,95,88,0.06); /* subtle green shadow */
+}
+
+.section-green .price-card h3,
+.section-green .price-card .price-amount {
+    color: var(--color-soft-cream) !important;
+}
+
+.section-beige .price-card {
+    /* On light background, use the subtle green tint used for secondary boxes */
+    background-color: rgba(11,95,88,0.04);
+    border: 1px solid rgba(11,95,88,0.06);
+    color: var(--color-deep-navy);
+}
+
+.section-beige .price-card .price-amount {
+    color: var(--color-dark-emerald);
+}
+
 .card-outline {
     background-color: rgba(246, 230, 200, 0.05);
 }
 
 .card-filled {
-    background-color: var(--color-dark-emerald);
-    color: var(--color-soft-cream);
+    background-color: var(--color-dark-emerald) !important;
+    color: var(--color-soft-cream) !important;
 }
 
-.profile-photo {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.5rem;
+.card-filled .accent {
+    color: var(--color-light-blue) !important;
+}
+
+/* Make cards on beige sections use the subtle green tint used on other pages */
+.section-beige .card,
+.section-beige .card-outline {
+    background-color: rgba(11, 95, 88, 0.04);
+    border: 1px solid rgba(11, 95, 88, 0.06);
+}
+
+.section-beige .card-outline {
+    /* keep a light outline variant if needed */
+    background-color: rgba(11, 95, 88, 0.03);
 }
 
 .docent-photo {
@@ -290,6 +502,26 @@ a {
 .docent-photo-hero {
     max-width: 320px;
     border-radius: 1rem;
+}
+
+/* Flag image used in the green intro section (right-aligned on larger screens) */
+.flag-container {
+    justify-self: end;
+    align-self: center;
+    text-align: right;
+}
+
+.flag-image {
+    width: 100%;
+    max-width: 320px; /* slightly bigger */
+    height: auto;
+    object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+    .flag-image {
+        max-width: 360px; /* larger on wide screens */
+    }
 }
 
 @media (min-width: 768px) {
@@ -310,27 +542,27 @@ a {
     right: 0;
     z-index: 50;
     transition: all var(--transition-speed) ease;
-    padding: 1.5rem 1.5rem;
+    padding: 1.5rem calc(var(--page-gutter) - var(--navbar-padding-x));
 }
 
 @media (min-width: 768px) {
     .navbar {
-        padding: 2rem 4rem;
+        padding: 2rem calc(var(--page-gutter) - var(--navbar-padding-x));
     }
 }
 
 .navbar.scrolled {
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem calc(var(--page-gutter) - var(--navbar-padding-x));
 }
 
 .navbar-container {
-    max-width: 72rem;
+    max-width: calc(var(--content-max-width) + (2 * var(--navbar-padding-x)));
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     transition: all var(--transition-speed) ease;
-    padding: 0.75rem 1.75rem;
+    padding: 0.75rem var(--navbar-padding-x);
 }
 
 .navbar.scrolled .navbar-container {
@@ -338,6 +570,8 @@ a {
     backdrop-filter: blur(12px);
     border: 1px solid rgba(11, 95, 88, 0.08);
     border-radius: 9999px;
+    padding-left: var(--navbar-padding-x);
+    padding-right: var(--navbar-padding-x);
 }
 
 .logo {
@@ -563,17 +797,15 @@ a {
 footer {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
-    padding: 6rem 1.5rem;
+    padding: var(--section-vertical) var(--page-gutter);
 }
 
 @media (min-width: 768px) {
-    footer {
-        padding: 8rem 4rem;
-    }
+    /* footer uses global spacing variables (see :root) */
 }
 
 .footer-container {
-    max-width: 72rem;
+    max-width: var(--content-max-width);
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
@@ -642,7 +874,7 @@ footer {
 }
 
 .footer-bottom {
-    max-width: 72rem;
+    max-width: var(--content-max-width);
     margin: 6rem auto 0;
     padding-top: 3rem;
     border-top: 1px solid rgba(246, 230, 200, 0.08);
