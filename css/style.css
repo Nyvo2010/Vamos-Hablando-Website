@@ -1,6 +1,17 @@
-/* File: css/style.css — Global stylesheet. Defines color variables, typography and component styles.
-   See AGENTS.md for typography and color rules. */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+.material-symbols-rounded {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    font-display: block;
+    text-decoration: none !important;
+    display: inline-block;
+    vertical-align: middle;
+}
 
 /* VARIABLES: design tokens (colors, fonts, transitions) */
 :root {
@@ -67,7 +78,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-} 
+}
 
 @media (min-width: 768px) {
     .section {
@@ -117,9 +128,10 @@ a {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
 }
+
 .accent {
     color: inherit;
-} 
+}
 
 .section-beige .accent {
     color: var(--color-dark-emerald);
@@ -138,6 +150,7 @@ a {
     font-weight: 600;
     font-size: 1.125rem;
     transition: all 0.3s ease;
+    gap: 0.75rem;
 }
 
 .button-primary {
@@ -156,11 +169,18 @@ a {
 }
 
 .inline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.inline-link span:not(.material-symbols-rounded) {
     text-decoration: underline;
     text-underline-offset: 6px;
     text-decoration-thickness: 1.5px;
-    transition: all 0.3s ease;
-} 
+}
 
 .inline-link:hover {
     opacity: 0.7;
@@ -187,6 +207,7 @@ a {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
 }
+
 .profile-photo {
     display: flex;
     justify-content: center;
@@ -225,7 +246,7 @@ a {
     z-index: 50;
     transition: all var(--transition-speed) ease;
     padding: 1.5rem 1.5rem;
-} 
+}
 
 @media (min-width: 768px) {
     .navbar {
@@ -261,7 +282,7 @@ a {
     color: var(--color-dark-emerald);
 }
 
-.logo-link { 
+.logo-link {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
@@ -322,7 +343,7 @@ a {
     font-weight: 600;
     color: var(--color-deep-navy);
     opacity: 0.7;
-} 
+}
 
 .nav-link:hover {
     opacity: 1;
@@ -372,7 +393,7 @@ a {
     transform: translateY(-100%);
     opacity: 0;
     pointer-events: none;
-} 
+}
 
 .mobile-menu.open {
     transform: translateY(0);
@@ -435,6 +456,9 @@ a {
 }
 
 .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     font-size: 2rem;
     font-weight: 600;
     color: var(--color-deep-navy);
@@ -533,6 +557,9 @@ footer {
 }
 
 .footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1.125rem;
     opacity: 0.7;
     font-weight: 500;
