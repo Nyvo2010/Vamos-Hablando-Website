@@ -145,17 +145,25 @@ a {
 .section-green {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
-    /* Slightly larger than before so the section breathes a little more */
     min-height: auto;
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
+    padding-top: 1.75rem; /* reduced vertical padding */
+    padding-bottom: 1.75rem;
+}
+
+/* Allow making the whole green section full-bleed when needed (adds full-viewport width breakout) */
+.section-green.full-bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: 0;
+    padding-right: 0;
 }
 
 @media (min-width: 768px) {
     /* A bit more vertical spacing on larger screens */
     .section-green {
-        padding-top: 5rem;
-        padding-bottom: 5rem;
+        padding-top: 3rem; /* slightly larger on tablet/desktop */
+        padding-bottom: 3rem;
     }
 
     /* Reduce horizontal gap between text and flag specifically for the green intro */
@@ -1169,29 +1177,33 @@ footer {
     overflow: visible; 
 }
 
+/* Make gallery inside green sections break out full-bleed */
+.section-green .gallery-wrapper {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: 1.5rem; /* preserve small gutter */
+    padding-right: 1.5rem;
+}
+
 .stacked-gallery {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 320px;
+    height: 240px; /* reduced height for a tighter band */
     position: relative;
     max-width: 100%;
 }
 
 .gallery-card {
-    height: 200px;
+    height: 160px; /* slightly smaller on desktop to reduce section height */
     width: auto;
     aspect-ratio: 3/2;
     object-fit: cover;
     border-radius: 1rem;
-    border: 6px solid #fff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), z-index 0s;
-    position: relative;
-    /* Tighter overlap (increased negative margin) to ensure gallery fits within text column bounds */
-    margin-left: -5rem; 
-    margin-right: -5rem;
+    border: 6px solid var(--color-soft-cream);
+    margin-left: -3.5rem;
+    margin-right: -3.5rem;
     flex-shrink: 0;
 }
 
