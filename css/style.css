@@ -1,5 +1,8 @@
+/* File: css/style.css — Global stylesheet. Defines color variables, typography and component styles.
+   See AGENTS.md for typography and color rules. */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 
+/* VARIABLES: design tokens (colors, fonts, transitions) */
 :root {
     --color-soft-cream: #F6E6C8;
     --color-dark-emerald: #0B5F58;
@@ -25,6 +28,7 @@
     box-shadow: none !important;
 }
 
+/* BASE: body styles, layout and default typography */
 body {
     background-color: var(--background);
     color: var(--foreground);
@@ -56,33 +60,29 @@ a {
     transition: all 0.3s ease;
 }
 
-/* Sections */
+/* LAYOUT: section spacing and layout */
 .section {
-    /* Match header/footer horizontal spacing and footer vertical spacing for consistency */
     padding: 6rem 1.5rem;
     min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+} 
 
 @media (min-width: 768px) {
     .section {
-        /* Use same horizontal padding as header/footer at tablet+ */
         padding: 8rem 4rem;
     }
 }
 
 @media (min-width: 1024px) {
     .section {
-        /* Keep consistent with footer/header on larger screens */
         padding: 8rem 4rem;
     }
 }
 
 .section-container {
     max-width: 72rem;
-    /* max-w-6xl */
     margin: 0 auto;
     width: 100%;
 }
@@ -117,12 +117,9 @@ a {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
 }
-
-/* Components */
 .accent {
     color: inherit;
-    /* Let it inherit font-weight from parent */
-}
+} 
 
 .section-beige .accent {
     color: var(--color-dark-emerald);
@@ -159,12 +156,11 @@ a {
 }
 
 .inline-link {
-    /* Less heavy than 600 */
     text-decoration: underline;
     text-underline-offset: 6px;
     text-decoration-thickness: 1.5px;
     transition: all 0.3s ease;
-}
+} 
 
 .inline-link:hover {
     opacity: 0.7;
@@ -191,8 +187,6 @@ a {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
 }
-
-/* Profile photo styles for Over Mij page */
 .profile-photo {
     display: flex;
     justify-content: center;
@@ -207,7 +201,6 @@ a {
     box-shadow: 0 10px 30px rgba(14, 26, 43, 0.08);
 }
 
-/* Larger hero variant used directly under the H1 */
 .docent-photo-hero {
     max-width: 320px;
     border-radius: 1rem;
@@ -223,7 +216,7 @@ a {
     }
 }
 
-/* Navbar */
+/* NAVBAR: fixed header styles and responsive behavior */
 .navbar {
     position: fixed;
     top: 0;
@@ -232,7 +225,7 @@ a {
     z-index: 50;
     transition: all var(--transition-speed) ease;
     padding: 1.5rem 1.5rem;
-}
+} 
 
 @media (min-width: 768px) {
     .navbar {
@@ -268,8 +261,7 @@ a {
     color: var(--color-dark-emerald);
 }
 
-/* Logo image rule: show dark logo on desktop and small beige icon on mobile */
-.logo-link {
+.logo-link { 
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
@@ -281,7 +273,6 @@ a {
     width: auto;
 }
 
-/* Desktop: show full dark logo, hide mobile icon (switched earlier to avoid header wrapping) */
 @media (min-width: 820px) {
     .logo {
         font-size: 1.5rem;
@@ -300,7 +291,6 @@ a {
     }
 }
 
-/* Mobile: show small beige icon, hide full logo (applies below 820px) */
 @media (max-width: 819px) {
     .logo-desktop {
         display: none;
@@ -330,10 +320,9 @@ a {
 .nav-link {
     font-size: 0.9rem;
     font-weight: 600;
-    /* Match logo weight for consistency */
     color: var(--color-deep-navy);
     opacity: 0.7;
-}
+} 
 
 .nav-link:hover {
     opacity: 1;
@@ -367,7 +356,7 @@ a {
     background-color: rgba(11, 95, 88, 0.05);
 }
 
-/* Mobile Menu Overlay */
+/* MOBILE MENU: overlay styles and transitions for mobile navigation */
 .mobile-menu {
     position: fixed;
     inset: 0;
@@ -378,11 +367,12 @@ a {
     display: flex;
     flex-direction: column;
     padding: 2.5rem;
-    transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+    /* Only animate transform and opacity to avoid unexpected horizontal changes */
+    transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), opacity var(--transition-speed) ease;
     transform: translateY(-100%);
     opacity: 0;
     pointer-events: none;
-}
+} 
 
 .mobile-menu.open {
     transform: translateY(0);
@@ -397,10 +387,6 @@ a {
     margin-bottom: 4rem;
 }
 
-/* Mobile menu close button (fixes default browser styling)
-   - Remove default button box, use accent color for the icon
-   - Provide hover and accessible focus styles
-*/
 .mobile-menu-close {
     background: none;
     border: none;
@@ -453,18 +439,31 @@ a {
     font-weight: 600;
     color: var(--color-deep-navy);
     opacity: 0.4;
-    transform: translateX(2rem);
-    transition: all 0.5s ease;
+    transform: translateY(-1.25rem);
+    transition-property: transform, opacity;
+    transition-duration: 0.45s, 0.35s;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1), ease;
+    transform-origin: center top;
 }
 
 .mobile-menu.open .mobile-nav-link {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
 }
 
-.mobile-nav-link.active {
-    color: var(--color-dark-emerald);
-    opacity: 1;
+/* Ensure buttons inside the mobile menu don't move horizontally either */
+.mobile-menu .button,
+.mobile-menu button {
+    transform: translateY(-0.6rem);
+    transition-property: transform, opacity;
+    transition-duration: 0.35s;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+    transform-origin: center top;
+}
+
+.mobile-menu.open .button,
+.mobile-menu.open button {
+    transform: translateY(0);
 }
 
 .mobile-footer {
@@ -472,7 +471,6 @@ a {
     padding-top: 3rem;
 }
 
-/* Footer */
 footer {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
@@ -505,7 +503,6 @@ footer {
     font-weight: 600;
 }
 
-/* Footer-specific logo size */
 .footer-logo .logo-footer {
     display: inline-block;
     height: 48px;
@@ -557,7 +554,6 @@ footer {
     opacity: 0.3;
 }
 
-/* Typography Utilities */
 .text-6xl {
     font-size: 3.5rem;
 }
@@ -773,7 +769,6 @@ footer {
     border-top: 1px solid rgba(11, 95, 88, 0.05);
 }
 
-/* Animation Delays */
 .delay-50 {
     transition-delay: 50ms;
 }
