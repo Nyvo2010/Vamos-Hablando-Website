@@ -518,6 +518,37 @@ a {
     object-fit: contain;
 }
 
+@media (max-width: 767px) {
+    /* When stacked on small screens, align flag to the left */
+    .flag-container {
+        justify-self: start;
+        text-align: left !important; /* override inline style if present */
+    }
+
+    /* Make the flag fill the available content width (screen width minus section padding) */
+    .flag-image {
+        width: 100%;
+        max-width: none;
+        display: block;
+        object-fit: contain;
+    }
+
+    /* On mobile, make the docent image fill the available content width (respects section padding)
+       and remove the max-width constraint so the photo is full-bleed within the section. */
+    .profile-photo {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .docent-photo {
+        max-width: none;
+        width: 100%;
+        border-radius: 1rem;
+        object-fit: cover;
+    }
+}
+
 @media (min-width: 1024px) {
     .flag-image {
         max-width: 360px; /* larger on wide screens */
@@ -772,6 +803,11 @@ a {
 .mobile-menu.open .mobile-nav-link {
     transform: translateY(0);
     opacity: 1;
+}
+
+/* Hide icon glyphs next to page labels in the mobile menu */
+.mobile-nav-link .material-symbols-rounded {
+    display: none;
 }
 
 /* Ensure buttons inside the mobile menu don't move horizontally either */
