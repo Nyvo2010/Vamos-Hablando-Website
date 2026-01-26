@@ -1157,3 +1157,106 @@ footer {
 .delay-300 {
     transition-delay: 300ms;
 }
+
+/* STACKED PHOTO GALLERY */
+.gallery-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    width: 100%;
+    /* Ensure visible overflow on desktop so pop-out hover effects aren't clipped */
+    overflow: visible; 
+}
+
+.stacked-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 320px;
+    position: relative;
+    max-width: 100%;
+}
+
+.gallery-card {
+    height: 200px;
+    width: auto;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+    border-radius: 1rem;
+    border: 6px solid #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), z-index 0s;
+    position: relative;
+    /* Tighter overlap (increased negative margin) to ensure gallery fits within text column bounds */
+    margin-left: -5rem; 
+    margin-right: -5rem;
+    flex-shrink: 0;
+}
+
+/* Random Rotations for "messy" stacked look */
+.gallery-card:nth-child(1) { transform: rotate(-4deg); z-index: 1; }
+.gallery-card:nth-child(2) { transform: rotate(3deg) translateY(-5px); z-index: 2; }
+.gallery-card:nth-child(3) { transform: rotate(-2deg); z-index: 3; }
+.gallery-card:nth-child(4) { transform: rotate(5deg) translateY(5px); z-index: 4; }
+.gallery-card:nth-child(5) { transform: rotate(-3deg); z-index: 5; }
+
+/* Desktop Hover Interaction */
+@media (hover: hover) {
+    .gallery-card:hover {
+        z-index: 100 !important; /* Rise above all */
+        transform: scale(1.25) rotate(0deg); /* Zoom and straighten */
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Active Class */
+.gallery-card.active {
+    z-index: 100 !important;
+    transform: scale(1.25) rotate(0deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile specific: Normal Horizontal Scroll (Netflix-style) */
+@media (max-width: 768px) {
+    .gallery-wrapper {
+        display: block;
+        padding: 0;
+        /* Break out of parent padding to allow full-width scroll */
+        width: 100vw;
+        margin-left: -1.5rem; /* Assumes mobile gutter is 1.5rem */
+        margin-right: -1.5rem;
+        overflow-y: hidden;
+    }
+
+    .stacked-gallery {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: auto;
+        overflow-x: auto; /* Enable scroll */
+        scroll-snap-type: x mandatory; /* Snap behavior */
+        padding: 1.5rem; /* Padding inside scroll container */
+        gap: 1rem;
+        transform: none;
+    }
+    
+    .gallery-card {
+        height: 200px;
+        margin: 0 !important; /* Remove negative margins */
+        transform: none !important; /* Remove rotation */
+        scroll-snap-align: center;
+        border-width: 4px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 1 !important;
+    }
+    
+    .gallery-card:hover, .gallery-card.active {
+        transform: none; /* No zoom on mobile scroll */
+    }
+
+    /* Reset nth-child specific transforms */
+    .gallery-card:nth-child(n) {
+        transform: none !important;
+    }
+}

@@ -49,4 +49,38 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.add('active');
         }
     });
+
+    // STACKED GALLERY INTERACTION
+    document.addEventListener('bindGalleryEvents', function() { /* wrapper if you have an init function */ });
+
+    // Run this logic when DOM is ready
+    (function initGallery() {
+        const galleryCards = document.querySelectorAll('.gallery-card');
+        const galleryContainer = document.querySelector('.stacked-gallery');
+
+        if (!galleryCards.length) return;
+
+        // Handle clicks on cards (Logic for mobile/touch mainly)
+        galleryCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent document click from firing immediately
+
+                const isActive = card.classList.contains('active');
+
+                // Reset all cards first
+                galleryCards.forEach(c => c.classList.remove('active'));
+
+                // If it wasn't active, activate it. If it was active, we just closed it (toggle behavior)
+                if (!isActive) {
+                    card.classList.add('active');
+                }
+            });
+        });
+
+        // Close gallery when clicking outside
+        document.addEventListener('click', (e) => {
+            // If click is outside the container (or anywhere effectively since we stopPropagation on cards)
+            galleryCards.forEach(c => c.classList.remove('active'));
+        });
+    })();
 });
