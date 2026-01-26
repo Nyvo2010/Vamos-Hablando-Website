@@ -190,8 +190,65 @@ a {
 .contact-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 2.5rem 4rem; /* vertical gap then horizontal gap */
+    gap: 2.5rem 4rem;
+    /* vertical gap then horizontal gap */
     align-items: center;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .contact-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.contact-card {
+    background-color: rgba(11, 95, 88, 0.04);
+    padding: 2.5rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    gap: 3rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    text-decoration: none !important;
+}
+
+.contact-card:hover {
+    background-color: rgba(11, 95, 88, 0.08);
+    border-color: rgba(11, 95, 88, 0.1);
+    transform: translateY(-8px);
+}
+
+.contact-icon {
+    font-size: 3rem !important;
+    color: var(--color-dark-emerald);
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.contact-label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-dark-emerald);
+}
+
+.contact-value {
+    font-size: 1.125rem;
+    opacity: 0.6;
+    font-weight: 400;
 }
 
 .card {
