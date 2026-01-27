@@ -33,6 +33,25 @@
     /* internal horizontal padding for the navbar pill */
     --content-max-width: 56rem;
     /* aligns with .max-w-4xl used in body */
+
+    /* Typography Standards */
+    --font-size-heading: 2.25rem;
+    /* Mobile Heading */
+    --font-size-subheading: 1.5rem;
+    /* Mobile Subheading */
+    --font-size-body: 1rem;
+    /* Mobile Body */
+}
+
+@media (min-width: 768px) {
+    :root {
+        --font-size-heading: 3.5rem;
+        /* Desktop Heading */
+        --font-size-subheading: 2rem;
+        /* Desktop Subheading */
+        --font-size-body: 1.125rem;
+        /* Desktop Body */
+    }
 }
 
 .dark {
@@ -146,8 +165,8 @@ a {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
     min-height: auto;
-    padding-top: 1.75rem; /* reduced vertical padding */
-    padding-bottom: 1.75rem;
+    /* Use the global section spacing so sections are consistent across the site */
+    padding: var(--section-vertical) var(--page-gutter);
 }
 
 /* Allow making the whole green section full-bleed when needed (adds full-viewport width breakout) */
@@ -159,18 +178,46 @@ a {
     padding-right: 0;
 }
 
+/* Full-bleed card utility: make a contained element break out to full viewport width while keeping inner content aligned */
+.full-bleed-card {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: calc(var(--section-vertical) / 4) var(--page-gutter);
+    box-sizing: border-box;
+}
+
+/* Ensure the inner container inside a full-bleed stays aligned with other sections */
+.full-bleed-card .section-container,
+.full-bleed-card .container {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+}
+
 @media (min-width: 768px) {
-    /* A bit more vertical spacing on larger screens */
+    .full-bleed-card {
+        padding: calc(var(--section-vertical) / 3) var(--page-gutter);
+    }
+}
+
+@media (min-width: 768px) {
+
+    /* A bit more vertical spacing on larger screens - use global spacing variable */
     .section-green {
-        padding-top: 3rem; /* slightly larger on tablet/desktop */
-        padding-bottom: 3rem;
+        padding: var(--section-vertical) var(--page-gutter);
     }
 
     /* Reduce horizontal gap between text and flag specifically for the green intro */
     .section-green .section-container {
-        gap: 0.5rem; /* tightened to bring the flag much closer to the text */
+        gap: 0.5rem;
+        /* tightened to bring the flag much closer to the text */
     }
-} 
+}
+
+/* Normalize any "compact" sections so all sections share the same vertical spacing */
+.section-compact {
+    padding: var(--section-vertical) var(--page-gutter) !important;
+}
 
 .accent {
     color: inherit;
@@ -191,7 +238,7 @@ a {
     padding: 1.125rem 2.25rem;
     border-radius: 9999px;
     font-weight: 600;
-    font-size: 1.125rem;
+    font-size: var(--font-size-body);
     transition: all 0.3s ease;
     gap: 0.75rem;
     /* Prevent the label from breaking onto two lines */
@@ -217,7 +264,7 @@ a {
 
 .button-small {
     padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+    font-size: var(--font-size-body);
     border-radius: 9999px;
 }
 
@@ -225,7 +272,7 @@ a {
 @media (max-width: 420px) {
     .button {
         padding: 0.7rem 1rem;
-        font-size: 1rem;
+        font-size: var(--font-size-body);
         min-width: 6.5rem;
     }
 }
@@ -255,7 +302,7 @@ a {
 
 /* Icon utilities */
 .icon-hero {
-    font-size: 3.5rem;
+    font-size: var(--font-size-heading);
     display: block;
     margin-bottom: 1rem;
     color: var(--color-dark-emerald);
@@ -266,13 +313,13 @@ a {
 }
 
 .icon-card {
-    font-size: 3rem;
+    font-size: var(--font-size-heading);
     color: var(--color-dark-emerald);
     display: block;
 }
 
 .list-icon {
-    font-size: 2rem;
+    font-size: var(--font-size-subheading);
     color: var(--color-dark-emerald);
     flex-shrink: 0;
 }
@@ -281,6 +328,12 @@ a {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.flex-icon-text {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .inline-group {
@@ -306,6 +359,24 @@ a {
     color: var(--color-light-blue);
 }
 
+/* Remove icons that appear to the left of headings on all pages */
+/* Targets Material Symbols and inline SVGs placed directly inside heading elements */
+h1 > .material-symbols-rounded,
+h2 > .material-symbols-rounded,
+h3 > .material-symbols-rounded,
+h4 > .material-symbols-rounded,
+h5 > .material-symbols-rounded,
+h6 > .material-symbols-rounded,
+h1 > svg,
+h2 > svg,
+h3 > svg,
+h4 > svg,
+h5 > svg,
+h6 > svg {
+    display: none;
+}
+
+
 .price-amount {
     color: var(--color-soft-cream);
     font-weight: 600;
@@ -322,17 +393,60 @@ a {
     text-align: center;
 }
 
+.text-left {
+    text-align: left;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
 /* Simple grid helpers used throughout HTML */
 .grid {
     display: grid;
 }
 
-.gap-8 { gap: 2rem; }
-.gap-10 { gap: 2.5rem; }
+.gap-4 {
+    gap: 1rem;
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+.gap-8 {
+    gap: 2rem;
+}
+
+.gap-10 {
+    gap: 2.5rem;
+}
 
 @media (min-width: 768px) {
-    .md-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-    .md-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .md-grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md-grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Utility: allow elements to span two columns on medium+ screens */
+    .md-col-span-2 {
+        grid-column: span 2 / span 2;
+    }
 }
 
 .inline-link {
@@ -405,13 +519,13 @@ a {
 }
 
 .contact-label {
-    font-size: 1.5rem;
+    font-size: var(--font-size-subheading);
     font-weight: 600;
     color: var(--color-dark-emerald);
 }
 
 .contact-value {
-    font-size: 1.125rem;
+    font-size: var(--font-size-body);
     opacity: 0.6;
     font-weight: 400;
 }
@@ -421,11 +535,43 @@ a {
     border-radius: 2rem;
     border: none;
     background-color: rgba(11, 95, 88, 0.04);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Wide card variant used for featured/expanded entries like Taalreizen */
+.card-wide {
+    padding: 2.25rem;
+}
+
+.card-wide .card-wide-inner {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
 @media (min-width: 768px) {
     .card {
         padding: 3.5rem;
+    }
+
+    .card-wide {
+        padding: 3.5rem;
+        /* slightly more horizontal breathing room for the wide card */
+    }
+
+    .card-wide .card-wide-inner {
+        /* Keep stacked layout same as small cards: icon on top-left, text below */
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .card-wide .material-symbols-rounded {
+        font-size: var(--font-size-heading);
+        flex-shrink: 0;
     }
 }
 
@@ -439,7 +585,7 @@ a {
     min-height: 220px;
     border: 1px solid rgba(14, 26, 43, 0.06);
     box-shadow: 0 8px 20px rgba(14, 26, 43, 0.04);
-    background-color: rgba(11,95,88,0.04);
+    background-color: rgba(11, 95, 88, 0.04);
     color: var(--color-deep-navy);
 }
 
@@ -452,10 +598,13 @@ a {
 /* Invert visuals based on surrounding section (match secondary boxes behaviour, inverted) */
 .section-green .price-card {
     /* 90% green + 10% beige (slightly lighter than background) */
-    background-color: #236D63; /* mix of 90% #0B5F58 + 10% #F6E6C8 */
+    background-color: #236D63;
+    /* mix of 90% #0B5F58 + 10% #F6E6C8 */
     color: var(--color-soft-cream);
-    border: 1px solid rgba(246,230,200,0.06); /* subtle beige border */
-    box-shadow: 0 8px 18px rgba(11,95,88,0.06); /* subtle green shadow */
+    border: 1px solid rgba(246, 230, 200, 0.06);
+    /* subtle beige border */
+    box-shadow: 0 8px 18px rgba(11, 95, 88, 0.06);
+    /* subtle green shadow */
 }
 
 .section-green .price-card h3,
@@ -465,8 +614,8 @@ a {
 
 .section-beige .price-card {
     /* On light background, use the subtle green tint used for secondary boxes */
-    background-color: rgba(11,95,88,0.04);
-    border: 1px solid rgba(11,95,88,0.06);
+    background-color: rgba(11, 95, 88, 0.04);
+    border: 1px solid rgba(11, 95, 88, 0.06);
     color: var(--color-deep-navy);
 }
 
@@ -521,16 +670,19 @@ a {
 
 .flag-image {
     width: 100%;
-    max-width: 320px; /* slightly bigger */
+    max-width: 320px;
+    /* slightly bigger */
     height: auto;
     object-fit: contain;
 }
 
 @media (max-width: 767px) {
+
     /* When stacked on small screens, align flag to the left */
     .flag-container {
         justify-self: start;
-        text-align: left !important; /* override inline style if present */
+        text-align: left !important;
+        /* override inline style if present */
     }
 
     /* Make the flag fill the available content width (screen width minus section padding) */
@@ -558,9 +710,11 @@ a {
 }
 
 @media (min-width: 1024px) {
+
     /* Slightly reduce flag size on desktop so it's a touch smaller than before */
     .flag-image {
-        max-width: 340px; /* reduced from 360px to make the flag a tiny bit smaller on desktop */
+        max-width: 340px;
+        /* reduced from 360px to make the flag a tiny bit smaller on desktop */
     }
 }
 
@@ -615,7 +769,7 @@ a {
 }
 
 .logo {
-    font-size: 1.25rem;
+    font-size: var(--font-size-body);
     font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--color-dark-emerald);
@@ -635,7 +789,7 @@ a {
 
 @media (min-width: 820px) {
     .logo {
-        font-size: 1.5rem;
+        font-size: var(--font-size-subheading);
     }
 
     .logo-desktop {
@@ -678,7 +832,7 @@ a {
 }
 
 .nav-link {
-    font-size: 0.9rem;
+    font-size: var(--font-size-body);
     font-weight: 600;
     color: var(--color-deep-navy);
     opacity: 0.7;
@@ -798,7 +952,7 @@ a {
     display: flex;
     align-items: center;
     gap: 1rem;
-    font-size: 2rem;
+    font-size: var(--font-size-body);
     font-weight: 600;
     color: var(--color-deep-navy);
     opacity: 0.4;
@@ -857,7 +1011,7 @@ footer {
     gap: 3rem 1.5rem;
 }
 
-.footer-container > :first-child {
+.footer-container> :first-child {
     grid-column: 1 / -1;
 }
 
@@ -867,14 +1021,14 @@ footer {
         gap: 4rem;
     }
 
-    .footer-container > :first-child {
+    .footer-container> :first-child {
         grid-column: auto;
     }
 }
 
 .footer-logo {
     color: var(--color-soft-cream);
-    font-size: 1.5rem;
+    font-size: var(--font-size-subheading);
     font-weight: 600;
 }
 
@@ -885,7 +1039,7 @@ footer {
 }
 
 .footer-text {
-    font-size: 1.125rem;
+    font-size: var(--font-size-body);
     opacity: 0.7;
     max-width: 24rem;
     margin-top: 1.5rem;
@@ -894,7 +1048,7 @@ footer {
 }
 
 .footer-column h4 {
-    font-size: 1.25rem;
+    font-size: var(--font-size-subheading);
     color: var(--color-light-blue);
     margin-bottom: 2rem;
     font-weight: 600;
@@ -911,7 +1065,7 @@ footer {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    font-size: 1.125rem;
+    font-size: var(--font-size-body);
     opacity: 0.7;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -933,54 +1087,53 @@ footer {
     padding-top: 3rem;
     border-top: 1px solid rgba(246, 230, 200, 0.08);
     text-align: center;
-    font-size: 0.875rem;
+    font-size: var(--font-size-body);
     opacity: 0.3;
 }
 
-.text-6xl {
-    font-size: 3.5rem;
-}
-
-.text-8xl {
-    font-size: 5.5rem;
-}
-
+/* Typography Mappings to Standard Sizes */
+.text-8xl,
+.text-7xl,
+.text-6xl,
 .text-5xl {
-    font-size: 2.75rem;
+    font-size: var(--font-size-heading);
 }
 
-.text-7xl {
-    font-size: 4rem;
-}
-
-.text-4xl {
-    font-size: 2rem;
-}
-
+.text-4xl,
+.text-3xl,
 .text-2xl {
-    font-size: 1.5rem;
+    font-size: var(--font-size-subheading);
 }
 
-.text-xl {
-    font-size: 1.25rem;
+.text-xl,
+.text-lg,
+.text-base {
+    font-size: var(--font-size-body);
 }
 
-.text-lg {
-    font-size: 1.125rem;
+/* Ensure h1-h3 map correctly if not using utility classes */
+h1 {
+    font-size: var(--font-size-heading);
 }
 
+h2,
+h3 {
+    font-size: var(--font-size-subheading);
+}
+
+p,
+li,
+a,
+span {
+    font-size: inherit;
+}
+
+/* Default inherits, usually constrained by parent or implicit body size */
+
+/* Redefine specific responsive overrides to just respect the variable which splits at 768px */
 @media (max-width: 767px) {
-    .text-6xl {
-        font-size: 2.75rem;
-    }
-
-    .text-8xl {
-        font-size: 3.5rem;
-    }
-
-    .text-7xl {
-        font-size: 2.75rem;
-    }
+    /* Variables handle the resizing, so these overrides are largely redundant if using the variables, 
+       but we keep the selectors to ensure specificity matches if needed. */
 }
 
 .leading-tight {
@@ -1078,45 +1231,31 @@ footer {
     justify-content: space-between;
 }
 
-.gap-8 {
-    gap: 2rem;
-}
-
-.gap-6 {
-    gap: 1.5rem;
-}
-
-.gap-10 {
-    gap: 2.5rem;
-}
-
-.gap-12 {
-    gap: 3rem;
-}
-
-.gap-16 {
-    gap: 4rem;
-}
-
-.gap-4 {
-    gap: 1rem;
-}
-
-.grid {
-    display: grid;
-}
-
-.grid-cols-1 {
-    grid-template-columns: 1fr;
-}
-
 @media (min-width: 768px) {
     .md-grid-cols-2 {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .md-w-1-3 {
-        width: 33.333333%;
+        /* Prefer a flexible column that doesn't compress headlines too early */
+        flex: 0 0 33.333333%;
+        width: auto;
+        min-width: 14rem; /* prevents very narrow columns that force early wrapping */
+    }
+
+    /* Prevent icon glyphs from wrapping onto their own line and keep spacing consistent */
+    .material-symbols-rounded {
+        flex-shrink: 0;
+        margin-right: 0.75rem;
+        vertical-align: middle;
+    }
+
+    /* Reduce heading breaks on medium+ screens for better readability. Use ellipsis as fallback when
+       the space is very constrained instead of wrapping mid-phrase. */
+    .group h3 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -1183,7 +1322,7 @@ footer {
     padding: 2rem 0;
     width: 100%;
     /* Ensure visible overflow on desktop so pop-out hover effects aren't clipped */
-    overflow: visible; 
+    overflow: visible;
 }
 
 /* Make gallery inside green sections break out full-bleed */
@@ -1191,7 +1330,8 @@ footer {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-    padding-left: 1.5rem; /* preserve small gutter */
+    padding-left: 1.5rem;
+    /* preserve small gutter */
     padding-right: 1.5rem;
 }
 
@@ -1199,13 +1339,15 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 240px; /* reduced height for a tighter band */
+    height: 240px;
+    /* reduced height for a tighter band */
     position: relative;
     max-width: 100%;
 }
 
 .gallery-card {
-    height: 160px; /* slightly smaller on desktop to reduce section height */
+    height: 160px;
+    /* slightly smaller on desktop to reduce section height */
     width: auto;
     aspect-ratio: 3/2;
     object-fit: cover;
@@ -1217,17 +1359,38 @@ footer {
 }
 
 /* Random Rotations for "messy" stacked look */
-.gallery-card:nth-child(1) { transform: rotate(-4deg); z-index: 1; }
-.gallery-card:nth-child(2) { transform: rotate(3deg) translateY(-5px); z-index: 2; }
-.gallery-card:nth-child(3) { transform: rotate(-2deg); z-index: 3; }
-.gallery-card:nth-child(4) { transform: rotate(5deg) translateY(5px); z-index: 4; }
-.gallery-card:nth-child(5) { transform: rotate(-3deg); z-index: 5; }
+.gallery-card:nth-child(1) {
+    transform: rotate(-4deg);
+    z-index: 1;
+}
+
+.gallery-card:nth-child(2) {
+    transform: rotate(3deg) translateY(-5px);
+    z-index: 2;
+}
+
+.gallery-card:nth-child(3) {
+    transform: rotate(-2deg);
+    z-index: 3;
+}
+
+.gallery-card:nth-child(4) {
+    transform: rotate(5deg) translateY(5px);
+    z-index: 4;
+}
+
+.gallery-card:nth-child(5) {
+    transform: rotate(-3deg);
+    z-index: 5;
+}
 
 /* Desktop Hover Interaction */
 @media (hover: hover) {
     .gallery-card:hover {
-        z-index: 100 !important; /* Rise above all */
-        transform: scale(1.25) rotate(0deg); /* Zoom and straighten */
+        z-index: 100 !important;
+        /* Rise above all */
+        transform: scale(1.25) rotate(0deg);
+        /* Zoom and straighten */
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
 }
@@ -1246,7 +1409,8 @@ footer {
         padding: 0;
         /* Break out of parent padding to allow full-width scroll */
         width: 100vw;
-        margin-left: -1.5rem; /* Assumes mobile gutter is 1.5rem */
+        margin-left: -1.5rem;
+        /* Assumes mobile gutter is 1.5rem */
         margin-right: -1.5rem;
         overflow-y: hidden;
     }
@@ -1256,25 +1420,32 @@ footer {
         justify-content: flex-start;
         align-items: center;
         height: auto;
-        overflow-x: auto; /* Enable scroll */
-        scroll-snap-type: x mandatory; /* Snap behavior */
-        padding: 1.5rem; /* Padding inside scroll container */
+        overflow-x: auto;
+        /* Enable scroll */
+        scroll-snap-type: x mandatory;
+        /* Snap behavior */
+        padding: 1.5rem;
+        /* Padding inside scroll container */
         gap: 1rem;
         transform: none;
     }
-    
+
     .gallery-card {
         height: 200px;
-        margin: 0 !important; /* Remove negative margins */
-        transform: none !important; /* Remove rotation */
+        margin: 0 !important;
+        /* Remove negative margins */
+        transform: none !important;
+        /* Remove rotation */
         scroll-snap-align: center;
         border-width: 4px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         z-index: 1 !important;
     }
-    
-    .gallery-card:hover, .gallery-card.active {
-        transform: none; /* No zoom on mobile scroll */
+
+    .gallery-card:hover,
+    .gallery-card.active {
+        transform: none;
+        /* No zoom on mobile scroll */
     }
 
     /* Reset nth-child specific transforms */
@@ -1290,6 +1461,7 @@ footer {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

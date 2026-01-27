@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // STACKED GALLERY INTERACTION
-    document.addEventListener('bindGalleryEvents', function() { /* wrapper if you have an init function */ });
 
     // Run this logic when DOM is ready
     (function initGallery() {
