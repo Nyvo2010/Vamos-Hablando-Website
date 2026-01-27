@@ -29,10 +29,6 @@
     /* horizontal side padding (mobile default) */
     --section-vertical: 6rem;
     /* vertical padding for sections (mobile default) */
-    --section-vertical-compact: 4rem;
-    /* smaller sections */
-    --section-vertical-green: 2.5rem;
-    /* very tight sections */
     --navbar-padding-x: 1rem;
     /* internal horizontal padding for the navbar pill */
     --content-max-width: 56rem;
@@ -100,8 +96,6 @@ a {
     :root {
         --page-gutter: 4rem;
         --section-vertical: 8rem;
-        --section-vertical-compact: 6rem;
-        --section-vertical-green: 4rem;
         --navbar-padding-x: 1.25rem;
     }
 }
@@ -112,8 +106,6 @@ a {
     :root {
         --page-gutter: 6rem;
         --section-vertical: 8rem;
-        --section-vertical-compact: 6rem;
-        --section-vertical-green: 4rem;
         --navbar-padding-x: 1.5rem;
     }
 }
@@ -150,18 +142,12 @@ a {
     color: var(--color-deep-navy);
 }
 
-.section-compact {
-    padding-top: var(--section-vertical-compact);
-    padding-bottom: var(--section-vertical-compact);
-    min-height: auto;
-}
-
 .section-green {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
     min-height: auto;
-    padding-top: var(--section-vertical-green);
-    padding-bottom: var(--section-vertical-green);
+    padding-top: 1.75rem; /* reduced vertical padding */
+    padding-bottom: 1.75rem;
 }
 
 /* Allow making the whole green section full-bleed when needed (adds full-viewport width breakout) */
@@ -174,13 +160,17 @@ a {
 }
 
 @media (min-width: 768px) {
-
-    /* Reduced horizontal gap between text and flag specifically for the green intro */
-    .section-green .section-container {
-        gap: 0.5rem;
-        /* tightened to bring the flag much closer to the text */
+    /* A bit more vertical spacing on larger screens */
+    .section-green {
+        padding-top: 3rem; /* slightly larger on tablet/desktop */
+        padding-bottom: 3rem;
     }
-}
+
+    /* Reduce horizontal gap between text and flag specifically for the green intro */
+    .section-green .section-container {
+        gap: 0.5rem; /* tightened to bring the flag much closer to the text */
+    }
+} 
 
 .accent {
     color: inherit;
@@ -337,22 +327,12 @@ a {
     display: grid;
 }
 
-.gap-8 {
-    gap: 2rem;
-}
-
-.gap-10 {
-    gap: 2.5rem;
-}
+.gap-8 { gap: 2rem; }
+.gap-10 { gap: 2.5rem; }
 
 @media (min-width: 768px) {
-    .md-grid-cols-2 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .md-grid-cols-3 {
-        grid-template-columns: repeat(3, 1fr);
-    }
+    .md-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .md-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 }
 
 .inline-link {
@@ -459,7 +439,7 @@ a {
     min-height: 220px;
     border: 1px solid rgba(14, 26, 43, 0.06);
     box-shadow: 0 8px 20px rgba(14, 26, 43, 0.04);
-    background-color: rgba(11, 95, 88, 0.04);
+    background-color: rgba(11,95,88,0.04);
     color: var(--color-deep-navy);
 }
 
@@ -472,13 +452,10 @@ a {
 /* Invert visuals based on surrounding section (match secondary boxes behaviour, inverted) */
 .section-green .price-card {
     /* 90% green + 10% beige (slightly lighter than background) */
-    background-color: #236D63;
-    /* mix of 90% #0B5F58 + 10% #F6E6C8 */
+    background-color: #236D63; /* mix of 90% #0B5F58 + 10% #F6E6C8 */
     color: var(--color-soft-cream);
-    border: 1px solid rgba(246, 230, 200, 0.06);
-    /* subtle beige border */
-    box-shadow: 0 8px 18px rgba(11, 95, 88, 0.06);
-    /* subtle green shadow */
+    border: 1px solid rgba(246,230,200,0.06); /* subtle beige border */
+    box-shadow: 0 8px 18px rgba(11,95,88,0.06); /* subtle green shadow */
 }
 
 .section-green .price-card h3,
@@ -488,8 +465,8 @@ a {
 
 .section-beige .price-card {
     /* On light background, use the subtle green tint used for secondary boxes */
-    background-color: rgba(11, 95, 88, 0.04);
-    border: 1px solid rgba(11, 95, 88, 0.06);
+    background-color: rgba(11,95,88,0.04);
+    border: 1px solid rgba(11,95,88,0.06);
     color: var(--color-deep-navy);
 }
 
@@ -544,19 +521,16 @@ a {
 
 .flag-image {
     width: 100%;
-    max-width: 320px;
-    /* slightly bigger */
+    max-width: 320px; /* slightly bigger */
     height: auto;
     object-fit: contain;
 }
 
 @media (max-width: 767px) {
-
     /* When stacked on small screens, align flag to the left */
     .flag-container {
         justify-self: start;
-        text-align: left !important;
-        /* override inline style if present */
+        text-align: left !important; /* override inline style if present */
     }
 
     /* Make the flag fill the available content width (screen width minus section padding) */
@@ -584,11 +558,9 @@ a {
 }
 
 @media (min-width: 1024px) {
-
     /* Slightly reduce flag size on desktop so it's a touch smaller than before */
     .flag-image {
-        max-width: 340px;
-        /* reduced from 360px to make the flag a tiny bit smaller on desktop */
+        max-width: 340px; /* reduced from 360px to make the flag a tiny bit smaller on desktop */
     }
 }
 
@@ -885,7 +857,7 @@ footer {
     gap: 3rem 1.5rem;
 }
 
-.footer-container> :first-child {
+.footer-container > :first-child {
     grid-column: 1 / -1;
 }
 
@@ -895,7 +867,7 @@ footer {
         gap: 4rem;
     }
 
-    .footer-container> :first-child {
+    .footer-container > :first-child {
         grid-column: auto;
     }
 }
@@ -1211,7 +1183,7 @@ footer {
     padding: 2rem 0;
     width: 100%;
     /* Ensure visible overflow on desktop so pop-out hover effects aren't clipped */
-    overflow: visible;
+    overflow: visible; 
 }
 
 /* Make gallery inside green sections break out full-bleed */
@@ -1219,8 +1191,7 @@ footer {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-    padding-left: 1.5rem;
-    /* preserve small gutter */
+    padding-left: 1.5rem; /* preserve small gutter */
     padding-right: 1.5rem;
 }
 
@@ -1228,15 +1199,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 240px;
-    /* reduced height for a tighter band */
+    height: 240px; /* reduced height for a tighter band */
     position: relative;
     max-width: 100%;
 }
 
 .gallery-card {
-    height: 160px;
-    /* slightly smaller on desktop to reduce section height */
+    height: 160px; /* slightly smaller on desktop to reduce section height */
     width: auto;
     aspect-ratio: 3/2;
     object-fit: cover;
@@ -1248,38 +1217,17 @@ footer {
 }
 
 /* Random Rotations for "messy" stacked look */
-.gallery-card:nth-child(1) {
-    transform: rotate(-4deg);
-    z-index: 1;
-}
-
-.gallery-card:nth-child(2) {
-    transform: rotate(3deg) translateY(-5px);
-    z-index: 2;
-}
-
-.gallery-card:nth-child(3) {
-    transform: rotate(-2deg);
-    z-index: 3;
-}
-
-.gallery-card:nth-child(4) {
-    transform: rotate(5deg) translateY(5px);
-    z-index: 4;
-}
-
-.gallery-card:nth-child(5) {
-    transform: rotate(-3deg);
-    z-index: 5;
-}
+.gallery-card:nth-child(1) { transform: rotate(-4deg); z-index: 1; }
+.gallery-card:nth-child(2) { transform: rotate(3deg) translateY(-5px); z-index: 2; }
+.gallery-card:nth-child(3) { transform: rotate(-2deg); z-index: 3; }
+.gallery-card:nth-child(4) { transform: rotate(5deg) translateY(5px); z-index: 4; }
+.gallery-card:nth-child(5) { transform: rotate(-3deg); z-index: 5; }
 
 /* Desktop Hover Interaction */
 @media (hover: hover) {
     .gallery-card:hover {
-        z-index: 100 !important;
-        /* Rise above all */
-        transform: scale(1.25) rotate(0deg);
-        /* Zoom and straighten */
+        z-index: 100 !important; /* Rise above all */
+        transform: scale(1.25) rotate(0deg); /* Zoom and straighten */
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
 }
@@ -1298,8 +1246,7 @@ footer {
         padding: 0;
         /* Break out of parent padding to allow full-width scroll */
         width: 100vw;
-        margin-left: -1.5rem;
-        /* Assumes mobile gutter is 1.5rem */
+        margin-left: -1.5rem; /* Assumes mobile gutter is 1.5rem */
         margin-right: -1.5rem;
         overflow-y: hidden;
     }
@@ -1309,32 +1256,25 @@ footer {
         justify-content: flex-start;
         align-items: center;
         height: auto;
-        overflow-x: auto;
-        /* Enable scroll */
-        scroll-snap-type: x mandatory;
-        /* Snap behavior */
-        padding: 1.5rem;
-        /* Padding inside scroll container */
+        overflow-x: auto; /* Enable scroll */
+        scroll-snap-type: x mandatory; /* Snap behavior */
+        padding: 1.5rem; /* Padding inside scroll container */
         gap: 1rem;
         transform: none;
     }
-
+    
     .gallery-card {
         height: 200px;
-        margin: 0 !important;
-        /* Remove negative margins */
-        transform: none !important;
-        /* Remove rotation */
+        margin: 0 !important; /* Remove negative margins */
+        transform: none !important; /* Remove rotation */
         scroll-snap-align: center;
         border-width: 4px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         z-index: 1 !important;
     }
-
-    .gallery-card:hover,
-    .gallery-card.active {
-        transform: none;
-        /* No zoom on mobile scroll */
+    
+    .gallery-card:hover, .gallery-card.active {
+        transform: none; /* No zoom on mobile scroll */
     }
 
     /* Reset nth-child specific transforms */
@@ -1350,7 +1290,6 @@ footer {
         opacity: 0;
         transform: translateY(20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
