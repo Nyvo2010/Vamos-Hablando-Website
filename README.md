@@ -1,4 +1,4 @@
-![alt text](<Images/Lichte versie logo Vamos Hablando.png>)
+![alt text](<Images/Logo-Licht.png>)
 
 
 Dit is de Repository voor de **¡Vamos Hablando!** website.
