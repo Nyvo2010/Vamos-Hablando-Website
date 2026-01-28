@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-
+<!-- Page: Voor wie — Target audience and who benefits from the offering -->
 <html lang="nl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aanbod - ¡Vamos Hablando!</title>
+    <title>Voor wie - ¡Vamos Hablando!</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
-    
+    <!-- NAV: site header + navigation (desktop + mobile) -->
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="logo logo-link" aria-label="¡Vamos Hablando! home">
@@ -21,8 +21,8 @@
             </a>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="aanbod.html" class="nav-link active">Aanbod</a>
-                <a href="voor-wie.html" class="nav-link">Voor wie</a>
+                <a href="aanbod.html" class="nav-link">Aanbod</a>
+                <a href="voor-wie.html" class="nav-link active">Voor wie</a>
                 <a href="werkwijze.html" class="nav-link">Werkwijze</a>
                 <a href="over-mij.html" class="nav-link">Over mij</a>
                 <a href="contact.html" class="nav-link">Contact</a>
@@ -56,11 +56,11 @@
                     <span class="material-symbols-rounded">home</span>
                     Home
                 </a>
-                <a href="aanbod.html" class="mobile-nav-link active">
+                <a href="aanbod.html" class="mobile-nav-link">
                     <span class="material-symbols-rounded">auto_stories</span>
                     Aanbod
                 </a>
-                <a href="voor-wie.html" class="mobile-nav-link">
+                <a href="voor-wie.html" class="mobile-nav-link active">
                     <span class="material-symbols-rounded">how_to_reg</span>
                     Voor wie
                 </a>
@@ -78,80 +78,77 @@
                 </a>
             </div>
             <div class="mobile-footer">
-                <p class="text-dark-emerald"
-                    class="text-body" style="color: var(--color-dark-emerald); margin-bottom: 1rem;">
-                    ¡Vamos Hablando!
-                </p>
-                <p class="text-body" style="opacity: 0.6; line-height: 1.625;">Spaans leer je door het
-                    te gebruiken.
-                    Van de eerste kennismaking tot communicatie in Spanje.</p>
+                <p class="text-dark-emerald text-body" style="color: var(--color-dark-emerald); margin-bottom: 1rem;">¡Vamos Hablando!</p>
+                <p class="text-body" style="opacity: 0.6; line-height: 1.625;">Spaans leer je door het te gebruiken. Van de eerste kennismaking tot communicatie in Spanje.</p>
             </div>
         </div>
     </nav>
 
+    <!-- MAIN: audience descriptions and cards -->
     <main class="pt-20">
         <section class="section section-beige">
             <div class="section-container max-w-4xl space-y-16">
                 <div class="space-y-6">
                     <h1 class="text-5xl md-text-7xl leading-tight flex items-center gap-6">
-                        <span class="material-symbols-rounded icon-xl icon-dark" aria-hidden="true">auto_stories</span>
-                        <span>Aanbod van <span class="accent">¡Vamos Hablando!</span></span>
+                        <span class="material-symbols-rounded"
+                            class="text-heading" style="color: var(--color-dark-emerald);">how_to_reg</span>
+                        <span>Voor wie is <span class="accent">¡Vamos Hablando!?</span></span>
                     </h1>
-                    <p class="text-xl md-text-2xl opacity-90 max-w-3xl">
-                        Kies wat past bij jouw leerdoel: leren in een kleine online groep, individuele begeleiding met
-                        privéles, of deelnemen aan een contextgebonden taalreis in Spanje. Elk programma is gericht op
-                        betekenisvol taalgebruik en een duidelijke opbouw.
+                    <p class="text-subheading opacity-90 leading-relaxed max-w-2xl">
+                        Mijn aanbod is geschikt voor:
                     </p>
                 </div>
 
-                <div class="grid md-grid-cols-2 gap-8">
-                    
-                    <div class="card card-wide md-col-span-2 component text-left">
-                        <div class="card-wide-inner" style="display:flex; align-items:center; gap:1rem;">
-                            <span class="material-symbols-rounded icon-xl icon-dark" aria-hidden="true" style="flex-shrink:0;">flight_takeoff</span>
-                            <div>
-                                <h3 class="text-subheading mb-2" style="display:flex; align-items:center; gap:0.75rem;">Taalreizen</h3>
-                                <p class="opacity-80 mb-6">Contextgebonden taalreizen in Spanje — leren door doen.</p>
-                                <div class="mt-auto">
-                                    <a href="taalreis.html" class="button button-primary">Lees meer</a>
-                                </div>
-                            </div>
-                        </div>
+                <!-- TARGET AUDIENCE CARDS: short descriptions for each group -->
+                <!-- TARGET AUDIENCE CARDS: short descriptions for each group, more compact -->
+                <div class="grid gap-4">
+                    <div class="card" style="padding:0.75rem 1rem;">
+                        <p class="text-lg md-text-xl flex items-center gap-4">
+                            <span class="material-symbols-rounded"
+                                style="color: var(--color-dark-emerald); font-size: 2rem;">person</span>
+                            Volwassenen die Spaans willen leren vanaf de basis
+                        </p>
                     </div>
-
-                    
-                    <div class="card text-left" style="display:flex; gap:1rem; align-items:flex-start;">
-                        <span class="material-symbols-rounded icon-lg icon-dark" aria-hidden="true" style="flex-shrink:0;">groups</span>
-                        <div>
-                            <h3 class="text-subheading mb-2">Groepslessen</h3>
-                            <p class="opacity-80 mb-6">Spreken in kleine groepen — veel oefentijd en interactie.</p>
-                            <div class="mt-auto">
-                                <a href="groepslessen.html" class="button button-primary">Lees meer</a>
-                            </div>
-                        </div>
+                    <div class="card" style="padding:0.75rem 1rem;">
+                        <p class="text-lg md-text-xl flex items-center gap-4">
+                            <span class="material-symbols-rounded"
+                                style="color: var(--color-dark-emerald); font-size: 2rem;">home</span>
+                            Mensen die Spaans willen gebruiken in het dagelijks leven
+                        </p>
                     </div>
-
-                    
-                    <div class="card text-left" style="display:flex; gap:1rem; align-items:flex-start;">
-                        <span class="material-symbols-rounded icon-lg icon-dark" aria-hidden="true" style="flex-shrink:0;">person</span>
-                        <div>
-                            <h3 class="text-subheading mb-2">Privélessen</h3>
-                            <p class="opacity-80 mb-6">Persoonlijke begeleiding, afgestemd op jouw doelen en tempo.</p>
-                            <div class="mt-auto">
-                                <a href="priveles.html" class="button button-primary">Lees meer</a>
-                            </div>
-                        </div>
+                    <div class="card" style="padding:0.75rem 1rem;">
+                        <p class="text-lg md-text-xl flex items-center gap-4">
+                            <span class="material-symbols-rounded"
+                                style="color: var(--color-dark-emerald); font-size: 2rem;">school</span>
+                            Studenten en scholieren
+                        </p>
+                    </div>
+                    <div class="card" style="padding:0.75rem 1rem;">
+                        <p class="text-lg md-text-xl flex items-center gap-4">
+                            <span class="material-symbols-rounded"
+                                style="color: var(--color-dark-emerald); font-size: 2rem;">domain</span>
+                            Onderwijsinstellingen en organisaties
+                        </p>
                     </div>
                 </div>
+
+                <a href="contact.html"
+                    class="card card-filled block no-underline transition-all hover:translate-y-[-4px] hover:shadow-lg"
+                    style="text-decoration: none; color: inherit; display: block;">
+                    <h3 class="text-subheading mb-4">Twijfel je of dit bij jou past?</h3>
+                    <p class="text-xl opacity-90">
+                        Dan kijken we samen wat een fijne start voor je is.
+                    </p>
+                </a>
             </div>
         </section>
 
         <section class="section section-beige section-compact">
             <div class="section-container max-w-4xl space-y-12">
-                <h2 class="text-heading leading-tight">
+                <h2 class="text-4xl md-text-5xl leading-tight">
                     Wil je ontdekken wat <span class="accent">¡Vamos Hablando!</span> voor jou kan betekenen?
                 </h2>
-                <p class="text-subheading opacity-80 max-w-2xl">
+                <p class="text-xl opacity-80 max-w-2xl">
                     Of je nu als individu wilt starten of als school interesse hebt in een taalreis op maat, ik denk
                     graag met je mee.
                 </p>
@@ -162,7 +159,7 @@
         </section>
     </main>
 
-    
+    <!-- FOOTER: site footer with navigation and contact links -->
     <footer>
         <div class="footer-container">
             <div class="space-y-6">
@@ -177,17 +174,15 @@
                 <h4>Contact</h4>
                 <ul class="footer-list">
                     <li><a href="https://wa.me/your-number" class="footer-link">
-                            <span class="material-symbols-rounded icon-sm icon-dark" aria-hidden="true">chat</span>
+                            <span class="material-symbols-rounded text-subheading">chat</span>
                             <span>WhatsApp</span>
                         </a></li>
                     <li><a href="https://instagram.com/your-profile" class="footer-link">
-                            <span class="material-symbols-rounded"
-                                class="text-body">photo_camera</span>
+                            <span class="material-symbols-rounded text-subheading">photo_camera</span>
                             <span>Instagram</span>
                         </a></li>
                     <li><a href="mailto:your-email" class="footer-link">
-                            <span class="material-symbols-rounded"
-                                class="text-body">alternate_email</span>
+                            <span class="material-symbols-rounded text-subheading">alternate_email</span>
                             <span>E-mail</span>
                         </a></li>
                 </ul>
@@ -208,7 +203,7 @@
             &copy; 2026 ¡Vamos Hablando!. Alle rechten voorbehouden.
         </div>
     </footer>
-    
+    <!-- Scripts: main JS for UI interactions (mobile menu, nav scroll, active links) -->
     <script src="js/main.js"></script>
 </body>
 

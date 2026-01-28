@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById('submit-quiz');
-    if (!submitBtn) return;
+    if (!submitBtn) return; // Not on quiz page/mode
 
     submitBtn.addEventListener('click', calculateScore);
 
-   
+    // Answer Key
     const answers = {
         q1: 'b',
         q2: 'b',
@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
         q5: 'b',
         q6: 'c',
         q7: 'a',
-        q8: ['nosotros comemos pan todos los días', 'nosotros comemos pan todos los dias'],
+        q8: ['nosotros comemos pan todos los días', 'nosotros comemos pan todos los dias'], // Allow without accent just in case
         q9: 'b',
         q10: 'c'
     };
 
-   
+    // Correct text representations for feedback
     const correctTexts = {
         q1: 'Hond (b)',
         q2: 'Yo iré mañana a la escuela (b)',
@@ -36,16 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let score = 0;
         let total = 10;
         
-       
+        // Reset old feedback
         document.querySelectorAll('.quiz-feedback').forEach(el => {
             el.innerHTML = '';
             el.style.display = 'none';
         });
         document.querySelectorAll('.quiz-card').forEach(card => {
-            card.style.borderColor = 'var(--color-deep-navy)';
+            card.style.borderColor = 'var(--color-deep-navy)'; // Reset border
         });
 
-       
+        // Loop questions 1 to 10
         for (let i = 1; i <= 10; i++) {
             const qKey = 'q' + i;
             const correctAnswer = answers[qKey];
@@ -55,13 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
             let isCorrect = false;
             let userAnswer = '';
 
-           
+            // Handle Input vs Radio
             if (i === 8) {
-               
+                // Text input
                 const input = document.querySelector(`input[name="${qKey}"]`);
                 if (input) {
                     userAnswer = input.value.trim().toLowerCase();
-                   
+                    // Check inclusion in array or simple match
                     if (Array.isArray(correctAnswer)) {
                         isCorrect = correctAnswer.includes(userAnswer);
                     } else {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             } else {
-               
+                // Radio
                 const selected = document.querySelector(`input[name="${qKey}"]:checked`);
                 if (selected) {
                     userAnswer = selected.value;
@@ -77,16 +77,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-           
+            // Update Score & Feedback
             if (isCorrect) {
                 score++;
-                if (cardEl) cardEl.style.borderColor = '#2e7d32';
+                if (cardEl) cardEl.style.borderColor = '#2e7d32'; // Green border
                 if (feedbackEl) {
                     feedbackEl.style.display = 'block';
                     feedbackEl.innerHTML = '<span class="feedback-correct">✔ Correct!</span>';
                 }
             } else {
-                if (cardEl) cardEl.style.borderColor = '#c62828';
+                if (cardEl) cardEl.style.borderColor = '#c62828'; // Red border
                 if (feedbackEl) {
                     feedbackEl.style.display = 'block';
                     feedbackEl.innerHTML = `<span class="feedback-incorrect">✖ Fout.</span> Het juiste antwoord is: <strong>${correctTexts[qKey]}</strong>`;
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-       
+        // Show Result
         const resultPopup = document.getElementById('quiz-result');
         const scoreDisplay = document.getElementById('score-display');
         const resultMessage = document.getElementById('result-message');
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scoreDisplay.textContent = `${score} / ${total}`;
             resultPopup.style.display = 'block';
             
-           
+            // Customized message
             if (score === 10) {
                 resultMessage.textContent = '¡Fantástico! Je hebt alles goed! Je niveau is waarschijnlijk gevorderd.';
             } else if (score >= 7) {
@@ -114,11 +114,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 resultMessage.textContent = 'Geen zorgen, iedereen moet ergens beginnen! ¡Vamos Hablando!';
             }
 
-           
-           
+            // Hide the form slightly or keep it visible?
+            // Let's scroll to the result
             resultPopup.scrollIntoView({ behavior: 'smooth', block: 'center' });
             
-           
+            // Disable button
             submitBtn.textContent = 'Opnieuw proberen';
             submitBtn.removeEventListener('click', calculateScore);
             submitBtn.addEventListener('click', () => window.location.reload());

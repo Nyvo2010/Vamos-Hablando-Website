@@ -1,6 +1,6 @@
+/* Overrides for FEEDBACK tasks */
 
-
-
+/* Hide the existing flag image and show the brand icon instead (keeps HTML untouched) */
 .section-green .flag-container .flag-image {
   display: none;
 }

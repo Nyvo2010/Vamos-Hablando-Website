@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<!-- Page: Aanbod — Details about courses, groups and language travel programs -->
 <html lang="nl">
 
 <head>
@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    
+    <!-- NAV: site header + navigation (desktop + mobile) -->
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="logo logo-link" aria-label="¡Vamos Hablando! home">
@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="grid md-grid-cols-2 gap-8">
-                    
+                    <!-- Taalreizen (wide) -->
                     <div class="card card-wide md-col-span-2 component text-left">
                         <div class="card-wide-inner" style="display:flex; align-items:center; gap:1rem;">
                             <span class="material-symbols-rounded icon-xl icon-dark" aria-hidden="true" style="flex-shrink:0;">flight_takeoff</span>
@@ -119,7 +119,7 @@
                         </div>
                     </div>
 
-                    
+                    <!-- Groepslessen -->
                     <div class="card text-left" style="display:flex; gap:1rem; align-items:flex-start;">
                         <span class="material-symbols-rounded icon-lg icon-dark" aria-hidden="true" style="flex-shrink:0;">groups</span>
                         <div>
@@ -131,7 +131,7 @@
                         </div>
                     </div>
 
-                    
+                    <!-- Privélessen -->
                     <div class="card text-left" style="display:flex; gap:1rem; align-items:flex-start;">
                         <span class="material-symbols-rounded icon-lg icon-dark" aria-hidden="true" style="flex-shrink:0;">person</span>
                         <div>
@@ -162,7 +162,7 @@
         </section>
     </main>
 
-    
+    <!-- FOOTER: site footer with navigation and contact links -->
     <footer>
         <div class="footer-container">
             <div class="space-y-6">
@@ -208,7 +208,7 @@
             &copy; 2026 ¡Vamos Hablando!. Alle rechten voorbehouden.
         </div>
     </footer>
-    
+    <!-- Scripts: main JS for UI interactions (mobile menu, nav scroll, active links) -->
     <script src="js/main.js"></script>
 </body>
 

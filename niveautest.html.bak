@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<!-- Page: Niveautest — Spanish level test with 10 questions -->
 <html lang="nl">
 
 <head>
@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    
+    <!-- NAV: site header + navigation -->
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="logo logo-link" aria-label="¡Vamos Hablando! home">
@@ -61,9 +61,9 @@
         </div>
     </nav>
 
-    
+    <!-- MAIN CONTENT -->
     <main class="pt-20">
-        
+        <!-- Intro Header -->
         <section class="section section-beige" style="min-height: auto; padding-bottom: 2rem;">
             <div class="section-container max-w-4xl text-center space-y-6">
                 <h1 class="text-heading" style="color: var(--color-deep-navy);">Test je taalniveau</h1>
@@ -73,12 +73,12 @@
             </div>
         </section>
 
-        
+        <!-- Quiz Section (Green Background with Blur) -->
         <section class="section section-quiz">
             <div class="section-container max-w-3xl">
                 <form id="quiz-form" class="quiz-wrapper">
 
-                    
+                    <!-- Question 1 -->
                     <div class="quiz-card" data-q="1">
                         <div class="quiz-header">
                             <span class="quiz-bg-tag">Vraag 1</span>
@@ -105,7 +105,7 @@
                         <div class="quiz-feedback" id="feedback-q1"></div>
                     </div>
 
-                    
+                    <!-- Question 2 -->
                     <div class="quiz-card" data-q="2">
                         <div class="quiz-header">
                             <span class="quiz-bg-tag">Vraag 2</span>
@@ -132,7 +132,7 @@
                         <div class="quiz-feedback" id="feedback-q2"></div>
                     </div>
 
-                    
+                    <!-- Question 3 -->
                     <div class="quiz-card" data-q="3">
                         <div class="quiz-header">
                             <span class="quiz-bg-tag">Vraag 3</span>
@@ -159,7 +159,7 @@
                         <div class="quiz-feedback" id="feedback-q3"></div>
                     </div>
 
-                    
+                    <!-- Question 4 -->
                     <div class="quiz-card" data-q="4">
                         <div class="quiz-header">
                             <span class="quiz-bg-tag">Vraag 4</span>
@@ -186,7 +186,7 @@
                         <div class="quiz-feedback" id="feedback-q4"></div>
                     </div>
 
-                    
+                    <!-- Question 5 -->
                     <div class="quiz-card" data-q="5">
                         <div class="quiz-header">
                             <span class="quiz-bg-tag">Vraag 5</span>
@@ -213,7 +213,7 @@
                         <div class="quiz-feedback" id="feedback-q5"></div>
                     </div>
 
-                    
+                    <!-- Question 6 -->
                     <div class="quiz-card" data-q="6">
                         <div class="quiz-header">
                             <span class="quiz-bg-tag">Vraag 6</span>
@@ -240,7 +240,7 @@
                         <div class="quiz-feedback" id="feedback-q6"></div>
                     </div>
 
-                    
+                    <!-- Question 7 -->
                     <div class="quiz-card" data-q="7">
                         <div class="quiz-header">
                             <span class="quiz-bg-tag">Vraag 7</span>
@@ -267,7 +267,7 @@
                         <div class="quiz-feedback" id="feedback-q7"></div>
                     </div>
 
-                    
+                    <!-- Question 8 - Input -->
                     <div class="quiz-card" data-q="8">
                         <div class="quiz-header">
                             <span class="quiz-bg-tag">Vraag 8</span>
@@ -279,7 +279,7 @@
                         <div class="quiz-feedback" id="feedback-q8"></div>
                     </div>
 
-                    
+                    <!-- Question 9 -->
                     <div class="quiz-card" data-q="9">
                         <div class="quiz-header">
                             <span class="quiz-bg-tag">Vraag 9</span>
@@ -306,7 +306,7 @@
                         <div class="quiz-feedback" id="feedback-q9"></div>
                     </div>
 
-                    
+                    <!-- Question 10 -->
                     <div class="quiz-card" data-q="10">
                         <div class="quiz-header">
                             <span class="quiz-bg-tag">Vraag 10</span>
@@ -333,7 +333,7 @@
                         <div class="quiz-feedback" id="feedback-q10"></div>
                     </div>
 
-                    
+                    <!-- Actions -->
                     <div class="quiz-actions">
                         <button type="button" id="submit-quiz" class="button button-primary text-subheading">
                             Score berekenen
@@ -342,7 +342,7 @@
 
                 </form>
 
-                
+                <!-- Result Container -->
                 <div id="quiz-result" class="quiz-result-popup">
                     <h2>Resultaat</h2>
                     <div class="quiz-result-score" id="score-display">0/10</div>
@@ -355,11 +355,11 @@
         </section>
     </main>
 
-    
+    <!-- FOOTER -->
     <footer>
         <div class="footer-container">
             <div class="space-y-6">
-                
+                <!-- Short footer for simplicity or copy full footer -->
                 <h3 style="color: var(--color-dark-emerald);">¡Vamos Hablando!</h3>
                 <p>Spaans leer je door het te gebruiken.</p>
             </div>
@@ -377,7 +377,7 @@
         </div>
     </footer>
 
-    
+    <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/quiz.js"></script>
 </body>

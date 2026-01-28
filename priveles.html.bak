@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<!-- Page: Privéles — Details about private lessons -->
 <html lang="nl">
 
 <head>
@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    
+    <!-- NAV: site header + navigation (desktop + mobile) -->
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="logo logo-link" aria-label="¡Vamos Hablando! home">
@@ -191,7 +191,7 @@
         </section>
     </main>
 
-    
+    <!-- FOOTER: site footer with navigation and contact links -->
     <footer>
         <div class="footer-container">
             <div class="space-y-6">
@@ -235,7 +235,7 @@
             &copy; 2026 ¡Vamos Hablando!. Alle rechten voorbehouden.
         </div>
     </footer>
-    
+    <!-- Scripts: main JS for UI interactions (mobile menu, nav scroll, active links) -->
     <script src="js/main.js"></script>
 </body>
 
