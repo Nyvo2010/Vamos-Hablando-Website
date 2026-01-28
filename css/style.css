@@ -13,7 +13,7 @@
     vertical-align: middle;
 }
 
-
+/* VARIABLES: design tokens (colors, fonts, transitions) */
 :root {
     --color-soft-cream: #F6E6C8;
     --color-dark-emerald: #0A6058;
@@ -24,32 +24,21 @@
     --font-sans: 'Montserrat', sans-serif;
     --transition-speed: 0.5s;
 
-    
-    --font-size-heading: 2.5rem; 
-    --font-size-subheading: 1.25rem; 
-    --font-size-body: 1rem; 
+    /* Typography sizes (standardized) */
+    --font-size-heading: 2.5rem; /* main H1 */
+    --font-size-subheading: 1.25rem; /* leads and buttons */
+    --font-size-body: 1rem; /* base body text */
 
-    
+    /* Global layout tokens for consistent gutters and section spacing */
     --page-gutter: 1.5rem;
-    
+    /* horizontal side padding (mobile default) */
     --section-vertical: 6rem;
-    
+    /* vertical padding for sections (mobile default) */
     --navbar-padding-x: 1rem;
-    
+    /* internal horizontal padding for the navbar pill */
     --content-max-width: 56rem;
-    
-
-    
-    --icon-size-xxs: 0.875rem;
-    --icon-size-xs: 1rem;
-    --icon-size-sm: 1.25rem;
-    --icon-size-md: 1.5rem;
-    --icon-size-lg: 2rem;
-    --icon-size-xl: 3.5rem;
-    --icon-size-xxl: 4.5rem;
-
-    --icon-color-default: var(--color-dark-emerald);
-} 
+    /* aligns with .max-w-4xl used in body */
+}
 
 .dark {
     --background: var(--color-dark-emerald);
@@ -65,7 +54,7 @@
     box-shadow: none !important;
 }
 
-
+/* BASE: body styles, layout and default typography */
 body {
     background-color: var(--background);
     color: var(--foreground);
@@ -91,7 +80,7 @@ h6 {
     font-weight: 600;
 }
 
-
+/* Standardized typography sizes */
 body {
     font-size: var(--font-size-body);
 }
@@ -100,7 +89,7 @@ h1 { font-size: var(--font-size-heading); line-height: 1.05; }
 h2 { font-size: var(--font-size-subheading); line-height: 1.15; }
 h3 { font-size: calc(var(--font-size-subheading) * 0.9); }
 
-
+/* Utility classes for consistent sizing */
 .text-heading { font-size: var(--font-size-heading); }
 .text-subheading { font-size: var(--font-size-subheading); }
 .text-body { font-size: var(--font-size-body); }
@@ -111,7 +100,7 @@ a {
     transition: all 0.3s ease;
 }
 
-
+/* LAYOUT: section spacing and layout */
 .section {
     padding: var(--section-vertical) var(--page-gutter);
     min-height: 60vh;
@@ -122,7 +111,7 @@ a {
 
 @media (min-width: 768px) {
 
-    
+    /* increase global gutter and vertical spacing on larger screens */
     :root {
         --page-gutter: 4rem;
         --section-vertical: 8rem;
@@ -132,7 +121,7 @@ a {
 
 @media (min-width: 1024px) {
 
-    
+    /* on very wide screens, give a bit more horizontal breathing room */
     :root {
         --page-gutter: 6rem;
         --section-vertical: 8rem;
@@ -176,11 +165,11 @@ a {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
     min-height: auto;
-    padding-top: 1.75rem; 
+    padding-top: 1.75rem; /* reduced vertical padding */
     padding-bottom: 1.75rem;
 }
 
-
+/* Allow making the whole green section full-bleed when needed (adds full-viewport width breakout) */
 .section-green.full-bleed {
     width: 100vw;
     margin-left: calc(50% - 50vw);
@@ -190,15 +179,15 @@ a {
 }
 
 @media (min-width: 768px) {
-    
+    /* A bit more vertical spacing on larger screens */
     .section-green {
-        padding-top: 3rem; 
+        padding-top: 3rem; /* slightly larger on tablet/desktop */
         padding-bottom: 3rem;
     }
 
-    
+    /* Reduce horizontal gap between text and flag specifically for the green intro */
     .section-green .section-container {
-        gap: 0.5rem; 
+        gap: 0.5rem; /* tightened to bring the flag much closer to the text */
     }
 } 
 
@@ -224,9 +213,9 @@ a {
     font-size: var(--font-size-subheading);
     transition: all 0.3s ease;
     gap: 0.75rem;
-    
+    /* Prevent the label from breaking onto two lines */
     white-space: nowrap;
-    
+    /* Ensure a sensible minimum width so short labels don't collapse */
     min-width: 8.5rem;
 }
 
@@ -251,7 +240,7 @@ a {
     border-radius: 9999px;
 }
 
-
+/* Prevent button overflow on very small screens - keep labels on one line */
 @media (max-width: 420px) {
     .button {
         padding: 0.7rem 1rem;
@@ -260,13 +249,13 @@ a {
     }
 }
 
-
+/* Add spacing around buttons inside cards (e.g., Aanbod page) */
 .card .button {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
-
+/* Utility: outline button variant for secondary actions */
 .button-outline {
     border: 2px solid var(--color-dark-emerald);
     color: var(--color-dark-emerald);
@@ -283,25 +272,29 @@ a {
     transform: translateY(-1px);
 }
 
-
-.icon {
-    display: inline-block;
-    vertical-align: middle;
-    color: var(--icon-color-default);
+/* Icon utilities */
+.icon-hero {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--color-dark-emerald);
 }
 
-.icon-xxl { font-size: var(--icon-size-xxl); display: block; margin-bottom: 1rem; }
-.icon-xl  { font-size: var(--icon-size-xl); display: block; margin-bottom: 1rem; }
-.icon-lg  { font-size: var(--icon-size-lg); }
-.icon-md  { font-size: var(--icon-size-md); }
-.icon-sm  { font-size: var(--icon-size-sm); }
-.icon-xs  { font-size: var(--icon-size-xs); }
-.icon-xxs { font-size: var(--icon-size-xxs); }
+.section-green .icon-hero {
+    color: var(--color-soft-cream);
+}
 
+.icon-card {
+    font-size: 3rem;
+    color: var(--color-dark-emerald);
+    display: block;
+}
 
-.icon-hero { font-size: var(--icon-size-xl); display:block; margin-bottom: 1rem; color: var(--icon-color-default); }
-.icon-card { font-size: var(--icon-size-xl); color: var(--icon-color-default); display:block; }
-.list-icon { font-size: var(--icon-size-lg); color: var(--icon-color-default); flex-shrink: 0; }
+.list-icon {
+    font-size: 2rem;
+    color: var(--color-dark-emerald);
+    flex-shrink: 0;
+}
 
 .inline-icon {
     display: flex;
@@ -315,15 +308,11 @@ a {
     flex-wrap: wrap;
 }
 
+.section-beige .inline-icon {
+    color: var(--color-dark-emerald);
+}
 
-.icon-dark { color: var(--color-dark-emerald); }
-.icon-light { color: var(--color-soft-cream); }
-.icon-accent { color: var(--color-light-blue); }
-
-.section-green .icon { color: var(--color-soft-cream); }
-.section-beige .inline-icon { color: var(--color-dark-emerald); }
-
-
+/* Accent and pricing helpers */
 .icon-hero-accent {
     color: var(--color-light-blue);
 }
@@ -347,15 +336,15 @@ a {
     margin: 0;
 }
 
-
+/* Small helpers */
 .text-center {
     text-align: center;
 }
 
-
+/* Simple grid helpers used throughout HTML */
 .grid {
     display: grid;
-    
+    /* ensure items stretch to equal heights so cards line up neatly */
     align-items: stretch;
 }
 
@@ -366,7 +355,7 @@ a {
     .md-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
     .md-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 
-    
+    /* Utility: allow grid items to span both columns on medium+ screens */
     .md-col-span-2 { grid-column: 1 / -1; }
 }
 
@@ -388,12 +377,12 @@ a {
     opacity: 0.7;
 }
 
-
+/* CONTACT: spacing for quick contact buttons */
 .contact-links {
     display: flex;
     flex-wrap: wrap;
     gap: 2.5rem 4rem;
-    
+    /* vertical gap then horizontal gap */
     align-items: center;
 }
 
@@ -411,7 +400,7 @@ a {
 }
 
 .contact-card {
-    
+    /* contact card (keeps its layout but visually matches other components) */
     background-color: rgba(11, 95, 88, 0.04);
     padding: 2.5rem;
     border-radius: 2rem;
@@ -429,7 +418,8 @@ a {
     box-shadow: 0 8px 20px rgba(14, 26, 43, 0.06);
 }
 
-
+/* COMPONENTS: shared base for card-like components
+   Ensures visual parity across .card, .price-card, .contact-card, .quiz-card */
 .component {
     padding: 2.5rem;
     border-radius: 2rem;
@@ -438,7 +428,8 @@ a {
     background-color: rgba(11,95,88,0.04);
 }
 
-
+/* Apply base styles to existing component selectors so they look identical
+   while preserving semantic differences (layout, min-height, inner structure). */
 .card,
 .contact-card,
 .price-card,
@@ -452,7 +443,7 @@ a {
     background-color: rgba(11,95,88,0.04);
 }
 
-
+/* Slightly stronger hover for card-like components */
 .card:hover,
 .contact-card:hover,
 .price-card:hover,
@@ -500,7 +491,7 @@ a {
         padding: 3.5rem;
     }
 
-    
+    /* Make the wider card span the full grid width and layout its inner elements side-by-side */
     .card-wide { width: 100%; }
 
     .card-wide-inner {
@@ -510,7 +501,7 @@ a {
     }
 }
 
-
+/* On small screens, stack the wide card's inner content vertically */
 @media (max-width: 767px) {
     .card-wide-inner {
         flex-direction: column;
@@ -538,13 +529,13 @@ a {
     }
 }
 
-
+/* Invert visuals based on surrounding section (match secondary boxes behaviour, inverted) */
 .section-green .price-card {
-    
-    background-color: #236D63; 
+    /* 90% green + 10% beige (slightly lighter than background) */
+    background-color: #236D63; /* mix of 90% #0B5F58 + 10% #F6E6C8 */
     color: var(--color-soft-cream);
-    border: 1px solid rgba(246,230,200,0.06); 
-    box-shadow: 0 8px 18px rgba(11,95,88,0.06); 
+    border: 1px solid rgba(246,230,200,0.06); /* subtle beige border */
+    box-shadow: 0 8px 18px rgba(11,95,88,0.06); /* subtle green shadow */
 }
 
 .section-green .price-card h3,
@@ -553,7 +544,7 @@ a {
 }
 
 .section-beige .price-card {
-    
+    /* On light background, use the subtle green tint used for secondary boxes */
     background-color: rgba(11,95,88,0.04);
     border: 1px solid rgba(11,95,88,0.06);
     color: var(--color-deep-navy);
@@ -576,7 +567,7 @@ a {
     color: var(--color-light-blue) !important;
 }
 
-
+/* Make cards on beige sections use the subtle green tint used on other pages */
 .section-beige .card,
 .section-beige .card-outline {
     background-color: rgba(11, 95, 88, 0.04);
@@ -584,7 +575,7 @@ a {
 }
 
 .section-beige .card-outline {
-    
+    /* keep a light outline variant if needed */
     background-color: rgba(11, 95, 88, 0.03);
 }
 
@@ -601,12 +592,13 @@ a {
     border-radius: 1rem;
 }
 
-
+/* Spanish flag removed — flag styles cleaned up */
 
 @media (max-width: 767px) {
-    
+    /* Spanish flag removed — mobile flag styles cleaned up */
 
-    
+    /* On mobile, make the docent image fill the available content width (respects section padding)
+       and remove the max-width constraint so the photo is full-bleed within the section. */
     .profile-photo {
         display: flex;
         justify-content: center;
@@ -622,7 +614,7 @@ a {
 }
 
 @media (min-width: 1024px) {
-    
+    /* No flag styles needed here after removal */
 }
 
 @media (min-width: 768px) {
@@ -635,7 +627,7 @@ a {
     }
 }
 
-
+/* NAVBAR: fixed header styles and responsive behavior */
 .navbar {
     position: fixed;
     top: 0;
@@ -777,7 +769,7 @@ a {
     background-color: rgba(11, 95, 88, 0.05);
 }
 
-
+/* MOBILE MENU: overlay styles and transitions for mobile navigation */
 .mobile-menu {
     position: fixed;
     inset: 0;
@@ -788,7 +780,7 @@ a {
     display: flex;
     flex-direction: column;
     padding: 2.5rem;
-    
+    /* Only animate transform and opacity to avoid unexpected horizontal changes */
     transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), opacity var(--transition-speed) ease;
     transform: translateY(-100%);
     opacity: 0;
@@ -875,12 +867,12 @@ a {
     opacity: 1;
 }
 
-
+/* Hide icon glyphs next to page labels in the mobile menu */
 .mobile-nav-link .material-symbols-rounded {
     display: none;
 }
 
-
+/* Ensure buttons inside the mobile menu don't move horizontally either */
 .mobile-menu .button,
 .mobile-menu button {
     transform: translateY(-0.6rem);
@@ -907,7 +899,7 @@ footer {
 }
 
 @media (min-width: 768px) {
-    
+    /* footer uses global spacing variables (see :root) */
 }
 
 .footer-container {
@@ -1139,28 +1131,20 @@ footer {
     justify-content: space-between;
 }
 
-/* Gap utilities (single source of truth) */
-.gap-4 { gap: 1rem; }
-.gap-6 { gap: 1.5rem; }
-.gap-8 { gap: 2rem; }
-.gap-10 { gap: 2.5rem; }
-.gap-12 { gap: 3rem; }
-.gap-16 { gap: 4rem; }
-
-.grid {
-    display: grid;
-    /* ensure items stretch to equal heights so cards line up neatly */
-    align-items: stretch;
+.gap-8 {
+    gap: 2rem;
 }
 
-.grid-cols-1 {
-    grid-template-columns: 1fr;
+.gap-6 {
+    gap: 1.5rem;
 }
 
-@media (min-width: 768px) {
-    .md-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-    .md-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
-    .md-w-1-3 { width: 33.333333%; }
+.gap-10 {
+    gap: 2.5rem;
+}
+
+.gap-12 {
+    gap: 3rem;
 }
 
 .gap-16 {
@@ -1245,22 +1229,22 @@ footer {
     transition-delay: 300ms;
 }
 
-
+/* STACKED PHOTO GALLERY */
 .gallery-wrapper {
     display: flex;
     justify-content: center;
     padding: 2rem 0;
     width: 100%;
-    
+    /* Ensure visible overflow on desktop so pop-out hover effects aren't clipped */
     overflow: visible; 
 }
 
-
+/* Make gallery inside green sections break out full-bleed */
 .section-green .gallery-wrapper {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-    padding-left: 1.5rem; 
+    padding-left: 1.5rem; /* preserve small gutter */
     padding-right: 1.5rem;
 }
 
@@ -1268,13 +1252,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 240px; 
+    height: 240px; /* reduced height for a tighter band */
     position: relative;
     max-width: 100%;
 }
 
 .gallery-card {
-    height: 160px; 
+    height: 160px; /* slightly smaller on desktop to reduce section height */
     width: auto;
     aspect-ratio: 3/2;
     object-fit: cover;
@@ -1285,37 +1269,37 @@ footer {
     flex-shrink: 0;
 }
 
-
+/* Random Rotations for "messy" stacked look */
 .gallery-card:nth-child(1) { transform: rotate(-4deg); z-index: 1; }
 .gallery-card:nth-child(2) { transform: rotate(3deg) translateY(-5px); z-index: 2; }
 .gallery-card:nth-child(3) { transform: rotate(-2deg); z-index: 3; }
 .gallery-card:nth-child(4) { transform: rotate(5deg) translateY(5px); z-index: 4; }
 .gallery-card:nth-child(5) { transform: rotate(-3deg); z-index: 5; }
 
-
+/* Desktop Hover Interaction */
 @media (hover: hover) {
     .gallery-card:hover {
-        z-index: 100 !important; 
-        transform: scale(1.25) rotate(0deg); 
+        z-index: 100 !important; /* Rise above all */
+        transform: scale(1.25) rotate(0deg); /* Zoom and straighten */
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
 }
 
-
+/* Active Class */
 .gallery-card.active {
     z-index: 100 !important;
     transform: scale(1.25) rotate(0deg);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-
+/* Mobile specific: Normal Horizontal Scroll (Netflix-style) */
 @media (max-width: 768px) {
     .gallery-wrapper {
         display: block;
         padding: 0;
-        
+        /* Break out of parent padding to allow full-width scroll */
         width: 100vw;
-        margin-left: -1.5rem; 
+        margin-left: -1.5rem; /* Assumes mobile gutter is 1.5rem */
         margin-right: -1.5rem;
         overflow-y: hidden;
     }
@@ -1325,17 +1309,17 @@ footer {
         justify-content: flex-start;
         align-items: center;
         height: auto;
-        overflow-x: auto; 
-        scroll-snap-type: x mandatory; 
-        padding: 1.5rem; 
+        overflow-x: auto; /* Enable scroll */
+        scroll-snap-type: x mandatory; /* Snap behavior */
+        padding: 1.5rem; /* Padding inside scroll container */
         gap: 1rem;
         transform: none;
     }
     
     .gallery-card {
         height: 200px;
-        margin: 0 !important; 
-        transform: none !important; 
+        margin: 0 !important; /* Remove negative margins */
+        transform: none !important; /* Remove rotation */
         scroll-snap-align: center;
         border-width: 4px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -1343,17 +1327,17 @@ footer {
     }
     
     .gallery-card:hover, .gallery-card.active {
-        transform: none; 
+        transform: none; /* No zoom on mobile scroll */
     }
 
-    
+    /* Reset nth-child specific transforms */
     .gallery-card:nth-child(n) {
         transform: none !important;
     }
 }
 
 
-
+/* ANIMATION: Minimal fade-in up for hero text */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1369,14 +1353,14 @@ footer {
     animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-
+/* QUIZ / NIVEAUTEST STYLES */
 .section-quiz {
     background-color: var(--color-dark-emerald);
     position: relative;
-    overflow: hidden; 
+    overflow: hidden; /* For the blur effect */
 }
 
-
+/* Blur/Glassmorphism effect in background */
 .section-quiz::before {
     content: '';
     position: absolute;
@@ -1385,7 +1369,7 @@ footer {
     width: 70%;
     height: 70%;
     background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-    filter: blur(80px); 
+    filter: blur(80px); /* Soft blur effect */
     z-index: 0;
     pointer-events: none;
 }
@@ -1416,8 +1400,8 @@ footer {
     color: var(--color-deep-navy);
     padding: 2rem;
     border-radius: 1.5rem;
-    border: 2px solid var(--color-deep-navy); 
-    
+    border: 2px solid var(--color-deep-navy); /* Requested outline (black/white or distinct) */
+    /* Alternative: border: 2px solid rgba(255,255,255,0.5); if we want lighter */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
@@ -1481,9 +1465,9 @@ footer {
     flex-shrink: 0;
 }
 
-
+/* Checked state styling logic if needed via JS or :checked selector if structures allow */
 .quiz-option-label:has(input:checked) {
-    background-color: #e6f0ef; 
+    background-color: #e6f0ef; /* Light green tint */
     border-color: var(--color-dark-emerald);
     color: var(--color-dark-emerald);
 }
@@ -1520,7 +1504,7 @@ footer {
     text-align: center;
     border: 4px solid var(--color-dark-emerald);
     margin-top: 2rem;
-    display: none; 
+    display: none; /* Hidden strictly */
     animation: fadeIn 0.5s ease;
 }
 
@@ -1539,7 +1523,7 @@ footer {
 .quiz-feedback {
     margin-top: 0.5rem;
     font-size: 0.9rem;
-    display: none; 
+    display: none; /* Hidden by default */
 }
 
 .feedback-correct {

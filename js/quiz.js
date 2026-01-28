@@ -1,3 +1,8 @@
+/*
+  File: js/quiz.js
+  Purpose: Niveautest logic — calculate quiz score, show feedback and display result message.
+  Notes: Correct answers and display messages are defined at top; update carefully to preserve behavior.
+*/
 document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById('submit-quiz');
     if (!submitBtn) return;
@@ -32,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         q10: 'Hoewel (c)'
     };
 
+    /* calculateScore:
+       Iterate over all questions, compare answers, update per-question feedback
+       and show overall result message with a score popup.
+    */
     function calculateScore() {
         let score = 0;
         let total = 10;

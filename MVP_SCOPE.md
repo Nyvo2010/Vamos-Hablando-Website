@@ -1,3 +1,4 @@
+<!-- MVP_SCOPE: Scope and design decisions for MVP -> follow AGENTS.md for styling rules -->
 # Design Specifications
 
 ## 1. Typography (Global)

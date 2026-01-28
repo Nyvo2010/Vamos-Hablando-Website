@@ -1,3 +1,4 @@
+<!-- AGENTS.md: Design specification and branding rules for ¡Vamos Hablando! -->
 This is theproject for a website for the company "¡Vamos Hablando!". Below are the design specifications:
 
 # Design Specifications
@@ -132,3 +133,5 @@ No additional colors allowed outside this palette.
 * Pronunciation text must always be visually secondary
 * One font system creates consistency and a high-end look
 * Clarity > decoration
+
+It would be appreciated if no automatic git commits were made by agents.

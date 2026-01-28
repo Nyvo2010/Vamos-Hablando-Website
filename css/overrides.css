@@ -1,6 +1,12 @@
 
 
 
+/*
+  File: css/overrides.css
+  Purpose: Small, targeted overrides and layout tweaks — use sparingly.
+  Notes: Keep overrides minimal and document why each override exists.
+*/
+
 .section-green .flag-container .flag-image {
   display: none;
 }

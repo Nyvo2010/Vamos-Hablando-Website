@@ -1,3 +1,4 @@
+<!-- README: Quick project overview and how to run locally -->
 ![alt text](<Images/Logo-Licht.png>)
 
 
