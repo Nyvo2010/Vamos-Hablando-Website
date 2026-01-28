@@ -37,6 +37,9 @@
     --navbar-padding-x: 1rem;
     /* internal horizontal padding for the navbar pill */
     --content-max-width: 56rem;
+    /* Standardized box padding for card-like components */
+    --box-padding: 2.5rem;
+    --box-padding-lg: 2.5rem;
     /* aligns with .max-w-4xl used in body */
 }
 
@@ -87,12 +90,30 @@ body {
 
 h1 { font-size: var(--font-size-heading); line-height: 1.05; }
 h2 { font-size: var(--font-size-subheading); line-height: 1.15; }
-h3 { font-size: calc(var(--font-size-subheading) * 0.9); }
+h3 { font-size: var(--font-size-subheading); }
 
 /* Utility classes for consistent sizing */
-.text-heading { font-size: var(--font-size-heading); }
-.text-subheading { font-size: var(--font-size-subheading); }
-.text-body { font-size: var(--font-size-body); }
+.text-heading { font-size: var(--font-size-heading); line-height: 1.05; }
+.text-subheading { font-size: var(--font-size-subheading); line-height: 1.25; }
+.text-body { font-size: var(--font-size-body); line-height: 1.6; }
+
+/* Responsive scaling for the three core types */
+@media (min-width: 768px) {
+    .text-heading { font-size: calc(var(--font-size-heading) * 1.6); }
+    .text-subheading { font-size: calc(var(--font-size-subheading) * 1.6); }
+    .text-body { font-size: calc(var(--font-size-body) * 1.125); }
+}
+
+/* Backwards-compatibility: map legacy utility classes to the standardized tokens */
+/* These keep the site visually consistent while we switch HTML to the three classes */
+.text-6xl, .text-5xl, .text-4xl { font-size: var(--font-size-heading); }
+.text-3xl, .text-2xl { font-size: var(--font-size-subheading); }
+.text-xl, .text-lg { font-size: var(--font-size-body); }
+
+@media (min-width: 768px) {
+    .md-text-8xl, .md-text-7xl, .md-text-6xl, .md-text-5xl, .md-text-4xl { font-size: calc(var(--font-size-heading) * 1.6); }
+    .md-text-3xl, .md-text-2xl, .md-text-xl { font-size: calc(var(--font-size-subheading) * 1.6); }
+}
 
 a {
     text-decoration: none;
@@ -273,27 +294,27 @@ a {
 }
 
 /* Icon utilities */
-.icon-hero {
-    font-size: 3.5rem;
-    display: block;
-    margin-bottom: 1rem;
-    color: var(--color-dark-emerald);
-}
-
-.section-green .icon-hero {
-    color: var(--color-soft-cream);
-}
-
 .icon-card {
     font-size: 3rem;
     color: var(--color-dark-emerald);
     display: block;
 }
 
-.list-icon {
-    font-size: 2rem;
-    color: var(--color-dark-emerald);
-    flex-shrink: 0;
+/* Button icons: size and alignment consistency */
+.button .material-symbols-rounded {
+    font-size: 1.25rem;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Ensure material icons are vertically centered when used inline inside cards */
+.card .material-symbols-rounded {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    vertical-align: middle;
 }
 
 .inline-icon {
@@ -302,25 +323,11 @@ a {
     gap: 0.5rem;
 }
 
-.inline-group {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-
 .section-beige .inline-icon {
     color: var(--color-dark-emerald);
 }
 
 /* Accent and pricing helpers */
-.icon-hero-accent {
-    color: var(--color-light-blue);
-}
-
-.section-green .icon-hero-accent {
-    color: var(--color-light-blue);
-}
-
 .text-accent {
     color: var(--color-light-blue);
 }
@@ -402,7 +409,7 @@ a {
 .contact-card {
     /* contact card (keeps its layout but visually matches other components) */
     background-color: rgba(11, 95, 88, 0.04);
-    padding: 2.5rem;
+    padding: var(--box-padding);
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
@@ -412,7 +419,7 @@ a {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid rgba(11, 95, 88, 0.06);
     text-decoration: none !important;
-}
+} 
 
 .contact-card:hover {
     box-shadow: 0 8px 20px rgba(14, 26, 43, 0.06);
@@ -421,12 +428,12 @@ a {
 /* COMPONENTS: shared base for card-like components
    Ensures visual parity across .card, .price-card, .contact-card, .quiz-card */
 .component {
-    padding: 2.5rem;
+    padding: var(--box-padding);
     border-radius: 2rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid rgba(11,95,88,0.06);
     background-color: rgba(11,95,88,0.04);
-}
+} 
 
 /* Apply base styles to existing component selectors so they look identical
    while preserving semantic differences (layout, min-height, inner structure). */
@@ -436,12 +443,12 @@ a {
 .quiz-card,
 .card-outline,
 .card-filled {
-    padding: 2.5rem;
+    padding: var(--box-padding);
     border-radius: 2rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid rgba(11,95,88,0.06);
     background-color: rgba(11,95,88,0.04);
-}
+} 
 
 /* Slightly stronger hover for card-like components */
 .card:hover,
@@ -477,7 +484,7 @@ a {
 }
 
 .card {
-    padding: 2.5rem;
+    padding: var(--box-padding);
     border-radius: 2rem;
     border: none;
     background-color: rgba(11, 95, 88, 0.04);
@@ -486,18 +493,35 @@ a {
     flex-direction: column;
 }
 
+/* Email capture box — uses site-wide box padding for consistency */
+.email-capture {
+    margin: 2rem 0;
+    padding: var(--box-padding);
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 1rem;
+}
+
 @media (min-width: 768px) {
     .card {
-        padding: 3.5rem;
-    }
+        padding: var(--box-padding-lg);
+    } 
 
-    /* Make the wider card span the full grid width and layout its inner elements side-by-side */
+    /* Make the wider card span the full grid width — keep inner content stacked so icon sits above text */
     .card-wide { width: 100%; }
 
     .card-wide-inner {
         display: flex;
-        gap: 2rem;
+        flex-direction: column;
+        gap: 1rem;
         align-items: flex-start;
+    }
+
+    /* Ensure icons inside cards behave like the other (stacked) cards: block with bottom spacing */
+    .card .material-symbols-rounded,
+    .card-wide .material-symbols-rounded {
+        display: block;
+        margin-bottom: 1rem;
+        color: var(--color-dark-emerald);
     }
 }
 
@@ -779,8 +803,8 @@ a {
     z-index: 60;
     display: flex;
     flex-direction: column;
-    padding: 2.5rem;
-    /* Only animate transform and opacity to avoid unexpected horizontal changes */
+    padding: var(--box-padding);
+    /* Only animate transform and opacity to avoid unexpected horizontal changes */ 
     transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), opacity var(--transition-speed) ease;
     transform: translateY(-100%);
     opacity: 0;
@@ -1131,47 +1155,28 @@ footer {
     justify-content: space-between;
 }
 
-.gap-8 {
-    gap: 2rem;
-}
-
-.gap-6 {
-    gap: 1.5rem;
-}
-
-.gap-10 {
-    gap: 2.5rem;
-}
-
-.gap-12 {
-    gap: 3rem;
-}
-
-.gap-16 {
-    gap: 4rem;
-}
-
-.gap-4 {
-    gap: 1rem;
-}
-
-.grid {
-    display: grid;
-}
-
-.grid-cols-1 {
-    grid-template-columns: 1fr;
-}
-
-@media (min-width: 768px) {
-    .md-grid-cols-2 {
-        grid-template-columns: repeat(2, 1fr);
+    /* Keep non-duplicated gap utilities here; gap-8 and gap-10 are defined earlier so they are removed here to avoid duplicates. */
+    .gap-6 {
+        gap: 1.5rem;
     }
 
-    .md-w-1-3 {
-        width: 33.333333%;
+    .gap-12 {
+        gap: 3rem;
     }
-}
+
+    .gap-16 {
+        gap: 4rem;
+    }
+
+    .gap-4 {
+        gap: 1rem;
+    }
+
+    .grid-cols-1 {
+        grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
 
 .relative {
     position: relative;
@@ -1205,29 +1210,7 @@ footer {
     border-top: 1px solid rgba(11, 95, 88, 0.05);
 }
 
-.delay-50 {
-    transition-delay: 50ms;
-}
-
-.delay-100 {
-    transition-delay: 100ms;
-}
-
-.delay-150 {
-    transition-delay: 150ms;
-}
-
-.delay-200 {
-    transition-delay: 200ms;
-}
-
-.delay-250 {
-    transition-delay: 250ms;
-}
-
-.delay-300 {
-    transition-delay: 300ms;
-}
+/* Removed unused delay utility classes (no references in HTML/JS) to reduce CSS size. Add them back only when needed. */
 
 /* STACKED PHOTO GALLERY */
 .gallery-wrapper {
@@ -1409,7 +1392,7 @@ footer {
 .quiz-card {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
-    padding: 2.5rem;
+    padding: var(--box-padding);
     border-radius: 1.5rem;
     /* Removed border as requested */
     border: none;
