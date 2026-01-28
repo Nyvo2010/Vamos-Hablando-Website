@@ -24,6 +24,11 @@
     --font-sans: 'Montserrat', sans-serif;
     --transition-speed: 0.5s;
 
+    /* Typography sizes (standardized) */
+    --font-size-heading: 2.5rem; /* main H1 */
+    --font-size-subheading: 1.25rem; /* leads and buttons */
+    --font-size-body: 1rem; /* base body text */
+
     /* Global layout tokens for consistent gutters and section spacing */
     --page-gutter: 1.5rem;
     /* horizontal side padding (mobile default) */
@@ -33,7 +38,18 @@
     /* internal horizontal padding for the navbar pill */
     --content-max-width: 56rem;
     /* aligns with .max-w-4xl used in body */
-}
+
+    /* Icon size tokens */
+    --icon-size-xxs: 0.875rem;
+    --icon-size-xs: 1rem;
+    --icon-size-sm: 1.25rem;
+    --icon-size-md: 1.5rem;
+    --icon-size-lg: 2rem;
+    --icon-size-xl: 3.5rem;
+    --icon-size-xxl: 4.5rem;
+
+    --icon-color-default: var(--color-dark-emerald);
+} 
 
 .dark {
     --background: var(--color-dark-emerald);
@@ -74,6 +90,20 @@ h5,
 h6 {
     font-weight: 600;
 }
+
+/* Standardized typography sizes */
+body {
+    font-size: var(--font-size-body);
+}
+
+h1 { font-size: var(--font-size-heading); line-height: 1.05; }
+h2 { font-size: var(--font-size-subheading); line-height: 1.15; }
+h3 { font-size: calc(var(--font-size-subheading) * 0.9); }
+
+/* Utility classes for consistent sizing */
+.text-heading { font-size: var(--font-size-heading); }
+.text-subheading { font-size: var(--font-size-subheading); }
+.text-body { font-size: var(--font-size-body); }
 
 a {
     text-decoration: none;
@@ -191,7 +221,7 @@ a {
     padding: 1.125rem 2.25rem;
     border-radius: 9999px;
     font-weight: 600;
-    font-size: 1.125rem;
+    font-size: var(--font-size-subheading);
     transition: all 0.3s ease;
     gap: 0.75rem;
     /* Prevent the label from breaking onto two lines */
@@ -225,7 +255,7 @@ a {
 @media (max-width: 420px) {
     .button {
         padding: 0.7rem 1rem;
-        font-size: 1rem;
+        font-size: var(--font-size-body);
         min-width: 6.5rem;
     }
 }
@@ -253,29 +283,25 @@ a {
     transform: translateY(-1px);
 }
 
-/* Icon utilities */
-.icon-hero {
-    font-size: 3.5rem;
-    display: block;
-    margin-bottom: 1rem;
-    color: var(--color-dark-emerald);
+/* Icon utilities - standardized */
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+    color: var(--icon-color-default);
 }
 
-.section-green .icon-hero {
-    color: var(--color-soft-cream);
-}
+.icon-xxl { font-size: var(--icon-size-xxl); display: block; margin-bottom: 1rem; }
+.icon-xl  { font-size: var(--icon-size-xl); display: block; margin-bottom: 1rem; }
+.icon-lg  { font-size: var(--icon-size-lg); }
+.icon-md  { font-size: var(--icon-size-md); }
+.icon-sm  { font-size: var(--icon-size-sm); }
+.icon-xs  { font-size: var(--icon-size-xs); }
+.icon-xxs { font-size: var(--icon-size-xxs); }
 
-.icon-card {
-    font-size: 3rem;
-    color: var(--color-dark-emerald);
-    display: block;
-}
-
-.list-icon {
-    font-size: 2rem;
-    color: var(--color-dark-emerald);
-    flex-shrink: 0;
-}
+/* semantic helpers that were used in the markup */
+.icon-hero { font-size: var(--icon-size-xl); display:block; margin-bottom: 1rem; color: var(--icon-color-default); }
+.icon-card { font-size: var(--icon-size-xl); color: var(--icon-color-default); display:block; }
+.list-icon { font-size: var(--icon-size-lg); color: var(--icon-color-default); flex-shrink: 0; }
 
 .inline-icon {
     display: flex;
@@ -289,9 +315,13 @@ a {
     flex-wrap: wrap;
 }
 
-.section-beige .inline-icon {
-    color: var(--color-dark-emerald);
-}
+/* Color variants for icons */
+.icon-dark { color: var(--color-dark-emerald); }
+.icon-light { color: var(--color-soft-cream); }
+.icon-accent { color: var(--color-light-blue); }
+
+.section-green .icon { color: var(--color-soft-cream); }
+.section-beige .inline-icon { color: var(--color-dark-emerald); }
 
 /* Accent and pricing helpers */
 .icon-hero-accent {
@@ -325,6 +355,8 @@ a {
 /* Simple grid helpers used throughout HTML */
 .grid {
     display: grid;
+    /* ensure items stretch to equal heights so cards line up neatly */
+    align-items: stretch;
 }
 
 .gap-8 { gap: 2rem; }
@@ -333,6 +365,9 @@ a {
 @media (min-width: 768px) {
     .md-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
     .md-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+    /* Utility: allow grid items to span both columns on medium+ screens */
+    .md-col-span-2 { grid-column: 1 / -1; }
 }
 
 .inline-link {
@@ -376,6 +411,7 @@ a {
 }
 
 .contact-card {
+    /* contact card (keeps its layout but visually matches other components) */
     background-color: rgba(11, 95, 88, 0.04);
     padding: 2.5rem;
     border-radius: 2rem;
@@ -384,13 +420,48 @@ a {
     justify-content: space-between;
     min-height: 200px;
     gap: 3rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid rgba(11, 95, 88, 0.06);
     text-decoration: none !important;
 }
 
 .contact-card:hover {
-    box-shadow: 0 4px 12px rgba(11, 95, 88, 0.05);
+    box-shadow: 0 8px 20px rgba(14, 26, 43, 0.06);
+}
+
+/* COMPONENTS: shared base for card-like components
+   Ensures visual parity across .card, .price-card, .contact-card, .quiz-card */
+.component {
+    padding: 2.5rem;
+    border-radius: 2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(11,95,88,0.06);
+    background-color: rgba(11,95,88,0.04);
+}
+
+/* Apply base styles to existing component selectors so they look identical
+   while preserving semantic differences (layout, min-height, inner structure). */
+.card,
+.contact-card,
+.price-card,
+.quiz-card,
+.card-outline,
+.card-filled {
+    padding: 2.5rem;
+    border-radius: 2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(11,95,88,0.06);
+    background-color: rgba(11,95,88,0.04);
+}
+
+/* Slightly stronger hover for card-like components */
+.card:hover,
+.contact-card:hover,
+.price-card:hover,
+.quiz-card:hover,
+.card-outline:hover,
+.card-filled:hover {
+    box-shadow: 0 8px 20px rgba(14, 26, 43, 0.06);
 }
 
 .contact-icon {
@@ -421,11 +492,31 @@ a {
     border-radius: 2rem;
     border: none;
     background-color: rgba(11, 95, 88, 0.04);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 @media (min-width: 768px) {
     .card {
         padding: 3.5rem;
+    }
+
+    /* Make the wider card span the full grid width and layout its inner elements side-by-side */
+    .card-wide { width: 100%; }
+
+    .card-wide-inner {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+}
+
+/* On small screens, stack the wide card's inner content vertically */
+@media (max-width: 767px) {
+    .card-wide-inner {
+        flex-direction: column;
+        gap: 1rem;
     }
 }
 
@@ -512,34 +603,10 @@ a {
     border-radius: 1rem;
 }
 
-/* Flag image used in the green intro section (right-aligned on larger screens) */
-.flag-container {
-    justify-self: end;
-    align-self: center;
-    text-align: right;
-}
-
-.flag-image {
-    width: 100%;
-    max-width: 320px; /* slightly bigger */
-    height: auto;
-    object-fit: contain;
-}
+/* Spanish flag removed — flag styles cleaned up */
 
 @media (max-width: 767px) {
-    /* When stacked on small screens, align flag to the left */
-    .flag-container {
-        justify-self: start;
-        text-align: left !important; /* override inline style if present */
-    }
-
-    /* Make the flag fill the available content width (screen width minus section padding) */
-    .flag-image {
-        width: 100%;
-        max-width: none;
-        display: block;
-        object-fit: contain;
-    }
+    /* Spanish flag removed — mobile flag styles cleaned up */
 
     /* On mobile, make the docent image fill the available content width (respects section padding)
        and remove the max-width constraint so the photo is full-bleed within the section. */
@@ -558,10 +625,7 @@ a {
 }
 
 @media (min-width: 1024px) {
-    /* Slightly reduce flag size on desktop so it's a touch smaller than before */
-    .flag-image {
-        max-width: 340px; /* reduced from 360px to make the flag a tiny bit smaller on desktop */
-    }
+    /* No flag styles needed here after removal */
 }
 
 @media (min-width: 768px) {

@@ -79,10 +79,10 @@
             </div>
             <div class="mobile-footer">
                 <p class="text-dark-emerald"
-                    style="font-size: var(--font-size-body); color: var(--color-dark-emerald); margin-bottom: 1rem;">
+                    class="text-body" style="color: var(--color-dark-emerald); margin-bottom: 1rem;">
                     ¡Vamos Hablando!
                 </p>
-                <p style="font-size: var(--font-size-body); opacity: 0.6; line-height: 1.625;">Spaans leer je door het
+                <p class="text-body" style="opacity: 0.6; line-height: 1.625;">Spaans leer je door het
                     te gebruiken.
                     Van de eerste kennismaking tot communicatie in Spanje.</p>
             </div>
@@ -94,51 +94,51 @@
             <div class="section-container max-w-4xl space-y-16">
                 <div class="space-y-6">
                     <h1 class="text-5xl md-text-7xl leading-tight flex items-center gap-6">
-                        <span class="material-symbols-rounded"
-                            style="font-size: var(--font-size-heading); color: var(--color-dark-emerald);">auto_stories</span>
+                        <span class="material-symbols-rounded icon-xl icon-dark" aria-hidden="true">auto_stories</span>
                         <span>Aanbod van <span class="accent">¡Vamos Hablando!</span></span>
                     </h1>
                     <p class="text-xl md-text-2xl opacity-90 max-w-3xl">
                         Kies wat past bij jouw leerdoel: leren in een kleine online groep, individuele begeleiding met
-                        privéles, of deelnemen aan een contextgebonden taalreis in Spanje voor scholen. Elk programma is
-                        gericht op betekenisvol taalgebruik en een duidelijke opbouw.
+                        privéles, of deelnemen aan een contextgebonden taalreis in Spanje. Elk programma is gericht op
+                        betekenisvol taalgebruik en een duidelijke opbouw.
                     </p>
                 </div>
 
                 <div class="grid md-grid-cols-2 gap-8">
+                    <!-- Taalreizen (wide) -->
+                    <div class="card card-wide md-col-span-2 component text-left">
+                        <div class="card-wide-inner" style="display:flex; align-items:center; gap:1rem;">
+                            <span class="material-symbols-rounded icon-xl icon-dark" aria-hidden="true" style="flex-shrink:0;">flight_takeoff</span>
+                            <div>
+                                <h3 class="text-subheading mb-2" style="display:flex; align-items:center; gap:0.75rem;">Taalreizen</h3>
+                                <p class="opacity-80 mb-6">Contextgebonden taalreizen in Spanje — leren door doen.</p>
+                                <div class="mt-auto">
+                                    <a href="taalreis.html" class="button button-primary">Lees meer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Groepslessen -->
-                    <div class="card text-left">
-                        <span class="material-symbols-rounded mb-4"
-                            style="font-size: var(--font-size-heading); color: var(--color-dark-emerald);">groups</span>
-                        <h3 class="text-2xl mb-2">Groepslessen</h3>
-                        <p class="opacity-80 mb-6">Spreken in kleine groepen — veel oefentijd en interactie.</p>
-                        <div class="mt-auto">
-                            <a href="groepslessen.html" class="button button-primary">Lees meer</a>
+                    <div class="card text-left" style="display:flex; gap:1rem; align-items:flex-start;">
+                        <span class="material-symbols-rounded icon-lg icon-dark" aria-hidden="true" style="flex-shrink:0;">groups</span>
+                        <div>
+                            <h3 class="text-subheading mb-2">Groepslessen</h3>
+                            <p class="opacity-80 mb-6">Spreken in kleine groepen — veel oefentijd en interactie.</p>
+                            <div class="mt-auto">
+                                <a href="groepslessen.html" class="button button-primary">Lees meer</a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Privélessen -->
-                    <div class="card text-left">
-                        <span class="material-symbols-rounded mb-4"
-                            style="font-size: var(--font-size-heading); color: var(--color-dark-emerald);">person</span>
-                        <h3 class="text-2xl mb-2">Privélessen</h3>
-                        <p class="opacity-80 mb-6">Persoonlijke begeleiding, afgestemd op jouw doelen en tempo.</p>
-                        <div class="mt-auto">
-                            <a href="priveles.html" class="button button-primary">Lees meer</a>
-                        </div>
-                    </div>
-
-                    <!-- Taalreizen (wide) -->
-                    <div class="card card-wide md-col-span-2 text-left">
-                        <div class="card-wide-inner">
-                            <span class="material-symbols-rounded mb-4"
-                                style="font-size: calc(var(--font-size-heading) * 1.05); color: var(--color-dark-emerald);">flight_takeoff</span>
-                            <div>
-                                <h3 class="text-2xl mb-2">Taalreizen</h3>
-                                <p class="opacity-80 mb-6">Contextgebonden taalreizen in Spanje voor scholen — leren door doen.</p>
-                                <div class="mt-auto">
-                                    <a href="taalreis.html" class="button button-primary">Lees meer</a>
-                                </div>
+                    <div class="card text-left" style="display:flex; gap:1rem; align-items:flex-start;">
+                        <span class="material-symbols-rounded icon-lg icon-dark" aria-hidden="true" style="flex-shrink:0;">person</span>
+                        <div>
+                            <h3 class="text-subheading mb-2">Privélessen</h3>
+                            <p class="opacity-80 mb-6">Persoonlijke begeleiding, afgestemd op jouw doelen en tempo.</p>
+                            <div class="mt-auto">
+                                <a href="priveles.html" class="button button-primary">Lees meer</a>
                             </div>
                         </div>
                     </div>
@@ -148,10 +148,10 @@
 
         <section class="section section-beige section-compact">
             <div class="section-container max-w-4xl space-y-12">
-                <h2 class="text-4xl md-text-5xl leading-tight">
+                <h2 class="text-heading leading-tight">
                     Wil je ontdekken wat <span class="accent">¡Vamos Hablando!</span> voor jou kan betekenen?
                 </h2>
-                <p class="text-xl opacity-80 max-w-2xl">
+                <p class="text-subheading opacity-80 max-w-2xl">
                     Of je nu als individu wilt starten of als school interesse hebt in een taalreis op maat, ik denk
                     graag met je mee.
                 </p>
@@ -177,17 +177,17 @@
                 <h4>Contact</h4>
                 <ul class="footer-list">
                     <li><a href="https://wa.me/your-number" class="footer-link">
-                            <span class="material-symbols-rounded" style="font-size: var(--font-size-body);">chat</span>
+                            <span class="material-symbols-rounded icon-sm icon-dark" aria-hidden="true">chat</span>
                             <span>WhatsApp</span>
                         </a></li>
                     <li><a href="https://instagram.com/your-profile" class="footer-link">
                             <span class="material-symbols-rounded"
-                                style="font-size: var(--font-size-body);">photo_camera</span>
+                                class="text-body">photo_camera</span>
                             <span>Instagram</span>
                         </a></li>
                     <li><a href="mailto:your-email" class="footer-link">
                             <span class="material-symbols-rounded"
-                                style="font-size: var(--font-size-body);">alternate_email</span>
+                                class="text-body">alternate_email</span>
                             <span>E-mail</span>
                         </a></li>
                 </ul>
