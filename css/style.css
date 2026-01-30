@@ -661,6 +661,7 @@ a {
     z-index: 50;
     transition: all var(--transition-speed) ease;
     padding: 1.5rem calc(var(--page-gutter) - var(--navbar-padding-x));
+    -webkit-transform: translate3d(0, 0, 0); /* Fix for iOS fixed element rendering */
 }
 
 @media (min-width: 768px) {
@@ -782,6 +783,18 @@ a {
     cursor: pointer;
     border-radius: 9999px;
     transition: background-color 0.3s ease;
+
+    /* iOS Safari Fixes */
+    color: var(--color-dark-emerald);
+    -webkit-text-fill-color: var(--color-dark-emerald);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu-toggle:focus,
+.mobile-menu-toggle:active,
+.mobile-menu-toggle:visited {
+    color: var(--color-dark-emerald);
+    -webkit-text-fill-color: var(--color-dark-emerald);
 }
 
 @media (min-width: 768px) {
