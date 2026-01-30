@@ -1,8 +1,26 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const submitBtn = document.getElementById('submit-quiz');
-    if (!submitBtn) return; // Not on quiz page/mode
+/**
+ * Quiz Stepper - Single Question at a Time
+ * ¡Vamos Hablando! - Spanish Level Test
+ */
 
-    submitBtn.addEventListener('click', calculateScore);
+document.addEventListener('DOMContentLoaded', () => {
+    const quizStepper = document.getElementById('quiz-stepper');
+    if (!quizStepper) return; // Not on quiz page
+
+    // Configuration
+    const TOTAL_QUESTIONS = 10;
+    let currentStep = 1;
+    const userAnswers = {};
+
+    // DOM Elements
+    const progressFill = document.getElementById('quiz-progress');
+    const progressText = document.getElementById('quiz-progress-text');
+    const steps = document.querySelectorAll('.quiz-step[data-step]');
+    const resultsScreen = document.querySelector('.quiz-results-screen');
+    const breakdownToggle = document.getElementById('breakdown-toggle');
+    const breakdownList = document.getElementById('breakdown-list');
+    const textInputSubmit = document.getElementById('q8-submit');
+    const confettiContainer = document.getElementById('confetti-container');
 
     // Answer Key
     const answers = {
@@ -13,164 +31,410 @@ document.addEventListener('DOMContentLoaded', () => {
         q5: 'b',
         q6: 'c',
         q7: 'a',
-        q8: ['nosotros comemos pan todos los días', 'nosotros comemos pan todos los dias', 'Nosotros comemos pan todos los dias', 'Nosotros comemos pan todos los días'], // accept with/without accent
+        q8: ['nosotros comemos pan todos los días', 'nosotros comemos pan todos los dias', 'comemos pan todos los días', 'comemos pan todos los dias'],
         q9: 'b',
         q10: 'c'
     };
 
-    // Correct text representations for feedback
-    const correctTexts = {
-        q1: 'b, (Hond) ',
-        q2: 'b, Yo iré mañana a la escuela',
-        q3: 'b, el',
-        q4: 'c, hablamos',
-        q5: 'b, Hoe oud ben je?',
-        q6: 'c, vi',
-        q7: 'a, luces',
-        q8: 'Nosotros comemos pan todos los días',
-        q9: 'b, Me gustan los gatos',
-        q10: 'c, Hoewel'
+    // Question text for results breakdown
+    const questions = {
+        q1: 'Wat betekent "perro"?',
+        q2: 'Vertaling: "Ik ga morgen naar school"',
+        q3: 'Lidwoord voor "agua"',
+        q4: 'Nosotros ___ español',
+        q5: 'Betekenis van "¿Cuántos años tienes?"',
+        q6: 'Verleden tijd: Ayer yo ___ una película',
+        q7: 'Meervoud van "luz"',
+        q8: 'Vertaling naar Spaans',
+        q9: 'Grammaticaal correcte zin',
+        q10: 'Wat betekent "aunque"?'
     };
 
-    function calculateScore() {
-        let score = 0;
-        let total = 10;
-        
-        // Reset old feedback
-        document.querySelectorAll('.quiz-feedback').forEach(el => {
-            el.innerHTML = '';
-            el.style.display = 'none';
+    // Correct answer text for breakdown
+    const correctTexts = {
+        q1: 'Hond',
+        q2: 'Yo iré mañana a la escuela',
+        q3: 'el',
+        q4: 'hablamos',
+        q5: 'Hoe oud ben je?',
+        q6: 'vi',
+        q7: 'luces',
+        q8: 'Nosotros comemos pan todos los días',
+        q9: 'Me gustan los gatos',
+        q10: 'Hoewel'
+    };
+
+    // Initialize
+    clearAllSelections(); // Clear any browser-cached selections
+    updateProgress();
+    setupOptionListeners();
+    setupTextInputListener();
+    setupBreakdownToggle();
+    setupShareResults();
+
+    /**
+     * Clear all radio selections (prevents browser autofill highlighting)
+     */
+    function clearAllSelections() {
+        document.querySelectorAll('.quiz-step-option input[type="radio"]').forEach(radio => {
+            radio.checked = false;
         });
-        document.querySelectorAll('.quiz-card').forEach(card => {
-            card.style.border = 'none'; // Reset border
-        });
+    }
 
-        // Loop questions 1 to 10
-        for (let i = 1; i <= 10; i++) {
-            const qKey = 'q' + i;
-            const correctAnswer = answers[qKey];
-            const feedbackEl = document.getElementById(`feedback-${qKey}`);
-            const cardEl = document.querySelector(`.quiz-card[data-q="${i}"]`);
+    /**
+     * Update progress bar and text
+     */
+    function updateProgress() {
+        const percentage = (currentStep / TOTAL_QUESTIONS) * 100;
+        if (progressFill) progressFill.style.width = `${percentage}%`;
+        if (progressText) progressText.textContent = `Vraag ${currentStep} van ${TOTAL_QUESTIONS}`;
+    }
 
-            let isCorrect = false;
-            let userAnswer = '';
-
-            // Handle Input vs Radio
-            if (i === 8) {
-                // Text input
-                const input = document.querySelector(`input[name="${qKey}"]`);
-                if (input) {
-                    userAnswer = input.value.trim().toLowerCase();
-                    // Check inclusion in array or simple match
-                    if (Array.isArray(correctAnswer)) {
-                        isCorrect = correctAnswer.includes(userAnswer);
-                    } else {
-                        isCorrect = userAnswer === correctAnswer;
-                    }
-                }
-            } else {
-                // Radio
-                const selected = document.querySelector(`input[name="${qKey}"]:checked`);
-                if (selected) {
-                    userAnswer = selected.value;
-                    isCorrect = userAnswer === correctAnswer;
-                }
-            }
-
-            // Update Score & Feedback
-            if (isCorrect) {
-                score++;
-                if (cardEl) cardEl.style.border = '2px solid #69f0ae'; // Light green border
-                if (feedbackEl) {
-                    feedbackEl.style.display = 'block';
-                    feedbackEl.innerHTML = '<span class="feedback-correct">✔ Correct!</span>';
-                }
-            } else {
-                if (cardEl) cardEl.style.border = '2px solid #ff8a80'; // Light red border
-                if (feedbackEl) {
-                    feedbackEl.style.display = 'block';
-                    feedbackEl.innerHTML = `<span class="feedback-incorrect">✖ Fout.</span> Het juiste antwoord is: <strong>${correctTexts[qKey]}</strong>`;
-                }
-            }
-        }
-
-        // Show Result
-        const resultPopup = document.getElementById('quiz-result');
-        const scoreDisplay = document.getElementById('score-display');
-        const resultMessage = document.getElementById('result-message');
-        
-        if (resultPopup && scoreDisplay) {
-            scoreDisplay.textContent = score;
-            resultPopup.style.display = 'block';
-
-            // Email handler
-            const sendBtn = document.getElementById('send-score-btn');
-            const emailInput = document.getElementById('user-email');
-
-            if (sendBtn && emailInput) {
-                // Reset button state on new calculation
-                sendBtn.textContent = 'Verstuur naar ons';
-                sendBtn.disabled = false;
+    /**
+     * Setup click listeners for radio options
+     */
+    function setupOptionListeners() {
+        document.querySelectorAll('.quiz-step-option input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const questionName = e.target.name;
+                const questionNumber = parseInt(questionName.replace('q', ''));
                 
-                sendBtn.onclick = (e) => {
-                   e.preventDefault();
-                   const email = emailInput.value.trim();
-                   if (!email || !email.includes('@')) {
-                       alert('Vul een geldig e-mailadres in.');
-                       return;
-                   }
-                   
-                   const subject = `Niveautest Resultaat: ${score} punten`;
-                   // Construct body with clear user info for the receiver
-                   const body = `Hola,\n\nIk heb zojuist de niveautest gedaan op de website.\n\nMijn score is: ${score} (van de 10).\n\nIk ontvang graag advies over welk niveau bij mij past.\n\nMijn e-mailadres is: ${email}\n\nGroetjes!`;
-                   
-                   // Use mailto to open default mail client
-                   window.location.href = `mailto:info@vamoshablando.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                   
-                   sendBtn.textContent = 'Even geduld...';
-                   setTimeout(() => {
-                        sendBtn.textContent = 'Geopend in mail app';
-                   }, 1500);
-                };
-            }
-            
-            // Customized message & Recommendation
-            let recommendationTitle = "";
-            let recommendationText = "";
+                // Store answer
+                userAnswers[questionName] = e.target.value;
+                
+                // Visual feedback - brief delay then advance
+                const option = e.target.closest('.quiz-step-option');
+                option.style.transform = 'scale(1.02)';
+                
+                setTimeout(() => {
+                    option.style.transform = '';
+                    goToNextStep(questionNumber);
+                }, 400);
+            });
+        });
+    }
 
-            if (score <= 4) {
-                 recommendationTitle = "Spaans spreken start";
-                 recommendationText = "Je staat aan het begin van je reis. Deze cursus helpt je de basis te leggen.";
-            } else if (score <= 8) {
-                 recommendationTitle = "Spaans spreken verder";
-                 recommendationText = "Je hebt de basis onder de knie! Tijd om je vaardigheden uit te breiden.";
+    /**
+     * Setup text input submit button for Q8
+     */
+    function setupTextInputListener() {
+        if (!textInputSubmit) return;
+
+        const textInput = document.querySelector('input[name="q8"]');
+        
+        textInputSubmit.addEventListener('click', () => {
+            if (textInput && textInput.value.trim()) {
+                userAnswers['q8'] = textInput.value.trim();
+                goToNextStep(8);
             } else {
-                 recommendationTitle = "Spaans spreken verdieping";
-                 recommendationText = "Uitstekend! Je bent klaar voor verdiepende conversaties en complexe structuren.";
+                // Shake animation if empty
+                textInput.style.animation = 'shake 0.5s ease';
+                setTimeout(() => textInput.style.animation = '', 500);
             }
+        });
 
-            let introText = "Geen zorgen, iedereen begint ergens.";
-            if (score === 10) introText = "¡Fantástico! Je hebt alles goed!";
-            else if (score >= 7) introText = "Muy bien! Je bent goed op weg.";
-            else if (score >= 5) introText = "Goed gedaan!";
-
-            resultMessage.innerHTML = `
-                ${introText}
-                <div class="recommendation-highlight">
-                    <span class="recommendation-title">Wij raden aan: ${recommendationTitle}</span>
-                    <span>${recommendationText}</span>
-                </div>
-            `;
-
-            // Hide the form slightly or keep it visible?
-            // Let's scroll to the result
-            resultPopup.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            
-            // Disable button
-            submitBtn.textContent = 'Opnieuw proberen';
-            submitBtn.removeEventListener('click', calculateScore);
-            submitBtn.addEventListener('click', () => window.location.reload());
+        // Also allow Enter key
+        if (textInput) {
+            textInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    textInputSubmit.click();
+                }
+            });
         }
     }
+
+    /**
+     * Go to next step or show results
+     */
+    function goToNextStep(fromQuestion) {
+        const currentStepEl = document.querySelector(`.quiz-step[data-step="${fromQuestion}"]`);
+        
+        if (fromQuestion >= TOTAL_QUESTIONS) {
+            // Show results
+            showResults();
+        } else {
+            // Go to next question
+            currentStep = fromQuestion + 1;
+            
+            // Animate out current
+            if (currentStepEl) {
+                currentStepEl.style.animation = 'stepFadeOut 0.3s ease forwards';
+                setTimeout(() => {
+                    currentStepEl.classList.remove('active');
+                    currentStepEl.style.animation = '';
+                    
+                    // Show next
+                    const nextStepEl = document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
+                    if (nextStepEl) {
+                        nextStepEl.classList.add('active');
+                        updateProgress();
+                    }
+                }, 300);
+            }
+        }
+    }
+
+    /**
+     * Calculate score and show results screen
+     */
+    function showResults() {
+        let score = 0;
+        const results = [];
+
+        // Calculate score
+        for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+            const qKey = `q${i}`;
+            const userAnswer = userAnswers[qKey] || '';
+            const correctAnswer = answers[qKey];
+            let isCorrect = false;
+
+            if (i === 8) {
+                // Text input - flexible matching
+                if (Array.isArray(correctAnswer)) {
+                    isCorrect = correctAnswer.some(a => 
+                        userAnswer.toLowerCase().includes(a.toLowerCase()) ||
+                        a.toLowerCase().includes(userAnswer.toLowerCase())
+                    );
+                } else {
+                    isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
+                }
+            } else {
+                isCorrect = userAnswer === correctAnswer;
+            }
+
+            if (isCorrect) score++;
+            
+            results.push({
+                question: i,
+                isCorrect,
+                questionText: questions[qKey],
+                correctAnswer: correctTexts[qKey]
+            });
+        }
+
+        // Hide current question, show results
+        const currentStepEl = document.querySelector('.quiz-step.active');
+        if (currentStepEl) {
+            currentStepEl.style.animation = 'stepFadeOut 0.3s ease forwards';
+            setTimeout(() => {
+                currentStepEl.classList.remove('active');
+                currentStepEl.style.animation = '';
+                displayResults(score, results);
+            }, 300);
+        }
+    }
+
+    /**
+     * Display results with animations
+     */
+    function displayResults(score, results) {
+        // Hide progress
+        if (progressFill && progressFill.parentElement) {
+            progressFill.parentElement.parentElement.style.opacity = '0';
+        }
+
+        // Show results screen
+        if (resultsScreen) {
+            resultsScreen.classList.add('active');
+        }
+
+        // Animate score count up
+        const scoreEl = document.getElementById('final-score');
+        if (scoreEl) {
+            animateScoreCount(scoreEl, score);
+        }
+
+        // Set title and subtitle based on score
+        const titleEl = document.getElementById('results-title');
+        const subtitleEl = document.getElementById('results-subtitle');
+        
+        if (titleEl && subtitleEl) {
+            if (score === 10) {
+                titleEl.textContent = '¡Perfecto!';
+                subtitleEl.textContent = 'Je hebt alles goed beantwoord!';
+            } else if (score >= 8) {
+                titleEl.textContent = '¡Muy bien!';
+                subtitleEl.textContent = 'Uitstekend resultaat!';
+            } else if (score >= 5) {
+                titleEl.textContent = 'Goed gedaan!';
+                subtitleEl.textContent = 'Je bent op de goede weg';
+            } else {
+                titleEl.textContent = 'Geen zorgen!';
+                subtitleEl.textContent = 'Iedereen begint ergens';
+            }
+        }
+
+        // Set recommendation
+        setRecommendation(score);
+
+        // Build breakdown list
+        buildBreakdown(results);
+
+        // Trigger confetti for good scores
+        if (score >= 5) {
+            setTimeout(() => createConfetti(), 500);
+        }
+    }
+
+    /**
+     * Animate score counting up
+     */
+    function animateScoreCount(element, targetScore) {
+        let current = 0;
+        const duration = 1000;
+        const increment = targetScore / (duration / 50);
+        
+        const counter = setInterval(() => {
+            current += increment;
+            if (current >= targetScore) {
+                current = targetScore;
+                clearInterval(counter);
+            }
+            element.textContent = Math.round(current);
+        }, 50);
+    }
+
+    /**
+     * Set recommendation based on score
+     */
+    function setRecommendation(score) {
+        const levelEl = document.getElementById('recommendation-level');
+        const levelLink = document.getElementById('level-link');
+
+        if (!levelEl) return;
+
+        let anchor = 'niveau-start';
+
+        if (score <= 4) {
+            levelEl.textContent = 'Spaans spreken start';
+            anchor = 'niveau-start';
+        } else if (score <= 7) {
+            levelEl.textContent = 'Spaans spreken verder';
+            anchor = 'niveau-verder';
+        } else {
+            levelEl.textContent = 'Spaans spreken verdieping';
+            anchor = 'niveau-verdieping';
+        }
+
+        // Update link to scroll to correct level section
+        if (levelLink) {
+            levelLink.href = `groepslessen.html#${anchor}`;
+        }
+    }
+
+    /**
+     * Build the answer breakdown list
+     */
+    function buildBreakdown(results) {
+        if (!breakdownList) return;
+
+        breakdownList.innerHTML = results.map(r => `
+            <div class="breakdown-item">
+                <div class="breakdown-icon ${r.isCorrect ? 'correct' : 'incorrect'}">
+                    <span class="material-symbols-rounded">${r.isCorrect ? 'check' : 'close'}</span>
+                </div>
+                <div class="breakdown-text">
+                    <div class="breakdown-question">Vraag ${r.question}: ${r.questionText}</div>
+                    <div class="breakdown-answer">${r.isCorrect ? 'Correct!' : `Juist: ${r.correctAnswer}`}</div>
+                </div>
+            </div>
+        `).join('');
+
+        // Store results for sharing
+        window.quizResults = results;
+    }
+
+    /**
+     * Setup share results button
+     */
+    function setupShareResults() {
+        const shareBtn = document.getElementById('share-results-btn');
+        if (!shareBtn) return;
+
+        shareBtn.addEventListener('click', () => {
+            // Prompt for name
+            const userName = prompt('Vul je volledige naam in:');
+            
+            // If user cancels or enters empty name, don't proceed
+            if (!userName || userName.trim() === '') {
+                alert('Vul alsjeblieft je naam in om de resultaten te versturen.');
+                return;
+            }
+
+            const scoreEl = document.getElementById('final-score');
+            const levelEl = document.getElementById('recommendation-level');
+            const score = scoreEl ? scoreEl.textContent : '?';
+            const level = levelEl ? levelEl.textContent : 'Onbekend';
+            
+            // Build email body with results
+            let emailBody = `Hallo!\n\nMijn naam is ${userName.trim()} en ik heb de niveautest van ¡Vamos Hablando! gemaakt.\n\n`;
+            emailBody += `Mijn score: ${score}/10\n`;
+            emailBody += `Aanbevolen niveau: ${level}\n\n`;
+            
+            if (window.quizResults) {
+                emailBody += `Antwoorden:\n`;
+                window.quizResults.forEach(r => {
+                    const status = r.isCorrect ? '✓' : '✗';
+                    emailBody += `${status} Vraag ${r.question}: ${r.isCorrect ? 'Correct' : 'Fout (juist: ' + r.correctAnswer + ')'}\n`;
+                });
+            }
+            
+            emailBody += `\nGraag hoor ik van u welke cursus het beste bij mij past.\n\nMet vriendelijke groet,\n${userName.trim()}`;
+            
+            // Open email client
+            const mailtoLink = `mailto:info@vamoshablando.nl?subject=${encodeURIComponent('Niveautest resultaat - ' + userName.trim())}&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+        });
+    }
+
+    /**
+     * Setup breakdown toggle functionality
+     */
+    function setupBreakdownToggle() {
+        if (!breakdownToggle || !breakdownList) return;
+
+        breakdownToggle.addEventListener('click', () => {
+            breakdownToggle.classList.toggle('open');
+            breakdownList.classList.toggle('open');
+        });
+    }
+
+    /**
+     * Create confetti celebration effect
+     */
+    function createConfetti() {
+        if (!confettiContainer) return;
+
+        const colors = ['#F6E6C8', '#CFE4EA', '#0B5F58', '#69f0ae', '#ffeb3b'];
+        const confettiCount = 50;
+
+        for (let i = 0; i < confettiCount; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = `${Math.random() * 100}%`;
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDelay = `${Math.random() * 2}s`;
+            confetti.style.animationDuration = `${2 + Math.random() * 2}s`;
+            confetti.style.width = `${8 + Math.random() * 8}px`;
+            confetti.style.height = `${8 + Math.random() * 8}px`;
+            confettiContainer.appendChild(confetti);
+        }
+
+        // Clean up confetti after animation
+        setTimeout(() => {
+            confettiContainer.innerHTML = '';
+        }, 5000);
+    }
 });
+
+// Add shake animation to CSS dynamically
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%, 60% { transform: translateX(-5px); }
+        40%, 80% { transform: translateX(5px); }
+    }
+`;
+document.head.appendChild(style);

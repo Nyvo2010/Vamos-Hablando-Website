@@ -65,307 +65,384 @@
 
     <!-- MAIN CONTENT -->
     <main class="pt-20">
-        <!-- Intro Header -->
-        <section class="section section-beige" style="min-height: auto; padding-bottom: 2rem;">
-            <div class="section-container max-w-4xl text-center space-y-6">
-                <h1 style="font-size: 2.5rem; color: var(--color-deep-navy);">Test je taalniveau</h1>
-                <p style="font-size: 1.125rem; max-width: 60ch; margin: 0 auto;">
-                    Beantwoord de onderstaande 10 vragen om een indicatie te krijgen van je Spaanse niveau. Druk aan het einde op 'Score berekenen'.
-                </p>
-            </div>
-        </section>
+        <!-- Quiz Stepper Section - Full Height Single Question View -->
+        <section class="section section-quiz-stepper">
+            <div class="section-container max-w-4xl">
+                
+                <!-- Progress Bar -->
+                <div class="quiz-progress-container">
+                    <div class="quiz-progress-bar">
+                        <div class="quiz-progress-fill" id="quiz-progress"></div>
+                    </div>
+                    <span class="quiz-progress-text" id="quiz-progress-text">Vraag 1 van 10</span>
+                </div>
 
-        <!-- Quiz Section (Green Background with Blur) -->
-        <section class="section section-quiz">
-            <div class="section-container max-w-3xl">
-                <form id="quiz-form" class="quiz-wrapper">
-
+                <!-- Quiz Stepper Container -->
+                <div class="quiz-stepper" id="quiz-stepper">
+                    
                     <!-- Question 1 -->
-                    <div class="quiz-card" data-q="1">
-                        <div class="quiz-header">
-                            <span class="text-body quiz-bg-tag">Vraag 1</span>
+                    <div class="quiz-step active" data-step="1">
+                        <div class="quiz-step-card">
+                            <div class="quiz-step-header">
+                                <span class="quiz-step-number">01</span>
+                                <span class="quiz-step-label">Vocabulaire</span>
+                            </div>
+                            <h2 class="quiz-step-question">Wat betekent het Spaanse woord "perro"?</h2>
+                            <div class="quiz-step-options">
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q1" value="a">
+                                    <span class="quiz-option-letter">A</span>
+                                    <span class="quiz-option-text">Kat</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q1" value="b">
+                                    <span class="quiz-option-letter">B</span>
+                                    <span class="quiz-option-text">Hond</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q1" value="c">
+                                    <span class="quiz-option-letter">C</span>
+                                    <span class="quiz-option-text">Vogel</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q1" value="d">
+                                    <span class="quiz-option-letter">D</span>
+                                    <span class="quiz-option-text">Vis</span>
+                                </label>
+                            </div>
                         </div>
-                        <h3 class="text-subheading quiz-question">Wat betekent het Spaanse woord “perro”?</h3>
-                        <div class="quiz-options">
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q1" value="a" class="quiz-radio">
-                                <span>Kat</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q1" value="b" class="quiz-radio">
-                                <span>Hond</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q1" value="c" class="quiz-radio">
-                                <span>Vogel</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q1" value="d" class="quiz-radio">
-                                <span>Vis</span>
-                            </label>
-                        </div>
-                        <div class="quiz-feedback" id="feedback-q1"></div>
                     </div>
 
                     <!-- Question 2 -->
-                    <div class="quiz-card" data-q="2">
-                        <div class="quiz-header">
-                            <span class="text-body quiz-bg-tag">Vraag 2</span>
+                    <div class="quiz-step" data-step="2">
+                        <div class="quiz-step-card">
+                            <div class="quiz-step-header">
+                                <span class="quiz-step-number">02</span>
+                                <span class="quiz-step-label">Vertaling</span>
+                            </div>
+                            <h2 class="quiz-step-question">Kies de juiste vertaling: "Ik ga morgen naar school."</h2>
+                            <div class="quiz-step-options">
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q2" value="a">
+                                    <span class="quiz-option-letter">A</span>
+                                    <span class="quiz-option-text">Yo voy ayer a la escuela</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q2" value="b">
+                                    <span class="quiz-option-letter">B</span>
+                                    <span class="quiz-option-text">Yo iré mañana a la escuela</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q2" value="c">
+                                    <span class="quiz-option-letter">C</span>
+                                    <span class="quiz-option-text">Yo voy mañana escuela</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q2" value="d">
+                                    <span class="quiz-option-letter">D</span>
+                                    <span class="quiz-option-text">Yo fui mañana a la escuela</span>
+                                </label>
+                            </div>
                         </div>
-                        <h3 class="text-subheading quiz-question">Kies de juiste vertaling: “Ik ga morgen naar school.”</h3>
-                        <div class="quiz-options">
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q2" value="a" class="quiz-radio">
-                                <span>Yo voy ayer a la escuela</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q2" value="b" class="quiz-radio">
-                                <span>Yo iré mañana a la escuela</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q2" value="c" class="quiz-radio">
-                                <span>Yo voy mañana escuela</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q2" value="d" class="quiz-radio">
-                                <span>Yo fui mañana a la escuela</span>
-                            </label>
-                        </div>
-                        <div class="quiz-feedback" id="feedback-q2"></div>
                     </div>
 
                     <!-- Question 3 -->
-                    <div class="quiz-card" data-q="3">
-                        <div class="quiz-header">
-                            <span class="text-body quiz-bg-tag">Vraag 3</span>
+                    <div class="quiz-step" data-step="3">
+                        <div class="quiz-step-card">
+                            <div class="quiz-step-header">
+                                <span class="quiz-step-number">03</span>
+                                <span class="quiz-step-label">Grammatica</span>
+                            </div>
+                            <h2 class="quiz-step-question">Wat is het juiste lidwoord voor "agua"?</h2>
+                            <div class="quiz-step-options">
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q3" value="a">
+                                    <span class="quiz-option-letter">A</span>
+                                    <span class="quiz-option-text">la</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q3" value="b">
+                                    <span class="quiz-option-letter">B</span>
+                                    <span class="quiz-option-text">el</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q3" value="c">
+                                    <span class="quiz-option-letter">C</span>
+                                    <span class="quiz-option-text">los</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q3" value="d">
+                                    <span class="quiz-option-letter">D</span>
+                                    <span class="quiz-option-text">una</span>
+                                </label>
+                            </div>
                         </div>
-                        <h3 class="text-subheading quiz-question">Wat is het juiste lidwoord voor “agua”?</h3>
-                        <div class="quiz-options">
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q3" value="a" class="quiz-radio">
-                                <span>la</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q3" value="b" class="quiz-radio">
-                                <span>el</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q3" value="c" class="quiz-radio">
-                                <span>los</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q3" value="d" class="quiz-radio">
-                                <span>una</span>
-                            </label>
-                        </div>
-                        <div class="quiz-feedback" id="feedback-q3"></div>
                     </div>
 
                     <!-- Question 4 -->
-                    <div class="quiz-card" data-q="4">
-                        <div class="quiz-header">
-                            <span class="text-body quiz-bg-tag">Vraag 4</span>
+                    <div class="quiz-step" data-step="4">
+                        <div class="quiz-step-card">
+                            <div class="quiz-step-header">
+                                <span class="quiz-step-number">04</span>
+                                <span class="quiz-step-label">Werkwoorden</span>
+                            </div>
+                            <h2 class="quiz-step-question">Vul het juiste werkwoord in: Nosotros ___ español.</h2>
+                            <div class="quiz-step-options">
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q4" value="a">
+                                    <span class="quiz-option-letter">A</span>
+                                    <span class="quiz-option-text">habla</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q4" value="b">
+                                    <span class="quiz-option-letter">B</span>
+                                    <span class="quiz-option-text">hablo</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q4" value="c">
+                                    <span class="quiz-option-letter">C</span>
+                                    <span class="quiz-option-text">hablamos</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q4" value="d">
+                                    <span class="quiz-option-letter">D</span>
+                                    <span class="quiz-option-text">hablan</span>
+                                </label>
+                            </div>
                         </div>
-                        <h3 class="text-subheading quiz-question">Vul het juiste werkwoord in:<br>Nosotros ___ español.</h3>
-                        <div class="quiz-options">
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q4" value="a" class="quiz-radio">
-                                <span>habla</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q4" value="b" class="quiz-radio">
-                                <span>hablo</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q4" value="c" class="quiz-radio">
-                                <span>hablamos</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q4" value="d" class="quiz-radio">
-                                <span>hablan</span>
-                            </label>
-                        </div>
-                        <div class="quiz-feedback" id="feedback-q4"></div>
                     </div>
 
                     <!-- Question 5 -->
-                    <div class="quiz-card" data-q="5">
-                        <div class="quiz-header">
-                            <span class="text-body quiz-bg-tag">Vraag 5</span>
+                    <div class="quiz-step" data-step="5">
+                        <div class="quiz-step-card">
+                            <div class="quiz-step-header">
+                                <span class="quiz-step-number">05</span>
+                                <span class="quiz-step-label">Begrip</span>
+                            </div>
+                            <h2 class="quiz-step-question">Wat betekent "¿Cuántos años tienes?"?</h2>
+                            <div class="quiz-step-options">
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q5" value="a">
+                                    <span class="quiz-option-letter">A</span>
+                                    <span class="quiz-option-text">Waar woon je?</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q5" value="b">
+                                    <span class="quiz-option-letter">B</span>
+                                    <span class="quiz-option-text">Hoe oud ben je?</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q5" value="c">
+                                    <span class="quiz-option-letter">C</span>
+                                    <span class="quiz-option-text">Hoe laat is het?</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q5" value="d">
+                                    <span class="quiz-option-letter">D</span>
+                                    <span class="quiz-option-text">Wat doe je?</span>
+                                </label>
+                            </div>
                         </div>
-                        <h3 class="text-subheading quiz-question">Wat betekent “¿Cuántos años tienes?”?</h3>
-                        <div class="quiz-options">
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q5" value="a" class="quiz-radio">
-                                <span>Waar woon je?</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q5" value="b" class="quiz-radio">
-                                <span>Hoe oud ben je?</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q5" value="c" class="quiz-radio">
-                                <span>Hoe laat is het?</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q5" value="d" class="quiz-radio">
-                                <span>Wat doe je?</span>
-                            </label>
-                        </div>
-                        <div class="quiz-feedback" id="feedback-q5"></div>
                     </div>
 
                     <!-- Question 6 -->
-                    <div class="quiz-card" data-q="6">
-                        <div class="quiz-header">
-                            <span class="text-body quiz-bg-tag">Vraag 6</span>
+                    <div class="quiz-step" data-step="6">
+                        <div class="quiz-step-card">
+                            <div class="quiz-step-header">
+                                <span class="quiz-step-number">06</span>
+                                <span class="quiz-step-label">Verleden tijd</span>
+                            </div>
+                            <h2 class="quiz-step-question">Kies de correcte verleden tijd: Ayer yo ___ una película.</h2>
+                            <div class="quiz-step-options">
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q6" value="a">
+                                    <span class="quiz-option-letter">A</span>
+                                    <span class="quiz-option-text">veo</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q6" value="b">
+                                    <span class="quiz-option-letter">B</span>
+                                    <span class="quiz-option-text">veía</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q6" value="c">
+                                    <span class="quiz-option-letter">C</span>
+                                    <span class="quiz-option-text">vi</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q6" value="d">
+                                    <span class="quiz-option-letter">D</span>
+                                    <span class="quiz-option-text">ver</span>
+                                </label>
+                            </div>
                         </div>
-                        <h3 class="text-subheading quiz-question">Kies de correcte verleden tijd:<br>Ayer yo ___ una película.</h3>
-                        <div class="quiz-options">
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q6" value="a" class="quiz-radio">
-                                <span>veo</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q6" value="b" class="quiz-radio">
-                                <span>veía</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q6" value="c" class="quiz-radio">
-                                <span>vi</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q6" value="d" class="quiz-radio">
-                                <span>ver</span>
-                            </label>
-                        </div>
-                        <div class="quiz-feedback" id="feedback-q6"></div>
                     </div>
 
                     <!-- Question 7 -->
-                    <div class="quiz-card" data-q="7">
-                        <div class="quiz-header">
-                            <span class="text-body quiz-bg-tag">Vraag 7</span>
+                    <div class="quiz-step" data-step="7">
+                        <div class="quiz-step-card">
+                            <div class="quiz-step-header">
+                                <span class="quiz-step-number">07</span>
+                                <span class="quiz-step-label">Meervoud</span>
+                            </div>
+                            <h2 class="quiz-step-question">Wat is de juiste meervoudsvorm van "luz"?</h2>
+                            <div class="quiz-step-options">
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q7" value="a">
+                                    <span class="quiz-option-letter">A</span>
+                                    <span class="quiz-option-text">luces</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q7" value="b">
+                                    <span class="quiz-option-letter">B</span>
+                                    <span class="quiz-option-text">luzes</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q7" value="c">
+                                    <span class="quiz-option-letter">C</span>
+                                    <span class="quiz-option-text">luz</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q7" value="d">
+                                    <span class="quiz-option-letter">D</span>
+                                    <span class="quiz-option-text">lucos</span>
+                                </label>
+                            </div>
                         </div>
-                        <h3 class="text-subheading quiz-question">Wat is de juiste meervoudsvorm van “luz”?</h3>
-                        <div class="quiz-options">
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q7" value="a" class="quiz-radio">
-                                <span>luces</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q7" value="b" class="quiz-radio">
-                                <span>luzes</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q7" value="c" class="quiz-radio">
-                                <span>luz</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q7" value="d" class="quiz-radio">
-                                <span>lucos</span>
-                            </label>
-                        </div>
-                        <div class="quiz-feedback" id="feedback-q7"></div>
                     </div>
 
-                    <!-- Question 8 - Input -->
-                    <div class="quiz-card" data-q="8">
-                        <div class="quiz-header">
-                            <span class="text-body quiz-bg-tag">Vraag 8</span>
+                    <!-- Question 8 - Text Input -->
+                    <div class="quiz-step" data-step="8">
+                        <div class="quiz-step-card">
+                            <div class="quiz-step-header">
+                                <span class="quiz-step-number">08</span>
+                                <span class="quiz-step-label">Vertaling</span>
+                            </div>
+                            <h2 class="quiz-step-question">Vertaal naar het Spaans: "Wij eten elke dag brood."</h2>
+                            <div class="quiz-step-input">
+                                <input type="text" name="q8" class="quiz-text-field" placeholder="Typ je antwoord hier..." autocomplete="off">
+                                <button type="button" class="quiz-input-submit" id="q8-submit">
+                                    <span class="material-symbols-rounded">arrow_forward</span>
+                                </button>
+                            </div>
                         </div>
-                        <h3 class="text-subheading quiz-question">Vertaal naar het Spaans:<br>“Wij eten elke dag brood.”</h3>
-                        <div class="quiz-input-group">
-                            <input type="text" name="q8" class="quiz-text-input" placeholder="Typ je antwoord hier..." autocomplete="off">
-                        </div>
-                        <div class="quiz-feedback" id="feedback-q8"></div>
                     </div>
 
                     <!-- Question 9 -->
-                    <div class="quiz-card" data-q="9">
-                        <div class="quiz-header">
-                            <span class="text-body quiz-bg-tag">Vraag 9</span>
+                    <div class="quiz-step" data-step="9">
+                        <div class="quiz-step-card">
+                            <div class="quiz-step-header">
+                                <span class="quiz-step-number">09</span>
+                                <span class="quiz-step-label">Grammatica</span>
+                            </div>
+                            <h2 class="quiz-step-question">Welke zin is grammaticaal correct?</h2>
+                            <div class="quiz-step-options">
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q9" value="a">
+                                    <span class="quiz-option-letter">A</span>
+                                    <span class="quiz-option-text">Me gusta los gatos</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q9" value="b">
+                                    <span class="quiz-option-letter">B</span>
+                                    <span class="quiz-option-text">Me gustan los gatos</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q9" value="c">
+                                    <span class="quiz-option-letter">C</span>
+                                    <span class="quiz-option-text">Me gusto los gatos</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q9" value="d">
+                                    <span class="quiz-option-letter">D</span>
+                                    <span class="quiz-option-text">Me gustan el gatos</span>
+                                </label>
+                            </div>
                         </div>
-                        <h3 class="text-subheading quiz-question">Welke zin is grammaticaal correct?</h3>
-                        <div class="quiz-options">
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q9" value="a" class="quiz-radio">
-                                <span>Me gusta los gatos</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q9" value="b" class="quiz-radio">
-                                <span>Me gustan los gatos</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q9" value="c" class="quiz-radio">
-                                <span>Me gusto los gatos</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q9" value="d" class="quiz-radio">
-                                <span>Me gustan el gatos</span>
-                            </label>
-                        </div>
-                        <div class="quiz-feedback" id="feedback-q9"></div>
                     </div>
 
                     <!-- Question 10 -->
-                    <div class="quiz-card" data-q="10">
-                        <div class="quiz-header">
-                            <span class="text-body quiz-bg-tag">Vraag 10</span>
-                        </div>
-                        <h3 class="text-subheading quiz-question">Wat betekent “aunque”?</h3>
-                        <div class="quiz-options">
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q10" value="a" class="quiz-radio">
-                                <span>Omdat</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q10" value="b" class="quiz-radio">
-                                <span>Maar</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q10" value="c" class="quiz-radio">
-                                <span>Hoewel</span>
-                            </label>
-                            <label class="quiz-option-label">
-                                <input type="radio" name="q10" value="d" class="quiz-radio">
-                                <span>Daarom</span>
-                            </label>
-                        </div>
-                        <div class="quiz-feedback" id="feedback-q10"></div>
-                    </div>
-
-                    <!-- Actions -->
-                    <div class="quiz-actions">
-                        <button type="button" id="submit-quiz" class="button button-primary" style="font-size: 1.25rem;">
-                            Score berekenen
-                        </button>
-                    </div>
-
-                </form>
-
-                <!-- Result Container -->
-                <div id="quiz-result" class="quiz-result-popup">
-                    <h2>Resultaat</h2>
-                    <div class="quiz-result-score" id="score-display">0/10</div>
-                    <p id="result-message" style="font-size: 1.1rem; max-width: 50ch; margin: 0 auto;"></p>
-
-                    <!-- Email Capture -->
-                    <div class="email-capture">
-                        <p style="margin-bottom: 1rem; font-size: 1rem; color: var(--color-soft-cream);">
-                            Wil je vrijblijvend advies ontvangen op basis van je resultaat?
-                        </p>
-                        <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
-                            <input type="email" id="user-email" placeholder="Jouw e-mailadres..." class="quiz-text-input" style="max-width: 280px; background-color: var(--color-soft-cream); color: var(--color-deep-navy); border: none;">
-                            <button id="send-score-btn" type="button" class="button" style="background-color: var(--color-light-blue); color: var(--color-deep-navy); font-weight: 600; border: none; cursor: pointer; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: transform 0.2s;">
-                                Verstuur naar ons
-                            </button>
+                    <div class="quiz-step" data-step="10">
+                        <div class="quiz-step-card">
+                            <div class="quiz-step-header">
+                                <span class="quiz-step-number">10</span>
+                                <span class="quiz-step-label">Vocabulaire</span>
+                            </div>
+                            <h2 class="quiz-step-question">Wat betekent "aunque"?</h2>
+                            <div class="quiz-step-options">
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q10" value="a">
+                                    <span class="quiz-option-letter">A</span>
+                                    <span class="quiz-option-text">Omdat</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q10" value="b">
+                                    <span class="quiz-option-letter">B</span>
+                                    <span class="quiz-option-text">Maar</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q10" value="c">
+                                    <span class="quiz-option-letter">C</span>
+                                    <span class="quiz-option-text">Hoewel</span>
+                                </label>
+                                <label class="quiz-step-option">
+                                    <input type="radio" name="q10" value="d">
+                                    <span class="quiz-option-letter">D</span>
+                                    <span class="quiz-option-text">Daarom</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
-                    <div style="margin-top: 2rem;">
-                        <a href="niveautest.html" class="button button-outline" style="border-color: var(--color-soft-cream); color: var(--color-soft-cream);">Opnieuw proberen</a>
+                    <!-- Results Screen -->
+                    <div class="quiz-step quiz-results-screen" data-step="results">
+                        <div class="quiz-results-card">
+                            <div class="confetti-container" id="confetti-container"></div>
+                            
+                            <div class="quiz-results-badge" id="results-badge">
+                                <div class="badge-ring"></div>
+                                <div class="badge-score">
+                                    <span class="score-number" id="final-score">0</span>
+                                    <span class="score-total">/10</span>
+                                </div>
+                            </div>
+
+                            <h2 class="quiz-results-title" id="results-title">Goed gedaan!</h2>
+                            <p class="quiz-results-subtitle" id="results-subtitle">Je hebt de test voltooid</p>
+
+                            <div class="quiz-results-recommendation" id="results-recommendation">
+                                <span class="recommendation-label">Wij raden aan:</span>
+                                <span class="recommendation-level" id="recommendation-level">Spaans spreken start</span>
+                            </div>
+
+                            <div class="quiz-results-actions">
+                                <a href="groepslessen.html" class="button button-primary" id="level-link">
+                                    <span class="material-symbols-rounded">school</span>
+                                    Bekijk dit niveau
+                                </a>
+                            </div>
+
+                            <div class="quiz-results-breakdown">
+                                <button type="button" class="breakdown-toggle" id="breakdown-toggle">
+                                    <span>Bekijk je antwoorden</span>
+                                    <span class="material-symbols-rounded">expand_more</span>
+                                </button>
+                                <div class="breakdown-list" id="breakdown-list"></div>
+                            </div>
+
+                            <div class="quiz-results-secondary">
+                                <button type="button" class="button button-outline quiz-contact-btn" id="share-results-btn">
+                                    <span class="material-symbols-rounded">send</span>
+                                    Stuur naar ons
+                                </button>
+                                <a href="niveautest.html" class="button button-outline quiz-contact-btn">
+                                    <span class="material-symbols-rounded">refresh</span>
+                                    Opnieuw
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>
