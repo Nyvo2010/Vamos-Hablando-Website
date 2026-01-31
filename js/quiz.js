@@ -98,18 +98,54 @@ document.addEventListener('DOMContentLoaded', () => {
             radio.addEventListener('change', (e) => {
                 const questionName = e.target.name;
                 const questionNumber = parseInt(questionName.replace('q', ''));
-                
+                const selectedValue = e.target.value;
+                const currentStepEl = e.target.closest('.quiz-step');
+
                 // Store answer
-                userAnswers[questionName] = e.target.value;
-                
-                // Visual feedback - brief delay then advance
-                const option = e.target.closest('.quiz-step-option');
-                option.style.transform = 'scale(1.02)';
-                
+                userAnswers[questionName] = selectedValue;
+
+                // Disable further interactions for this step
+                currentStepEl.querySelectorAll('input').forEach(i => i.disabled = true);
+                currentStepEl.querySelectorAll('.quiz-step-option').forEach(o => o.style.pointerEvents = 'none');
+
+                // Determine correctness (handle arrays defensively)
+                const correctAnswer = answers[questionName];
+                let isCorrect = false;
+                if (Array.isArray(correctAnswer)) {
+                    isCorrect = correctAnswer.some(a => a.toLowerCase() === selectedValue.toLowerCase());
+                } else {
+                    isCorrect = selectedValue === correctAnswer;
+                }
+
+                // Mark correct option and mark selected as incorrect if needed
+                currentStepEl.querySelectorAll('.quiz-step-option').forEach(opt => {
+                    const input = opt.querySelector('input[type="radio"]');
+                    if (!input) return;
+                    const val = input.value;
+                    opt.classList.remove('correct','incorrect');
+                    if (Array.isArray(correctAnswer) ? correctAnswer.some(a => a.toLowerCase() === val.toLowerCase()) : val === correctAnswer) {
+                        opt.classList.add('correct');
+                    }
+                });
+
+                const selectedOption = e.target.closest('.quiz-step-option');
+                if (!isCorrect) selectedOption.classList.add('incorrect');
+
+                // Small scale animation on selected so feedback feels tactile
+                selectedOption.style.transform = 'scale(1.02)';
+                setTimeout(() => selectedOption.style.transform = '', 300);
+
+                // Advance after short delay so user sees feedback
                 setTimeout(() => {
-                    option.style.transform = '';
+                    // Clear states on previous step (so when revisiting it's clean)
+                    currentStepEl.querySelectorAll('.quiz-step-option').forEach(o => {
+                        o.classList.remove('correct','incorrect');
+                        o.style.pointerEvents = '';
+                        const input = o.querySelector('input[type="radio"]');
+                        if (input) input.disabled = false;
+                    });
                     goToNextStep(questionNumber);
-                }, 400);
+                }, 800);
             });
         });
     }
@@ -121,11 +157,53 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!textInputSubmit) return;
 
         const textInput = document.querySelector('input[name="q8"]');
-        
+        const step8El = document.querySelector('.quiz-step[data-step="8"]');
+
         textInputSubmit.addEventListener('click', () => {
             if (textInput && textInput.value.trim()) {
-                userAnswers['q8'] = textInput.value.trim();
-                goToNextStep(8);
+                const answerVal = textInput.value.trim();
+                userAnswers['q8'] = answerVal;
+
+                // Disable further input
+                textInput.disabled = true;
+                textInputSubmit.disabled = true;
+
+                // Check correctness against array of acceptable answers
+                const correctList = answers['q8'];
+                const isCorrect = Array.isArray(correctList) ? correctList.some(a => answerVal.toLowerCase().includes(a.toLowerCase()) || a.toLowerCase().includes(answerVal.toLowerCase())) : answerVal.toLowerCase() === correctList.toLowerCase();
+
+                // Apply visual feedback
+                if (isCorrect) {
+                    if (step8El) step8El.querySelector('.quiz-step-input')?.classList.add('correct');
+                } else {
+                    if (step8El) step8El.querySelector('.quiz-step-input')?.classList.add('incorrect');
+
+                    // Show correct text below the input
+                    let correctEl = step8El.querySelector('.quiz-correct-text');
+                    if (!correctEl) {
+                        correctEl = document.createElement('div');
+                        correctEl.className = 'quiz-correct-text';
+                        step8El.querySelector('.quiz-step-card')?.appendChild(correctEl);
+                    }
+                    correctEl.textContent = `Juist: ${correctTexts['q8']}`;
+                }
+
+                // Advance after short delay so user sees feedback
+                setTimeout(() => {
+                    // Clean state
+                    if (step8El) {
+                        step8El.querySelector('.quiz-step-input')?.classList.remove('correct','incorrect');
+                        const correctEl = step8El.querySelector('.quiz-correct-text');
+                        if (correctEl) correctEl.remove();
+                        if (textInput) {
+                            textInput.disabled = false;
+                            textInput.value = '';
+                        }
+                        if (textInputSubmit) textInputSubmit.disabled = false;
+                    }
+                    goToNextStep(8);
+                }, 900);
+
             } else {
                 // Shake animation if empty
                 textInput.style.animation = 'shake 0.5s ease';
