@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const TOTAL_QUESTIONS = 10;
     let currentStep = 1;
     const userAnswers = {};
+    const quizUser = {
+        name: '',
+        email: ''
+    };
 
     // DOM Elements
     const progressFill = document.getElementById('quiz-progress');
@@ -21,6 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const breakdownList = document.getElementById('breakdown-list');
     const textInputSubmit = document.getElementById('q8-submit');
     const confettiContainer = document.getElementById('confetti-container');
+    const introForm = document.getElementById('quiz-intro-form');
+    const introCard = document.getElementById('quiz-intro-card');
+    const nameInput = document.getElementById('quiz-full-name');
+    const emailInput = document.getElementById('quiz-email');
+    const requestAdviceBtn = document.getElementById('request-advice-btn');
 
     // Answer Key
     const answers = {
@@ -66,11 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize
     clearAllSelections(); // Clear any browser-cached selections
+    lockQuizUntilIntroComplete();
     updateProgress();
     setupOptionListeners();
     setupTextInputListener();
     setupBreakdownToggle();
     setupShareResults();
+    setupRequestAdvice();
 
     /**
      * Clear all radio selections (prevents browser autofill highlighting)
@@ -79,6 +90,91 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.quiz-step-option input[type="radio"]').forEach(radio => {
             radio.checked = false;
         });
+    }
+
+    /**
+     * Gate quiz access until name + email are provided
+     */
+    function lockQuizUntilIntroComplete() {
+        if (!introForm || !quizStepper) return;
+
+        document.body.classList.add('quiz-locked');
+        quizStepper.setAttribute('aria-hidden', 'true');
+
+        const validateName = () => {
+            const value = nameInput ? nameInput.value.trim() : '';
+            const isValid = value.length >= 2;
+            setFieldState(nameInput, 'quiz-name-hint', isValid, 'Vul je volledige naam in.');
+            return isValid;
+        };
+
+        const validateEmail = () => {
+            const value = emailInput ? emailInput.value.trim() : '';
+            const isValid = isValidEmail(value);
+            setFieldState(emailInput, 'quiz-email-hint', isValid, 'Vul een geldig e-mailadres in.');
+            return isValid;
+        };
+
+        nameInput?.addEventListener('blur', validateName);
+        emailInput?.addEventListener('blur', validateEmail);
+        nameInput?.addEventListener('input', () => {
+            if (nameInput.classList.contains('error')) validateName();
+        });
+        emailInput?.addEventListener('input', () => {
+            if (emailInput.classList.contains('error')) validateEmail();
+        });
+
+        introForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nameOk = validateName();
+            const emailOk = validateEmail();
+
+            if (!nameOk || !emailOk) {
+                if (!nameOk) {
+                    nameInput?.focus();
+                } else {
+                    emailInput?.focus();
+                }
+                return;
+            }
+
+            quizUser.name = nameInput.value.trim();
+            quizUser.email = emailInput.value.trim();
+            window.quizUser = { ...quizUser };
+
+            document.body.classList.remove('quiz-locked');
+            quizStepper.setAttribute('aria-hidden', 'false');
+
+            if (introCard) {
+                introCard.setAttribute('aria-hidden', 'true');
+            }
+
+            quizStepper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const firstInput = document.querySelector('.quiz-step.active input, .quiz-step.active button');
+            firstInput?.focus();
+        });
+
+        nameInput?.focus();
+    }
+
+    function setFieldState(input, hintId, isValid, errorMessage) {
+        if (!input) return;
+        const hint = document.getElementById(hintId);
+        if (hint && !hint.dataset.default) {
+            hint.dataset.default = hint.textContent || '';
+        }
+        if (isValid) {
+            input.classList.remove('error');
+            if (hint) hint.textContent = hint.dataset.default || '';
+        } else {
+            input.classList.add('error');
+            if (hint) hint.textContent = errorMessage;
+        }
+    }
+
+    function isValidEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
     }
 
     /**
@@ -431,12 +527,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!shareBtn) return;
 
         shareBtn.addEventListener('click', () => {
-            // Prompt for name
-            const userName = prompt('Vul je volledige naam in:');
-            
-            // If user cancels or enters empty name, don't proceed
-            if (!userName || userName.trim() === '') {
-                alert('Vul alsjeblieft je naam in om de resultaten te versturen.');
+            if (!quizUser.name || !quizUser.email) {
+                alert('Vul eerst je naam en e-mailadres in om de resultaten te versturen.');
                 return;
             }
 
@@ -446,7 +538,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const level = levelEl ? levelEl.textContent : 'Onbekend';
             
             // Build email body with results
-            let emailBody = `Hallo!\n\nMijn naam is ${userName.trim()} en ik heb de niveautest van ¡Vamos Hablando! gemaakt.\n\n`;
+            let emailBody = `Hallo!\n\nMijn naam is ${quizUser.name} en ik heb de niveautest van ¡Vamos Hablando! gemaakt.\n`;
+            emailBody += `Mijn e-mailadres: ${quizUser.email}\n\n`;
             emailBody += `Mijn score: ${score}/10\n`;
             emailBody += `Aanbevolen niveau: ${level}\n\n`;
             
@@ -458,10 +551,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
             
-            emailBody += `\nGraag hoor ik van u welke cursus het beste bij mij past.\n\nMet vriendelijke groet,\n${userName.trim()}`;
+            emailBody += `\nGraag hoor ik van u welke cursus het beste bij mij past.\n\nMet vriendelijke groet,\n${quizUser.name}`;
             
             // Open email client
-            const mailtoLink = `mailto:info@vamoshablando.nl?subject=${encodeURIComponent('Niveautest resultaat - ' + userName.trim())}&body=${encodeURIComponent(emailBody)}`;
+            const mailtoLink = `mailto:info@vamoshablando.nl?subject=${encodeURIComponent('Niveautest resultaat - ' + quizUser.name)}&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+        });
+    }
+
+    /**
+     * Setup request advice button
+     */
+    function setupRequestAdvice() {
+        if (!requestAdviceBtn) return;
+
+        requestAdviceBtn.addEventListener('click', () => {
+            if (!quizUser.name || !quizUser.email) {
+                alert('Vul eerst je naam en e-mailadres in om advies aan te vragen.');
+                return;
+            }
+
+            const scoreEl = document.getElementById('final-score');
+            const levelEl = document.getElementById('recommendation-level');
+            const score = scoreEl ? scoreEl.textContent : '?';
+            const level = levelEl ? levelEl.textContent : 'Onbekend';
+
+            let emailBody = `Hallo!\n\nIk wil graag advies naar aanleiding van mijn niveautest.\n\n`;
+            emailBody += `Naam: ${quizUser.name}\n`;
+            emailBody += `E-mailadres: ${quizUser.email}\n\n`;
+            emailBody += `Score: ${score}/10\n`;
+            emailBody += `Aanbevolen niveau: ${level}\n\n`;
+
+            if (window.quizResults) {
+                emailBody += `Antwoorden:\n`;
+                window.quizResults.forEach(r => {
+                    const status = r.isCorrect ? '✓' : '✗';
+                    emailBody += `${status} Vraag ${r.question}: ${r.isCorrect ? 'Correct' : 'Fout (juist: ' + r.correctAnswer + ')'}\n`;
+                });
+            }
+
+            emailBody += `\nMet vriendelijke groet,\n${quizUser.name}`;
+
+            const subject = `Adviesaanvraag niveautest - ${quizUser.name}`;
+            const mailtoLink = `mailto:info@vamoshablando.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
             window.location.href = mailtoLink;
         });
     }

@@ -14,7 +14,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body>
+<body class="quiz-locked quiz-page">
     <!-- NAV: site header + navigation -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -74,14 +74,41 @@
                         <span>Niveautest <span style="color: var(--color-dark-emerald);">Spaans</span></span>
                     </h1>
                     <p class="text-body leading-relaxed opacity-90 max-w-3xl">
-                        Test je vaardigheden in 10 korte vragen en ontdek welk niveau het beste bij je past.
+                        Test je niveau in 10 vragen.
                     </p>
                 </div>
 
                 <!-- Progress bar removed as per UX request -->
 
+                <!-- Quiz Intro Gate -->
+                <div class="quiz-intro-card" id="quiz-intro-card">
+                    <div class="quiz-intro-header">
+                        <span class="material-symbols-rounded" aria-hidden="true">person</span>
+                        <h2 class="text-subheading">Voordat we starten</h2>
+                    </div>
+                    <p class="text-body opacity-90">
+                        Vul je gegevens in om de test te starten.
+                    </p>
+                    <form class="quiz-intro-form" id="quiz-intro-form" novalidate>
+                        <div class="quiz-intro-group">
+                            <label class="quiz-intro-label" for="quiz-full-name">Naam <span class="required">*</span></label>
+                            <input type="text" id="quiz-full-name" name="quiz-full-name" class="quiz-intro-input" placeholder="Je naam" autocomplete="name" required aria-describedby="quiz-name-hint">
+                            <span class="quiz-intro-hint" id="quiz-name-hint"></span>
+                        </div>
+                        <div class="quiz-intro-group">
+                            <label class="quiz-intro-label" for="quiz-email">E-mail <span class="required">*</span></label>
+                            <input type="email" id="quiz-email" name="quiz-email" class="quiz-intro-input" placeholder="je@email.nl" autocomplete="email" required aria-describedby="quiz-email-hint">
+                            <span class="quiz-intro-hint" id="quiz-email-hint"></span>
+                        </div>
+                        <button type="submit" class="button button-primary">
+                            <span class="material-symbols-rounded">arrow_forward</span>
+                            Start
+                        </button>
+                    </form>
+                </div>
+
                 <!-- Quiz Stepper Container -->
-                <div class="quiz-stepper" id="quiz-stepper">
+                <div class="quiz-stepper" id="quiz-stepper" aria-hidden="true">
                     
                     <!-- Question 1 -->
                     <div class="quiz-step active" data-step="1">
@@ -423,6 +450,10 @@
                                     <span class="material-symbols-rounded">school</span>
                                     Bekijk dit niveau
                                 </a>
+                                <button type="button" class="button button-outline" id="request-advice-btn">
+                                    <span class="material-symbols-rounded">mail</span>
+                                    Request Advice
+                                </button>
                             </div>
 
                             <div class="quiz-results-breakdown">
@@ -450,54 +481,6 @@
             </div>
         </section>
     </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-container">
-            <div class="space-y-6">
-                <a href="index.html" class="footer-logo logo-link" aria-label="¡Vamos Hablando! home">
-                    <img src="Images/Lichte versie logo Vamos Hablando.png" alt="¡Vamos Hablando! logo"
-                        class="logo-image logo-footer">
-                </a>
-                <p class="text-body footer-text">
-                    Spaans leer je door het te gebruiken. Van online lessen tot contextgebonden taalreizen in Spanje.
-                </p>
-            </div>
-
-            <div class="footer-column">
-                <h4>Contact</h4>
-                <ul class="footer-list">
-                    <li><a href="https://wa.me/31612345678" class="footer-link">
-                            <span class="text-body material-symbols-rounded icon-inline" aria-hidden="true">chat</span>
-                            <span>WhatsApp</span>
-                        </a></li>
-                    <li><a href="https://instagram.com/vamoshablando" class="footer-link">
-                            <span class="text-body material-symbols-rounded icon-inline" aria-hidden="true">photo_camera</span>
-                            <span>Instagram</span>
-                        </a></li>
-                    <li><a href="mailto:info@vamoshablando.nl" class="footer-link">
-                            <span class="text-body material-symbols-rounded icon-inline" aria-hidden="true">alternate_email</span>
-                            <span>E-mail</span>
-                        </a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h4>Navigatie</h4>
-                <ul class="footer-list">
-                    <li><a href="index.html" class="footer-link">Home</a></li>
-                    <li><a href="aanbod.html" class="footer-link">Aanbod</a></li>
-                    <li><a href="voor-wie.html" class="footer-link">Voor wie</a></li>
-                    <li><a href="werkwijze.html" class="footer-link">Werkwijze</a></li>
-                    <li><a href="over-mij.html" class="footer-link">Over mij</a></li>
-                    <li><a href="contact.html" class="footer-link">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 ¡Vamos Hablando!. Alle rechten voorbehouden.
-        </div>
-    </footer>
 
     <!-- Scripts -->
     <script src="js/main.js"></script>
