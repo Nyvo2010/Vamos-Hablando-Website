@@ -9,37 +9,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="icon" href="Images/Small icon Beige achtergrond.png" type="image/png">
-    <style>
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid var(--color-emerald);
-            border-radius: 8px;
-            /* Slightly rounded per "subtle" */
-            font-family: inherit;
-            background-color: transparent;
-        }
-
-        input:focus,
-        textarea:focus,
-        select:focus {
-            outline: 3px solid rgba(11, 95, 88, 0.12);
-            outline-offset: 2px;
-            background-color: rgba(255, 255, 255, 0.5);
-        }
-    </style>
 </head>
 
 <body class="section-light">
@@ -47,7 +16,7 @@
     <header class="header-light">
         <div class="logo">
             <a href="index.html" aria-label="Home">
-                <img src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!" style="height: 50px;">
+                <img src="Images/Donkere versie logo Vamos Hablando.png" alt="¡Vamos Hablando!" class="h-50">
             </a>
         </div>
         <nav>
@@ -75,31 +44,27 @@
     </section>
 
     <section class="section-light section-padding">
-        <div class="container"
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem;">
+        <div class="container grid-2 gap-4">
 
             <!-- Contact Info -->
-            <div>
+            <div class="flex-column">
                 <h2 class="text-accent mb-2">Gegevens</h2>
 
-                <div style="display: flex; align-items: start;" class="mb-1">
+                <div class="flex align-start mb-1">
                     <!-- Email Icon -->
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B5F58" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" style="margin-right: 15px; margin-top: 3px;">
+                    <svg viewBox="0 0 24 24" class="icon-svg mr-1" width="24" height="24" style="margin-top: 3px;">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                         <polyline points="22,6 12,13 2,6"></polyline>
                     </svg>
                     <div>
                         <strong>E-mail</strong><br>
-                        <a href="mailto:info@vamoshablando.nl"
-                            style="color: var(--color-navy); text-decoration: underline;">info@vamoshablando.nl</a>
+                        <a href="mailto:info@vamoshablando.nl" class="color-navy" style="text-decoration: underline;">info@vamoshablando.nl</a>
                     </div>
                 </div>
 
-                <div style="display: flex; align-items: start;" class="mb-1">
+                <div class="flex align-start mb-1">
                     <!-- Phone Icon (Placeholder) -->
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B5F58" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" style="margin-right: 15px; margin-top: 3px;">
+                    <svg viewBox="0 0 24 24" class="icon-svg mr-1" width="24" height="24" style="margin-top: 3px;">
                         <path
                             d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                         </path>
@@ -110,10 +75,9 @@
                     </div>
                 </div>
 
-                <div style="display: flex; align-items: start;" class="mb-1">
+                <div class="flex align-start mb-1">
                     <!-- Map/Loc Icon -->
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B5F58" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" style="margin-right: 15px; margin-top: 3px;">
+                    <svg viewBox="0 0 24 24" class="icon-svg mr-1" width="24" height="24" style="margin-top: 3px;">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                         <circle cx="12" cy="10" r="3"></circle>
                     </svg>
@@ -130,15 +94,15 @@
                 <form action="#" method="POST">
                     <div class="form-group">
                         <label for="name">Naam</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="email">E-mailadres</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="interest">Ik ben geïnteresseerd in:</label>
-                        <select id="interest" name="interest">
+                        <select id="interest" name="interest" class="form-control">
                             <option value="algemeen">Algemene vraag</option>
                             <option value="startgroep">De startgroep</option>
                             <option value="online">Online groepslessen</option>
@@ -148,7 +112,7 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Bericht</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Versturen</button>
                 </form>

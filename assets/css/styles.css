@@ -2,7 +2,6 @@
 :root {
     /* Colors */
     --color-cream: #F6E6C8;
-    /* Updated to match design spec */
     --color-emerald: #0B5F58;
     --color-navy: #0E1A2B;
     --color-lightblue: #CFE4EA;
@@ -11,7 +10,6 @@
     --font-main: 'Montserrat', sans-serif;
     --weight-regular: 400;
     --weight-semibold: 600;
-    /* Use 500 if 600 makes it look too bold, but spec says SemiBold */
 
     /* Global Rounding */
     --radius: 20px;
@@ -109,6 +107,14 @@ h6 {
 
 .section-light .icon {
     stroke: var(--color-emerald);
+}
+
+.icon-svg {
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 /* Template B: Green (Dark) */
@@ -506,6 +512,34 @@ header {
 
 
 
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: var(--weight-semibold);
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--color-emerald);
+    border-radius: 8px;
+    font-family: inherit;
+    background-color: transparent;
+    color: inherit;
+}
+
+.form-control:focus {
+    outline: 3px solid rgba(11, 95, 88, 0.12);
+    outline-offset: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
 /* General Buttons (Keep existing button class) */
 .btn {
     display: inline-flex;
@@ -791,12 +825,8 @@ section {
 }
 
 .section-light .card {
-    background-color: #fff;
-    /* Slight variation or keep same? Spec says bg soft cream. Let's use a slightly lighter version or white card on beige is nice, OR border styles. */
-    /* Wait, spec says "Template A background Soft Cream". Cards usually sit on top. 
-       Let's keep cards clean. A border might be better to keep minimal premium feel without white blocks everywhere. */
     border: 1px solid var(--color-emerald);
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 
@@ -974,6 +1004,99 @@ footer {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* Layout Utilities */
+.grid {
+    display: grid;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.gap-1 { gap: 1rem; }
+.gap-2 { gap: 2rem; }
+.gap-3 { gap: 3rem; }
+.gap-4 { gap: 4rem; }
+
+.list-none {
+    list-style: none;
+}
+
+.custom-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.custom-list li::before {
+    content: "•";
+    color: var(--color-lightblue);
+    margin-right: 10px;
+}
+
+.m-0 { margin: 0; }
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.ml-1 { margin-left: 1rem; }
+.mr-1 { margin-right: 1rem; }
+.mr-2 { margin-right: 2rem; }
+
+.w-100 { width: 100%; }
+.h-50 { height: 50px; }
+.min-h-50 { min-height: 50vh; }
+.h-300 { height: 300px; }
+.max-w-300 { max-width: 300px; }
+.border-none { border: none !important; }
+.bg-emerald-light { background-color: rgba(11, 95, 88, 0.05) !important; }
+
+.color-navy { color: var(--color-navy); }
+.color-emerald { color: var(--color-emerald); }
+.color-cream { color: var(--color-cream); }
+.color-lightblue { color: var(--color-lightblue); }
 
 /* Make outline button adapt to footer theme */
 .footer-contact .btn-outline-light {
