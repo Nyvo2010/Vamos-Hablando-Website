@@ -616,7 +616,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createConfetti() {
         if (!confettiContainer) return;
 
-        const colors = ['#F6E6C8', '#CFE4EA', '#0B5F58', '#69f0ae', '#ffeb3b'];
+        const colors = ['#F6E6C8', '#CFE4EA', '#0B5F58', '#0E1A2B'];
         const confettiCount = 50;
 
         for (let i = 0; i < confettiCount; i++) {

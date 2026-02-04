@@ -26,7 +26,6 @@
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="aanbod.html" class="nav-link">Aanbod</a>
                 <a href="voor-wie.html" class="nav-link">Voor wie</a>
-                <a href="werkwijze.html" class="nav-link">Werkwijze</a>
                 <a href="over-mij.html" class="nav-link">Over mij</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
@@ -42,7 +41,8 @@
         <div class="mobile-menu">
             <div class="mobile-menu-header">
                 <a href="index.html" class="logo logo-link" aria-label="¡Vamos Hablando! home">
-                    <img src="Images/Logo-Donker.png" alt="¡Vamos Hablando! logo" class="logo-image">
+                    <img src="Images/Logo-Donker.png" alt="¡Vamos Hablando! logo" class="logo-image logo-desktop">
+                    <img src="Images/Klein-Logo-Licht.png" alt="¡Vamos Hablando! small icon" class="logo-image logo-mobile">
                 </a>
                 <button class="mobile-menu-close" aria-label="Close menu">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -53,12 +53,27 @@
                 </button>
             </div>
             <div class="mobile-nav-links">
-                <a href="index.html" class="mobile-nav-link">Home</a>
-                <a href="aanbod.html" class="mobile-nav-link">Aanbod</a>
-                <a href="voor-wie.html" class="mobile-nav-link">Voor wie</a>
-                <a href="werkwijze.html" class="mobile-nav-link">Werkwijze</a>
-                <a href="over-mij.html" class="mobile-nav-link">Over mij</a>
-                <a href="contact.html" class="mobile-nav-link">Contact</a>
+                <a href="index.html" class="mobile-nav-link">
+                    <span class="material-symbols-rounded">home</span>
+                    Home
+                </a>
+                <a href="aanbod.html" class="mobile-nav-link">
+                    <span class="material-symbols-rounded">auto_stories</span>
+                    Aanbod
+                </a>
+                <a href="voor-wie.html" class="mobile-nav-link">
+                    <span class="material-symbols-rounded">how_to_reg</span>
+                    Voor wie
+                </a>
+
+                <a href="over-mij.html" class="mobile-nav-link">
+                    <span class="material-symbols-rounded">person</span>
+                    Over mij
+                </a>
+                <a href="contact.html" class="mobile-nav-link">
+                    <span class="material-symbols-rounded">mail</span>
+                    Contact
+                </a>
             </div>
         </div>
     </nav>
@@ -71,9 +86,9 @@
                 <div class="space-y-6">
                     <h1 class="text-heading flex items-center gap-6">
                         <span class="material-symbols-rounded heading-icon" aria-hidden="true">school</span>
-                        <span>Niveautest <span style="color: var(--color-dark-emerald);">Spaans</span></span>
+                        <span>Niveautest <span class="text-dark-emerald">Spaans</span></span>
                     </h1>
-                    <p class="text-body leading-relaxed opacity-90 max-w-3xl">
+                    <p class="text-lead leading-relaxed opacity-90 max-w-3xl">
                         Test je niveau in 10 vragen.
                     </p>
                 </div>
@@ -351,7 +366,7 @@
                             <h2 class="quiz-step-question">Vertaal naar het Spaans: "Wij eten elke dag brood."</h2>
                             <div class="quiz-step-input">
                                 <input type="text" name="q8" class="quiz-text-field" placeholder="Typ je antwoord hier..." autocomplete="off">
-                                <button type="button" class="quiz-input-submit" id="q8-submit">
+                                <button type="button" class="button button-primary quiz-input-submit" id="q8-submit">
                                     <span class="material-symbols-rounded">arrow_forward</span>
                                 </button>
                             </div>
@@ -452,7 +467,7 @@
                                 </a>
                                 <button type="button" class="button button-outline" id="request-advice-btn">
                                     <span class="material-symbols-rounded">mail</span>
-                                    Request Advice
+                                    Ontvang advies per mail
                                 </button>
                             </div>
 
