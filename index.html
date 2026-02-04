@@ -11,7 +11,6 @@
     <meta name="description"
         content="Spaans onderwijs, lessen en programma's. Van de eerste kennismaking tot betekenisvolle communicatie in Spanje.">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/overrides.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -28,10 +27,9 @@
             </a>
 
             <div class="nav-links">
-                <a href="index.html" class="nav-link active">Home</a>
+                <a href="index.html" class="nav-link">Home</a>
                 <a href="aanbod.html" class="nav-link">Aanbod</a>
                 <a href="voor-wie.html" class="nav-link">Voor wie</a>
-                <a href="werkwijze.html" class="nav-link">Werkwijze</a>
                 <a href="over-mij.html" class="nav-link">Over mij</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
@@ -65,7 +63,7 @@
             </div>
 
             <div class="mobile-nav-links">
-                <a href="index.html" class="mobile-nav-link active">
+                <a href="index.html" class="mobile-nav-link">
                     <span class="material-symbols-rounded">home</span>
                     Home
                 </a>
@@ -77,10 +75,7 @@
                     <span class="material-symbols-rounded">how_to_reg</span>
                     Voor wie
                 </a>
-                <a href="werkwijze.html" class="mobile-nav-link">
-                    <span class="material-symbols-rounded">architecture</span>
-                    Werkwijze
-                </a>
+
                 <a href="over-mij.html" class="mobile-nav-link">
                     <span class="material-symbols-rounded">person</span>
                     Over mij
@@ -92,8 +87,8 @@
             </div>
 
             <div class="mobile-footer">
-                <p class="text-dark-emerald text-body" style="color: var(--color-dark-emerald); margin-bottom: 1rem;">¡Vamos Hablando!</p>
-                <p class="text-body" style="opacity: 0.6; line-height: 1.625;">Spaans leer je door het te gebruiken. Van de eerste kennismaking tot communicatie in Spanje.</p>
+                <p class="text-dark-emerald text-body mb-4">¡Vamos Hablando!</p>
+                <p class="text-body opacity-60 leading-1-625">Spaans leer je door het te gebruiken. Van de eerste kennismaking tot communicatie in Spanje.</p>
             </div>
         </div>
     </nav>
@@ -104,19 +99,19 @@
         <section class="section section-beige relative">
             <div class="hero-wrapper animate-on-scroll">
                 <h1 class="hero-title">
-                    Spaans leren door het te <br><span class="accent" style="font-style: italic;">gebruiken</span>.
+                    Spaans leren door het te <br><span class="accent italic">gebruiken</span>.
                 </h1>
                 
-                <p class="hero-subtitle text-body">
+                <p class="hero-subtitle text-lead">
                     Spaans onderwijs, lessen en programma’s. Van de eerste kennismaking tot betekenisvolle communicatie in Spanje.
                 </p>
 
-                <div class="flex flex-wrap gap-6 justify-center items-center text-lg animate-on-scroll delay-200">
+                <div class="flex flex-wrap gap-6 justify-center items-center text-body animate-on-scroll delay-200">
                     <a href="aanbod.html" class="button button-primary">
                         <span class="material-symbols-rounded">auto_stories</span>
                         Ontdek mijn aanbod
                     </a>
-                    <a href="contact.html" class="button button-outline" style="border-color: var(--color-dark-emerald); color: var(--color-dark-emerald);">
+                    <a href="contact.html" class="button button-outline border-dark-emerald text-dark-emerald">
                         <span class="material-symbols-rounded">event</span>
                         Plan een kennismaking
                     </a>
@@ -124,25 +119,25 @@
             </div>
             
             <!-- Abstract background shape -->
-            <div class="decorative-blob" style="opacity: 0.5; top: -10%; right: -10%; width: 600px; height: 600px;"></div>
+            <div class="decorative-blob decorative-blob-hero"></div>
         </section>
 
         <!-- VALUE PROPOSITION: Green Section -->
-        <section class="section section-green" style="padding: 6rem 1.5rem;">
+        <section class="section section-green section-padding">
             <div class="section-container max-w-4xl">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-6 animate-on-scroll text-center md:text-left">
-                        <h3 class="text-3xl md:text-4xl leading-tight">
+                <div class="grid md-grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6 animate-on-scroll text-center md-text-left">
+                        <h3 class="text-subheading leading-tight">
                             Bij <span class="accent">¡Vamos Hablando!</span> staat Spaans leren in context centraal.
                         </h3>
-                        <p class="text-xl opacity-90 leading-relaxed">
+                        <p class="text-body opacity-90 leading-relaxed">
                             Van lessen voor beginners en gevorderden tot contextgebonden taalreizen in Spanje, waarbij taal,
                             cultuur en echte communicatie samenkomen.
                         </p>
                     </div>
                     <!-- Decorative Icon/Graphic on the right -->
-                    <div class="hidden md:flex justify-center animate-on-scroll delay-100">
-                        <span class="material-symbols-rounded text-accent" style="font-size: 12rem; opacity: 0.2;">
+                    <div class="hidden md-flex justify-center animate-on-scroll delay-100">
+                        <span class="material-symbols-rounded text-accent icon-hero opacity-20">
                             forum
                         </span>
                     </div>
@@ -151,16 +146,16 @@
         </section>
 
         <!-- CTA & LEVEL TEST -->
-        <section class="section section-beige" style="min-height: 0; padding-top: 6rem; padding-bottom: 6rem;">
+        <section class="section section-beige min-h-0 section-padding-vertical">
             <div class="section-container max-w-4xl space-y-16">
                 
                 <!-- Main CTA Text: REPLACED with "About Me" intro to avoid duplicate contact CTA -->
                 <div class="text-center space-y-6 animate-on-scroll">
-                    <h2 class="text-3xl md-text-5xl leading-tight">
+                    <h2 class="text-heading leading-tight">
                         Spaans leren met een <span class="accent">persoonlijke aanpak</span>.
                     </h2>
-                    <p class="text-xl opacity-80 max-w-2xl mx-auto">
-                        Mijn naam is <strong>Bas</strong>. Met bijna tien jaar ervaring in binnen- en buitenland help ik je graag verder. Benieuwd naar mijn visie?
+                    <p class="text-lead opacity-80 max-w-2xl mx-auto">
+                        Mijn naam is <span class="font-semibold">Bas</span>. Met bijna tien jaar ervaring in binnen- en buitenland help ik je graag verder. Benieuwd naar mijn visie?
                     </p>
                     <div class="pt-4">
                         <a href="over-mij.html" class="button button-primary">
@@ -171,17 +166,17 @@
                 </div>
 
                 <!-- Level Test Banner - Wide -->
-                <div class="animate-on-scroll delay-200 section-container w-full" style="max-width: 100%;">
-                    <div class="card-filled w-full flex flex-col md:flex-row gap-8 items-center justify-between p-8 md:p-12">
-                        <div class="space-y-3 max-w-3xl text-center md:text-left">
-                            <h3 class="text-3xl font-medium">
+                <div class="animate-on-scroll delay-200 section-container w-full max-w-full">
+                    <div class="card-filled w-full flex flex-col md-flex-row gap-8 items-center justify-between p-8 md-p-12">
+                        <div class="space-y-3 max-w-3xl text-center md-text-left">
+                            <h3 class="text-subheading font-medium">
                                 Niet zeker over je <span class="accent">niveau</span>?
                             </h3>
-                            <p class="opacity-90 text-lg leading-relaxed">
+                            <p class="opacity-90 text-body leading-relaxed">
                                 Doe de gratis niveautest. Binnen enkele minuten weet je precies waar je staat.
                             </p>
                         </div>
-                        <a href="niveautest.html" class="button button-outline whitespace-nowrap" style="color: var(--color-soft-cream); border-color: var(--color-soft-cream);">
+                        <a href="niveautest.html" class="button button-outline whitespace-nowrap text-soft-cream border-soft-cream">
                             <span class="material-symbols-rounded">quiz</span>
                             Doe de niveautest
                         </a>
@@ -208,16 +203,16 @@
             <div class="footer-column">
                 <h4>Contact</h4>
                 <ul class="footer-list">
-                    <li><a href="https://wa.me/your-number" class="footer-link">
-                            <span class="material-symbols-rounded icon-inline" aria-hidden="true">chat</span>
+                    <li><a href="https://wa.me/31600000000" class="footer-link">
+                            <span class="material-symbols-rounded icon-sm" aria-hidden="true">chat</span>
                             <span>WhatsApp</span>
                         </a></li>
-                    <li><a href="https://instagram.com/your-profile" class="footer-link">
-                            <span class="material-symbols-rounded icon-inline" aria-hidden="true">photo_camera</span>
+                    <li><a href="https://instagram.com/vamoshablando.nl" class="footer-link">
+                            <span class="material-symbols-rounded icon-sm" aria-hidden="true">photo_camera</span>
                             <span>Instagram</span>
                         </a></li>
-                    <li><a href="mailto:your-email" class="footer-link">
-                            <span class="material-symbols-rounded icon-inline" aria-hidden="true">alternate_email</span>
+                    <li><a href="mailto:info@vamoshablando.nl" class="footer-link">
+                            <span class="material-symbols-rounded icon-sm" aria-hidden="true">alternate_email</span>
                             <span>E-mail</span>
                         </a></li>
                 </ul>
@@ -229,7 +224,6 @@
                     <li><a href="index.html" class="footer-link">Home</a></li>
                     <li><a href="aanbod.html" class="footer-link">Aanbod</a></li>
                     <li><a href="voor-wie.html" class="footer-link">Voor wie</a></li>
-                    <li><a href="werkwijze.html" class="footer-link">Werkwijze</a></li>
                     <li><a href="over-mij.html" class="footer-link">Over mij</a></li>
                     <li><a href="contact.html" class="footer-link">Contact</a></li>
                 </ul>
