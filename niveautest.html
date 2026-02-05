@@ -71,9 +71,9 @@
                 <div class="space-y-6">
                     <h1 class="text-heading flex items-center gap-6">
                         <span class="material-symbols-rounded heading-icon" aria-hidden="true">school</span>
-                        <span>Niveautest <span style="color: var(--color-dark-emerald);">Spaans</span></span>
+                        <span>Niveautest <span class="accent">Spaans</span></span>
                     </h1>
-                    <p class="text-body leading-relaxed opacity-90 max-w-3xl">
+                    <p class="text-lead leading-relaxed opacity-90 max-w-3xl">
                         Test je niveau in 10 vragen.
                     </p>
                 </div>
@@ -309,26 +309,9 @@
                         <div class="quiz-step-card">
                             <div class="quiz-step-header">
                                 <span class="quiz-step-number">08</span>
-                                <span class="quiz-step-label">Leerdoel</span>
+                                <span class="quiz-step-label">Doel</span>
                             </div>
-                            <h2 class="quiz-step-question">Vertaal naar het Spaans: "Wij eten elke dag brood."</h2>
-                            <div class="quiz-step-input">
-                                <input type="text" name="q8" class="quiz-text-field" placeholder="Typ je antwoord hier..." autocomplete="off">
-                                <button type="button" class="quiz-input-submit" id="q8-submit">
-                                    <span class="material-symbols-rounded">arrow_forward</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Question 9 -->
-                    <div class="quiz-step" data-step="9">
-                        <div class="quiz-step-card">
-                            <div class="quiz-step-header">
-                                <span class="quiz-step-number">09</span>
-                                <span class="quiz-step-label">Grammatica</span>
-                            </div>
-                            <h2 class="quiz-step-question">Welke zin is grammaticaal correct?</h2>
+                            <h2 class="quiz-step-question">Wat wil je vooral leren?</h2>
                             <div class="quiz-step-options">
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q8" value="1">
@@ -348,6 +331,8 @@
                             </div>
                         </div>
                     </div>
+
+
 
                     <!-- Question 9: Current challenge -->
                     <div class="quiz-step" data-question="9">
@@ -381,11 +366,11 @@
                     <div class="quiz-step quiz-results-screen" id="quiz-results">
                         <div class="quiz-results-card">
                             <div class="quiz-results-recommendation" id="results-recommendation">
-                                <span class="recommendation-label">Wij raden dit niveau aan:</span>
+                                <span class="recommendation-label">Wij raden aan:</span>
                                 <span class="recommendation-level" id="result-level">Start Groep</span>
                             </div>
 
-                            <p class="quiz-results-explanation" id="result-explanation">
+                            <p class="quiz-results-explanation text-small" id="result-explanation">
                                 Je richt je op het opbouwen van basiskennis: begrijpen, reageren en meedoen aan eenvoudige communicatie.
                             </p>
 
@@ -394,24 +379,16 @@
                                     <span class="material-symbols-rounded">school</span>
                                     Bekijk dit niveau
                                 </a>
-                                <a href="contact.html" class="button button-outline">
+                                <a href="#" class="button button-outline" id="request-advice-btn">
                                     <span class="material-symbols-rounded">mail</span>
-                                    Request Advice
-                                </button>
-                            </div>
-
-                            <div class="quiz-results-breakdown">
-                                <button type="button" class="breakdown-toggle" id="breakdown-toggle">
-                                    <span>Bekijk je antwoorden</span>
-                                    <span class="material-symbols-rounded">expand_more</span>
-                                </button>
-                                <div class="breakdown-list" id="breakdown-list"></div>
+                                    Vraag advies
+                                </a>
                             </div>
 
                             <div class="quiz-results-secondary">
-                                <a href="niveautest.html" class="button button-outline quiz-contact-btn">
-                                    <span class="material-symbols-rounded">refresh</span>
-                                    Opnieuw
+                                <a href="index.html" class="button button-outline quiz-contact-btn">
+                                    <span class="material-symbols-rounded">home</span>
+                                    Terug naar home
                                 </a>
                             </div>
                         </div>

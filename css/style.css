@@ -127,6 +127,42 @@ h3 { font-size: var(--font-size-subheading); }
     .md-text-3xl, .md-text-2xl, .md-text-xl { font-size: 1.75rem; }
 }
 
+/* Color utility classes */
+.text-dark-emerald { color: var(--color-dark-emerald) !important; }
+.text-soft-cream { color: var(--color-soft-cream) !important; }
+.text-deep-navy { color: var(--color-deep-navy) !important; }
+.text-light-blue { color: var(--color-light-blue) !important; }
+
+/* Font weight utilities */
+.font-semibold { font-weight: 600 !important; }
+.font-medium { font-weight: 500 !important; }
+.font-normal { font-weight: 400 !important; }
+
+/* Text lead - intro paragraphs */
+.text-lead { 
+    font-size: var(--font-size-lead) !important; 
+    line-height: 1.6 !important; 
+    font-weight: 400 !important; 
+}
+
+/* Icon size utilities - standardized */
+.icon-sm { font-size: 1.25rem !important; }
+.icon-md { font-size: 1.5rem !important; }
+.icon-lg { font-size: 2rem !important; }
+.icon-xl { font-size: 2.5rem !important; }
+.icon-hero { font-size: 6rem !important; }
+
+/* Heading icon - consistent size for page titles */
+.heading-icon { 
+    font-size: 2rem !important; 
+    color: var(--color-dark-emerald);
+}
+
+@media (min-width: 768px) {
+    .heading-icon { font-size: 2.5rem !important; }
+    .icon-xl { font-size: 3rem !important; }
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -383,6 +419,23 @@ a {
 
     /* Utility: allow grid items to span both columns on medium+ screens */
     .md-col-span-2 { grid-column: 1 / -1; }
+    
+    /* Responsive flex utilities */
+    .md-flex { display: flex; }
+    .md-flex-row { flex-direction: row; }
+    .md-items-start { align-items: flex-start; }
+    .md-items-center { align-items: center; }
+    .md-text-left { text-align: left; }
+    .md-w-1-3 { width: 33.333%; }
+    .md-gap-12 { gap: 3rem; }
+    .md-p-12 { padding: 3rem; }
+}
+
+/* Hide on mobile, show on md+ */
+.hidden { display: none; }
+@media (min-width: 768px) {
+    .hidden.md-flex { display: flex; }
+    .hidden.md-block { display: block; }
 }
 
 .inline-link {
@@ -703,6 +756,7 @@ a {
     transition: all var(--transition-speed) ease;
     padding: 1.5rem calc(var(--page-gutter) - var(--navbar-padding-x));
     -webkit-transform: translate3d(0, 0, 0); /* Fix for iOS fixed element rendering */
+    transform: translate3d(0, 0, 0);
 }
 
 @media (min-width: 768px) {
@@ -1082,6 +1136,14 @@ footer {
     letter-spacing: -0.015em;
 }
 
+.opacity-60 {
+    opacity: 0.6;
+}
+
+.opacity-70 {
+    opacity: 0.7;
+}
+
 .opacity-80 {
     opacity: 0.8;
 }
@@ -1137,12 +1199,34 @@ footer {
     padding-top: 1rem;
 }
 
-.mt-24 {
-    margin-top: 6rem;
-}
+/* Margin utilities */
+.mt-24 { margin-top: 6rem; }
+.mt-10 { margin-top: 2.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-auto { margin-top: auto; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-10 { margin-bottom: 2.5rem; }
+.margin-0 { margin: 0; }
+
+/* Padding utilities */
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
 
 .flex {
     display: flex;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.display-block {
+    display: block;
 }
 
 .flex-col {
@@ -1165,28 +1249,53 @@ footer {
     justify-content: space-between;
 }
 
-    /* Keep non-duplicated gap utilities here; gap-8 and gap-10 are defined earlier so they are removed here to avoid duplicates. */
-    .gap-6 {
-        gap: 1.5rem;
-    }
+.justify-center {
+    justify-content: center;
+}
 
-    .gap-12 {
-        gap: 3rem;
-    }
+.justify-end {
+    justify-content: flex-end;
+}
 
-    .gap-16 {
-        gap: 4rem;
-    }
+/* Gap utilities */
+.gap-4 { gap: 1rem; }
+.gap-5 { gap: 1.25rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-12 { gap: 3rem; }
+.gap-16 { gap: 4rem; }
 
-    .gap-4 {
-        gap: 1rem;
-    }
+/* Flex utilities */
+.flex-shrink-0 { flex-shrink: 0; }
 
-    .grid-cols-1 {
-        grid-template-columns: 1fr;
-    }
+/* Grid utilities */
+.grid-cols-1 { grid-template-columns: 1fr; }
 
-    @media (min-width: 768px) {
+/* Text utilities */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.whitespace-nowrap { white-space: nowrap; }
+.no-underline { text-decoration: none !important; }
+.text-inherit { color: inherit !important; }
+.italic { font-style: italic; }
+
+/* List utilities */
+.list-none { list-style: none; padding: 0; margin: 0; }
+
+/* Layout utilities */
+.min-h-0 { min-height: 0; }
+.w-full { width: 100%; }
+.block { display: block; }
+
+/* Border utilities */
+.border-dark-emerald { border-color: var(--color-dark-emerald) !important; }
+.border-soft-cream { border-color: var(--color-soft-cream) !important; }
+
+/* Transition utilities */
+.transition-all { transition: all 0.3s ease; }
+
+/* Section padding variant */
+.section-padding { padding: var(--section-vertical) var(--page-gutter); }
+.section-padding-vertical { padding-top: 4rem; padding-bottom: 4rem; }
 
 .relative {
     position: relative;
@@ -2306,8 +2415,6 @@ body.quiz-page + footer {
     inset: 0;
     pointer-events: none;
     z-index: 10;
-}
-    pointer-events: none;
     overflow: hidden;
 }
 
@@ -2599,5 +2706,255 @@ body.quiz-page + footer {
     max-width: 40ch;
     margin-bottom: 2.5rem;
     opacity: 0.8;
+}
+
+
+/* QUIZ DYNAMIC STYLES */
+
+/* Progress Bar */
+.quiz-progress-container {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.quiz-progress-bar-bg {
+    width: 100%;
+    height: 0.5rem;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 999px;
+    overflow: hidden;
+}
+.quiz-progress-bar-fill {
+    height: 100%;
+    background-color: var(--color-dark-emerald);
+    transition: width 0.3s ease;
+}
+
+/* Question Header */
+.quiz-step-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.quiz-step-number {
+    font-size: 2rem;
+    font-weight: 700;
+    opacity: 0.3;
+}
+.quiz-step-label {
+    margin-left: 1rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    opacity: 0.6;
+}
+
+/* Question Title */
+.quiz-step-question {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    color: var(--color-deep-navy);
+}
+
+/* Options Grid */
+.quiz-options-grid {
+    display: grid;
+    gap: 0.75rem;
+}
+
+/* Option Card */
+.quiz-option-label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid transparent;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+.quiz-option-label:hover {
+    background-color: rgba(0,0,0,0.02);
+}
+.quiz-option-label.selected {
+    border-color: var(--color-dark-emerald);
+    background-color: var(--color-soft-cream);
+}
+.quiz-option-label input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Option Letter Badge */
+.quiz-option-letter {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.05);
+    font-weight: 700;
+    margin-right: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-deep-navy);
+}
+.quiz-option-label.selected .quiz-option-letter {
+    background-color: var(--color-dark-emerald);
+    color: #fff;
+}
+
+/* Option Text */
+.quiz-option-text {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-deep-navy);
+}
+
+/* Option Check Icon */
+.quiz-option-check {
+    position: absolute;
+    right: 1rem;
+    color: var(--color-dark-emerald);
+}
+
+/* Navigation Buttons */
+.quiz-navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+.invisible {
+    visibility: hidden;
+}
+
+/* Result Box */
+.result-box-container {
+    background-color: var(--color-dark-emerald);
+    color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    margin: 2rem 0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.result-box-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.result-box-btn {
+    background-color: #fff;
+    color: var(--color-deep-navy);
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+}
+.result-box-btn:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+/* AUTOMATICALLY ADDED FIXES FOR QUIZ CENTERING AND MOBILE */
+
+/* 1. Reset main padding on quiz page to allow full-height centering */
+body.quiz-page main {
+    padding-top: 0 !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 2. Make the quiz section consume full viewport and center content */
+.section-quiz-stepper {
+    flex: 1;
+    min-height: 100vh;
+    width: 100%;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px; /* Space for navbar */
+    padding-bottom: 2rem;
+}
+
+/* 3. Center the container and ensure max-width */
+.section-quiz-stepper .section-container {
+    width: 100%;
+    max-width: var(--max-w-4xl, 56rem); /* Revert to standard wide width */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 4. Hide the header text when the quiz has started (so only question is visible) */
+body.quiz-started .section-quiz-stepper .space-y-6 {
+    display: none !important;
+}
+
+/* 5. Ensure the intro card is hidden when quiz starts */
+body.quiz-started #quiz-intro-card {
+    display: none !important;
+}
+
+/* 6. Ensure the stepper is visible when quiz starts */
+body.quiz-started #quiz-stepper {
+    display: block !important;
+    width: 100%;
+}
+
+/* 7. Ensure questions are shown one by one (Mobile & Desktop) */
+.quiz-step {
+    display: none;
+    width: 100%;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.quiz-step.active {
+    display: block;
+}
+
+/* 8. Make the intro card centered and focused */
+#quiz-intro-card {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* 9. Ensure the header doesn't take too much space before start */
+.section-quiz-stepper .text-heading {
+    text-align: center;
+    justify-content: center;
+}
+.section-quiz-stepper p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Fix for mobile navbar overlap if needed */
+@media (max-width: 768px) {
+    .section-quiz-stepper {
+        padding-top: 70px; /* Slightly less on mobile */
+        justify-content: center;
+        min-height: 100vh; 
+        height: 100vh;
+    }
+    
+    .section-quiz-stepper .section-container {
+        justify-content: center;
+    }
 }
 
