@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <!--
+    CONCEPTUAL DESIGN SYSTEM PLAN:
+    - Review all pages to identify recurring components (Headings, Buttons, Cards, Inputs).
+    - Simplify the design language to only include the most prevalent and requested elements.
+    - Implement a strict typography system with exactly 3 types (Heading, Subheading, Body).
+    - Standardize button and input field dimensions for visual consistency.
+    - Define a cross-theme card logic (Normal vs Filled) for both Beige and Green sections.
+    - Consolidate all styles into a single, internal CSS block for portability.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System - ¡Vamos Hablando!</title>
+    <!-- Montserrat Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap">
+    <!-- Material Symbols Rounded -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <style>
+        /* ------------------------------------------------------------------ */
+        /* Design tokens & system notes (authoritative source for the site)   */
+        /* - Keep color values in this block only; don't hard-code elsewhere. */
+        /* - Typography tokens control global text sizing.                 */
+        /* ------------------------------------------------------------------ */
+        :root {
+            /* Color palette — strictly controlled (see AGENTS.md for rules) */
+            --color-soft-cream: #F6E6C8;
+            --color-dark-emerald: #0B5F58;
+            --color-deep-navy: #0E1A2B;
+            --color-light-blue: #CFE4EA;
+
+            /* Theme tokens */
+            --background: var(--color-soft-cream);
+            --foreground: var(--color-deep-navy);
+            --font-sans: 'Montserrat', sans-serif;
+
+            /* Typography sizes — increased a tiny bit for improved legibility
+               Note: Change these tokens only; components should reference them. */
+            /* Heading: bumped slightly from 2.25rem -> 2.375rem */
+            --font-size-heading: 2.375rem;
+            /* Subheading: small bump from 1.25rem -> 1.375rem */
+            --font-size-subheading: 1.375rem;
+            /* Body: slight increase from 1rem -> ~1.0625rem (≈17px) */
+            --font-size-body: 1.0625rem;
+
+            /* ENFORCEMENT NOTE: Use ONLY these three tokens for all text. Avoid any other
+               `font-size` values in CSS or inline styles. If you need visual hierarchy,
+               use color, weight (SemiBold), spacing, or opacity rather than extra sizes. */
+
+            /* Spacing & layout tokens */
+            --page-gutter: 1.5rem;
+            --section-vertical: 4rem;
+            --box-padding: 2.5rem;
+            --content-max-width: 56rem;
+        }
+
+        @media (min-width: 768px) {
+            :root {
+                --page-gutter: 4rem;
+                --section-vertical: 6rem;
+                /* Larger screen adjustments — tiny increases for headings */
+                --font-size-heading: 3.75rem;
+                --font-size-subheading: 1.875rem;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: var(--font-sans);
+            line-height: 1.5;
+            padding-bottom: 5rem;
+        }
+
+        .container {
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+            padding: 0 var(--page-gutter);
+        }
+
+        /* Utility Classes */
+        .text-heading {
+            font-size: var(--font-size-heading);
+            font-weight: 600;
+            line-height: 1.1;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .text-subheading {
+            font-size: var(--font-size-subheading);
+            font-weight: 600;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .text-body {
+            font-size: var(--font-size-body);
+            line-height: 1.6;
+        }
+
+        .accent { color: var(--color-dark-emerald); }
+        .font-semibold { font-weight: 600; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+
+        /* Showcase Specific Styles */
+        .showcase-header {
+            background-color: var(--color-dark-emerald);
+            color: var(--color-soft-cream);
+            padding: 3rem 0;
+            margin-bottom: 4rem;
+        }
+
+        .showcase-section {
+            margin-bottom: 6rem;
+        }
+
+        .showcase-label {
+            display: block;
+            /* Use body token for labels — visual reduction achieved via opacity/letter-spacing, not a separate font-size */
+            font-size: var(--font-size-body);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-dark-emerald);
+            margin-bottom: 1rem;
+            opacity: 0.6;
+            border-bottom: 1px solid rgba(11, 95, 88, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Buttons */
+        /* Buttons: round, roomy, semi-bold (use 600 not bold). Use primary for CTAs */
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.125rem 2.25rem;
+            border-radius: 9999px;
+            font-weight: 600; /* SemiBold only per design rules */
+            /* Buttons use the Subheading token to stay consistent with the system */
+            font-size: var(--font-size-subheading);
+            transition: all 0.3s ease;
+            gap: 0.75rem;
+            white-space: nowrap;
+            min-width: 8.5rem;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+        }
+
+        .button-primary {
+            background-color: var(--color-dark-emerald);
+            color: var(--color-soft-cream);
+        }
+
+        .button-outline {
+            border: 2px solid var(--color-dark-emerald);
+            color: var(--color-dark-emerald);
+            background: transparent;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Input Field */
+        /* Input fields: comfortable hit target and readable text. Keep pill shape. */
+        .input-field {
+            display: block;
+            width: 100%;
+            max-width: 25rem;
+            padding: 1.125rem 2rem;
+            border-radius: 9999px;
+            font-family: var(--font-sans);
+            /* Inputs use the Body token to match paragraph text */
+            font-size: var(--font-size-body);
+            border: 2px solid rgba(11, 95, 88, 0.2);
+            background-color: white;
+            color: var(--color-deep-navy);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--color-dark-emerald);
+        }
+
+        /* Cards */
+        .card-base {
+            padding: var(--box-padding);
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .card-normal {
+            background-color: rgba(11, 95, 88, 0.04);
+            border: 1px solid rgba(11, 95, 88, 0.08);
+        }
+
+        .card-filled {
+            background-color: var(--color-dark-emerald);
+            color: var(--color-soft-cream);
+        }
+
+        /* Sections */
+        .section {
+            padding: var(--section-vertical) var(--page-gutter);
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-beige {
+            background-color: var(--color-soft-cream);
+            color: var(--color-deep-navy);
+        }
+
+        .section-green {
+            background-color: var(--color-dark-emerald);
+            color: var(--color-soft-cream);
+        }
+
+        /* Theming adjustments for components inside sections */
+        .section-green .button-primary {
+            background-color: var(--color-soft-cream);
+            color: var(--color-dark-emerald);
+        }
+
+        .section-green .button-outline {
+            border-color: var(--color-soft-cream);
+            color: var(--color-soft-cream);
+        }
+
+        .section-green .card-normal {
+            background-color: rgba(246, 230, 200, 0.06);
+            border: 1px solid rgba(246, 230, 200, 0.1);
+            color: var(--color-soft-cream);
+        }
+
+        .section-green .card-filled {
+            background-color: var(--color-soft-cream);
+            color: var(--color-dark-emerald);
+        }
+
+        .section-green .input-field {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(246, 230, 200, 0.2);
+            color: var(--color-soft-cream);
+        }
+
+        .grid-2 {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="showcase-header">
+        <div class="container">
+            <h1 class="text-heading">Design System</h1>
+            <p class="text-body opacity-80">Simplified UI Components & Patterns</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- TYPOGRAPHY SECTION: Heading, Subheading, Body with Icons -->
+        <!--
+            Usage Notes — Typography:
+            - Only 3 roles: Heading (`.text-heading`), Subheading (`.text-subheading`), Body (`.text-body`).
+            - Heading: for main page and section titles (use `font-weight: 600`, never bold).
+            - Subheading: for component titles and emphasized lines.
+            - Body: general copy; prefer line-length and legibility over decoration.
+            - Accent color (`.accent`) = Dark Emerald; max one accent per slide.
+            - Pronunciation/phonetic text should be smaller (~60-65%) and italic when used.
+        -->
+        <section class="showcase-section">
+            <span class="showcase-label">01. Typography (Only 3 Types)</span>
+            <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+                <div>
+                    <h1 class="text-heading mb-4">
+                        <span class="material-symbols-rounded accent" style="font-size: inherit;">star</span>
+                        Heading One
+                    </h1>
+                    <p class="text-body opacity-60">Used for page titles and main section headers.</p>
+                </div>
+
+                <div>
+                    <h2 class="text-subheading mb-4">
+                        <span class="material-symbols-rounded accent" style="font-size: inherit;">auto_stories</span>
+                        Subheading Title
+                    </h2>
+                    <p class="text-body opacity-60">Used for subsections and component titles.</p>
+                </div>
+
+                <div>
+                    <p class="text-body">Standard body text for general content. Montserrat Regular 16px (1rem). Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                    <p class="text-body opacity-60 mt-2">Used for paragraphs and long-form reading.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BUTTONS & INPUTS SECTION: Primary, Outline and Wide Input -->
+        <!--
+            Buttons & Inputs guidelines:
+            - Use `.button-primary` for primary CTAs (Dark Emerald on Beige, inverted on Green).
+            - Use `.button-outline` for secondary actions; outline must remain Emerald (or Cream on green bg).
+            - Buttons: keep SemiBold, rounded, and with accessible contrast.
+            - Inputs: keep pill shape, large hit area, and match body text sizing.
+        -->
+        <section class="showcase-section">
+            <span class="showcase-label">02. Buttons & Inputs</span>
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                    <a href="#" class="button button-primary">Primary Button</a>
+                    <a href="#" class="button button-outline">Outline Button</a>
+                </div>
+                <div>
+                    <input type="text" class="input-field" placeholder="Input Field (Wide)">
+                </div>
+            </div>
+        </section>
+
+        <!-- CARDS SECTION: 4 variants across Beige and Green backgrounds -->
+        <!--
+            Cards guidelines:
+            - Two states: `.card-normal` (subtle) and `.card-filled` (high-impact).
+            - On Beige: filled uses Dark Emerald; on Green: filled uses Soft Cream (inverted).
+            - Use `.card-base` for padding and radius consistency — change tokens, not component CSS.
+            - Cards should be used for grouped content, CTAs, and highlights; avoid overuse.
+        -->
+        <section class="showcase-section">
+            <span class="showcase-label">03. Cards (4 Variants)</span>
+
+            <div class="section section-beige" style="margin-bottom: 4rem;">
+                <p class="text-body mb-4 font-semibold">On Beige Background (Normal):</p>
+                <div class="grid-2">
+                    <!-- Normal Card on Beige -->
+                    <div class="card-base card-normal">
+                        <h3 class="text-subheading mb-4">Normal Card</h3>
+                        <p class="text-body">Standard card with subtle background on beige.</p>
+                    </div>
+                    <!-- Filled Card on Beige (Green Card) -->
+                    <div class="card-base card-filled">
+                        <h3 class="text-subheading mb-4">Filled Card</h3>
+                        <p class="text-body">High-impact card using the Emerald theme.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section section-green">
+                <p class="text-body mb-4 font-semibold">On Green Background:</p>
+                <div class="grid-2">
+                    <!-- Normal Card on Green -->
+                    <div class="card-base card-normal">
+                        <h3 class="text-subheading mb-4">Normal Card</h3>
+                        <p class="text-body">Standard card with subtle background on emerald.</p>
+                    </div>
+                    <!-- Filled Card on Green (Beige Card) -->
+                    <div class="card-base card-filled">
+                        <h3 class="text-subheading mb-4">Filled Card</h3>
+                        <p class="text-body">High-impact card using the Beige theme.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
