@@ -67,39 +67,39 @@
     <main class="pt-20">
         <!-- Quiz Stepper Section - Full Height Single Question View -->
         <section class="section section-beige section-quiz-stepper">
-            <div class="section-container max-w-4xl space-y-16">
+            <div class="section-container space-y-16">
                 <div class="space-y-6">
-                    <h1 class="text-heading flex items-center gap-6">
-                        <span class="material-symbols-rounded heading-icon" aria-hidden="true">school</span>
+                    <h1 class="text-heading">
+                        <span class="material-symbols-rounded accent" style="font-size: inherit;">school</span>
                         <span>Niveautest <span class="accent">Spaans</span></span>
                     </h1>
-                    <p class="text-lead leading-relaxed opacity-90 max-w-3xl">
+                    <p class="text-body opacity-90">
                         Test je niveau in 10 vragen.
                     </p>
                 </div>
 
                 <!-- Quiz Intro Gate -->
-                <div class="quiz-intro-card" id="quiz-intro-card">
-                    <div class="quiz-intro-header">
-                        <span class="material-symbols-rounded" aria-hidden="true">person</span>
+                <div class="card-base quiz-intro-card" id="quiz-intro-card">
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="material-symbols-rounded accent" style="font-size: 2.5rem;">person</span>
                         <h2 class="text-subheading">Voordat we starten</h2>
                     </div>
-                    <p class="text-body opacity-90">
+                    <p class="text-body opacity-90 mb-6">
                         Vul je gegevens in om de test te starten.
                     </p>
-                    <form class="quiz-intro-form" id="intro-form" novalidate>
-                        <div class="quiz-intro-group">
-                            <label class="quiz-intro-label" for="user-name">Naam <span class="required">*</span></label>
-                            <input type="text" id="user-name" name="user-name" class="quiz-intro-input" placeholder="Je naam" autocomplete="name" required aria-describedby="name-hint">
-                            <span class="quiz-intro-hint" id="name-hint"></span>
+                    <form class="flex flex-col gap-6" id="intro-form" novalidate>
+                        <div class="flex flex-col gap-2">
+                            <label class="text-body font-semibold" for="user-name">Naam <span class="required">*</span></label>
+                            <input type="text" id="user-name" name="user-name" class="input-field" placeholder="Je naam" autocomplete="name" required style="max-width: 100%;">
+                            <span class="text-body" id="name-hint" style="color: #ff8a80;"></span>
                         </div>
-                        <div class="quiz-intro-group">
-                            <label class="quiz-intro-label" for="user-email">E-mail <span class="required">*</span></label>
-                            <input type="email" id="user-email" name="user-email" class="quiz-intro-input" placeholder="je@email.nl" autocomplete="email" required aria-describedby="email-hint">
-                            <span class="quiz-intro-hint" id="email-hint"></span>
+                        <div class="flex flex-col gap-2">
+                            <label class="text-body font-semibold" for="user-email">E-mail <span class="required">*</span></label>
+                            <input type="email" id="user-email" name="user-email" class="input-field" placeholder="je@email.nl" autocomplete="email" required style="max-width: 100%;">
+                            <span class="text-body" id="email-hint" style="color: #ff8a80;"></span>
                         </div>
                         <button type="submit" class="button button-primary">
-                            <span class="material-symbols-rounded">arrow_forward</span>
+                            <span class="material-symbols-rounded" style="font-size: inherit;">arrow_forward</span>
                             Start
                         </button>
                     </form>
@@ -110,27 +110,27 @@
 
                     <!-- Question 1: Understanding spoken Spanish -->
                     <div class="quiz-step active" data-question="1">
-                        <div class="quiz-step-card">
-                            <div class="quiz-step-header">
-                                <span class="quiz-step-number">01</span>
-                                <span class="quiz-step-label">Luistervaardigheid</span>
+                        <div class="card-base quiz-step-card">
+                            <div class="flex items-center gap-4 mb-6 opacity-80">
+                                <span class="text-subheading accent">01</span>
+                                <span class="text-body font-semibold uppercase tracking-widest">Luistervaardigheid</span>
                             </div>
-                            <h2 class="quiz-step-question">Als iemand rustig Spaans tegen je praat, wat gebeurt er meestal?</h2>
-                            <div class="quiz-step-options">
+                            <h2 class="text-subheading mb-6">Als iemand rustig Spaans tegen je praat, wat gebeurt er meestal?</h2>
+                            <div class="flex flex-col gap-4">
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q1" value="1">
                                     <span class="quiz-option-letter">A</span>
-                                    <span class="quiz-option-text">Ik begrijp losse woorden of helemaal niets</span>
+                                    <span class="text-body">Ik begrijp losse woorden of helemaal niets</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q1" value="2">
                                     <span class="quiz-option-letter">B</span>
-                                    <span class="quiz-option-text">Ik begrijp de kern, maar mis veel details</span>
+                                    <span class="text-body">Ik begrijp de kern, maar mis veel details</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q1" value="3">
                                     <span class="quiz-option-letter">C</span>
-                                    <span class="quiz-option-text">Ik begrijp het grootste deel en kan volgen</span>
+                                    <span class="text-body">Ik begrijp het grootste deel and kan volgen</span>
                                 </label>
                             </div>
                         </div>
@@ -138,27 +138,27 @@
 
                     <!-- Question 2: Dealing with unknown words -->
                     <div class="quiz-step" data-question="2">
-                        <div class="quiz-step-card">
-                            <div class="quiz-step-header">
-                                <span class="quiz-step-number">02</span>
-                                <span class="quiz-step-label">Onbekende woorden</span>
+                        <div class="card-base quiz-step-card">
+                            <div class="flex items-center gap-4 mb-6 opacity-80">
+                                <span class="text-subheading accent">02</span>
+                                <span class="text-body font-semibold uppercase tracking-widest">Onbekende woorden</span>
                             </div>
-                            <h2 class="quiz-step-question">Hoe ga je om met onbekende woorden in een gesprek?</h2>
-                            <div class="quiz-step-options">
+                            <h2 class="text-subheading mb-6">Hoe ga je om met onbekende woorden in een gesprek?</h2>
+                            <div class="flex flex-col gap-4">
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q2" value="1">
                                     <span class="quiz-option-letter">A</span>
-                                    <span class="quiz-option-text">Dan raak ik het gesprek kwijt</span>
+                                    <span class="text-body">Dan raak ik het gesprek kwijt</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q2" value="2">
                                     <span class="quiz-option-letter">B</span>
-                                    <span class="quiz-option-text">Ik blijf globaal volgen</span>
+                                    <span class="text-body">Ik blijf globaal volgen</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q2" value="3">
                                     <span class="quiz-option-letter">C</span>
-                                    <span class="quiz-option-text">Ik kan vaak uit de context afleiden wat bedoeld wordt</span>
+                                    <span class="text-body">Ik kan vaak uit de context afleiden wat bedoeld wordt</span>
                                 </label>
                             </div>
                         </div>
@@ -166,27 +166,27 @@
 
                     <!-- Question 3: Simple dialogues -->
                     <div class="quiz-step" data-question="3">
-                        <div class="quiz-step-card">
-                            <div class="quiz-step-header">
-                                <span class="quiz-step-number">03</span>
-                                <span class="quiz-step-label">Eenvoudige dialoog</span>
+                        <div class="card-base quiz-step-card">
+                            <div class="flex items-center gap-4 mb-6 opacity-80">
+                                <span class="text-subheading accent">03</span>
+                                <span class="text-body font-semibold uppercase tracking-widest">Eenvoudige dialoog</span>
                             </div>
-                            <h2 class="quiz-step-question">Kun je deelnemen aan een eenvoudige dialoog (bijv. kennismaken, iets bestellen)?</h2>
-                            <div class="quiz-step-options">
+                            <h2 class="text-subheading mb-6">Kun je deelnemen aan een eenvoudige dialoog (bijv. kennismaken, iets bestellen)?</h2>
+                            <div class="flex flex-col gap-4">
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q3" value="1">
                                     <span class="quiz-option-letter">A</span>
-                                    <span class="quiz-option-text">Nee, dat lukt nauwelijks</span>
+                                    <span class="text-body">Nee, dat lukt nauwelijks</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q3" value="2">
                                     <span class="quiz-option-letter">B</span>
-                                    <span class="quiz-option-text">Ja, met korte zinnen en veel nadenken</span>
+                                    <span class="text-body">Ja, met korte zinnen en veel nadenken</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q3" value="3">
                                     <span class="quiz-option-letter">C</span>
-                                    <span class="quiz-option-text">Ja, redelijk vanzelfsprekend</span>
+                                    <span class="text-body">Ja, redelijk vanzelfsprekend</span>
                                 </label>
                             </div>
                         </div>
@@ -194,27 +194,27 @@
 
                     <!-- Question 4: Speaking spontaneously -->
                     <div class="quiz-step" data-question="4">
-                        <div class="quiz-step-card">
-                            <div class="quiz-step-header">
-                                <span class="quiz-step-number">04</span>
-                                <span class="quiz-step-label">Spontaan spreken</span>
+                        <div class="card-base quiz-step-card">
+                            <div class="flex items-center gap-4 mb-6 opacity-80">
+                                <span class="text-subheading accent">04</span>
+                                <span class="text-body font-semibold uppercase tracking-widest">Spontaan spreken</span>
                             </div>
-                            <h2 class="quiz-step-question">Hoe voelt spreken in het moment?</h2>
-                            <div class="quiz-step-options">
+                            <h2 class="text-subheading mb-6">Hoe voelt spreken in het moment?</h2>
+                            <div class="flex flex-col gap-4">
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q4" value="1">
                                     <span class="quiz-option-letter">A</span>
-                                    <span class="quiz-option-text">Ik weet vaak niet wat ik moet zeggen</span>
+                                    <span class="text-body">Ik weet vaak niet wat ik moet zeggen</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q4" value="2">
                                     <span class="quiz-option-letter">B</span>
-                                    <span class="quiz-option-text">Het lukt, maar langzaam</span>
+                                    <span class="text-body">Het lukt, maar langzaam</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q4" value="3">
                                     <span class="quiz-option-letter">C</span>
-                                    <span class="quiz-option-text">Ik kan reageren zonder alles vooraf te bedenken</span>
+                                    <span class="text-body">Ik kan reageren zonder alles vooraf te bedenken</span>
                                 </label>
                             </div>
                         </div>
@@ -222,27 +222,27 @@
 
                     <!-- Question 5: Unexpected changes -->
                     <div class="quiz-step" data-question="5">
-                        <div class="quiz-step-card">
-                            <div class="quiz-step-header">
-                                <span class="quiz-step-number">05</span>
-                                <span class="quiz-step-label">Flexibiliteit</span>
+                        <div class="card-base quiz-step-card">
+                            <div class="flex items-center gap-4 mb-6 opacity-80">
+                                <span class="text-subheading accent">05</span>
+                                <span class="text-body font-semibold uppercase tracking-widest">Flexibiliteit</span>
                             </div>
-                            <h2 class="quiz-step-question">Wat gebeurt er als het gesprek iets afwijkt van wat je verwacht?</h2>
-                            <div class="quiz-step-options">
+                            <h2 class="text-subheading mb-6">Wat gebeurt er als het gesprek iets afwijkt van wat je verwacht?</h2>
+                            <div class="flex flex-col gap-4">
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q5" value="1">
                                     <span class="quiz-option-letter">A</span>
-                                    <span class="quiz-option-text">Dan loop ik vast</span>
+                                    <span class="text-body">Dan loop ik vast</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q5" value="2">
                                     <span class="quiz-option-letter">B</span>
-                                    <span class="quiz-option-text">Ik probeer me te redden</span>
+                                    <span class="text-body">Ik probeer me te redden</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q5" value="3">
                                     <span class="quiz-option-letter">C</span>
-                                    <span class="quiz-option-text">Ik kan meestal blijven meedoen</span>
+                                    <span class="text-body">Ik kan meestal blijven meedoen</span>
                                 </label>
                             </div>
                         </div>
@@ -250,27 +250,27 @@
 
                     <!-- Question 6: Support needed -->
                     <div class="quiz-step" data-question="6">
-                        <div class="quiz-step-card">
-                            <div class="quiz-step-header">
-                                <span class="quiz-step-number">06</span>
-                                <span class="quiz-step-label">Ondersteuning</span>
+                        <div class="card-base quiz-step-card">
+                            <div class="flex items-center gap-4 mb-6 opacity-80">
+                                <span class="text-subheading accent">06</span>
+                                <span class="text-body font-semibold uppercase tracking-widest">Ondersteuning</span>
                             </div>
-                            <h2 class="quiz-step-question">Hoeveel steun heb je nodig tijdens het spreken?</h2>
-                            <div class="quiz-step-options">
+                            <h2 class="text-subheading mb-6">Hoeveel steun heb je nodig tijdens het spreken?</h2>
+                            <div class="flex flex-col gap-4">
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q6" value="1">
                                     <span class="quiz-option-letter">A</span>
-                                    <span class="quiz-option-text">Veel begeleiding en herhaling</span>
+                                    <span class="text-body">Veel begeleiding en herhaling</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q6" value="2">
                                     <span class="quiz-option-letter">B</span>
-                                    <span class="quiz-option-text">Regelmatig houvast</span>
+                                    <span class="text-body">Regelmatig houvast</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q6" value="3">
                                     <span class="quiz-option-letter">C</span>
-                                    <span class="quiz-option-text">Beperkte ondersteuning</span>
+                                    <span class="text-body">Beperkte ondersteuning</span>
                                 </label>
                             </div>
                         </div>
@@ -278,27 +278,27 @@
 
                     <!-- Question 7: Coping when a word is missing -->
                     <div class="quiz-step" data-question="7">
-                        <div class="quiz-step-card">
-                            <div class="quiz-step-header">
-                                <span class="quiz-step-number">07</span>
-                                <span class="quiz-step-label">Oplossend vermogen</span>
+                        <div class="card-base quiz-step-card">
+                            <div class="flex items-center gap-4 mb-6 opacity-80">
+                                <span class="text-subheading accent">07</span>
+                                <span class="text-body font-semibold uppercase tracking-widest">Oplossend vermogen</span>
                             </div>
-                            <h2 class="quiz-step-question">Wat doe je als je iets wilt zeggen, maar niet op het juiste woord komt?</h2>
-                            <div class="quiz-step-options">
+                            <h2 class="text-subheading mb-6">Wat doe je als je iets wilt zeggen, maar niet op het juiste woord komt?</h2>
+                            <div class="flex flex-col gap-4">
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q7" value="1">
                                     <span class="quiz-option-letter">A</span>
-                                    <span class="quiz-option-text">Ik loop vast en zeg niets</span>
+                                    <span class="text-body">Ik loop vast en zeg niets</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q7" value="2">
                                     <span class="quiz-option-letter">B</span>
-                                    <span class="quiz-option-text">Ik probeer het anders te verwoorden</span>
+                                    <span class="text-body">Ik probeer het anders te verwoorden</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q7" value="3">
                                     <span class="quiz-option-letter">C</span>
-                                    <span class="quiz-option-text">Ik blijf praten en los het op met andere woorden</span>
+                                    <span class="text-body">Ik blijf praten and los het op met andere woorden</span>
                                 </label>
                             </div>
                         </div>
@@ -306,57 +306,55 @@
 
                     <!-- Question 8: Learning goal -->
                     <div class="quiz-step" data-question="8">
-                        <div class="quiz-step-card">
-                            <div class="quiz-step-header">
-                                <span class="quiz-step-number">08</span>
-                                <span class="quiz-step-label">Doel</span>
+                        <div class="card-base quiz-step-card">
+                            <div class="flex items-center gap-4 mb-6 opacity-80">
+                                <span class="text-subheading accent">08</span>
+                                <span class="text-body font-semibold uppercase tracking-widest">Doel</span>
                             </div>
-                            <h2 class="quiz-step-question">Wat wil je vooral leren?</h2>
-                            <div class="quiz-step-options">
+                            <h2 class="text-subheading mb-6">Wat wilt u vooral leren?</h2>
+                            <div class="flex flex-col gap-4">
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q8" value="1">
                                     <span class="quiz-option-letter">A</span>
-                                    <span class="quiz-option-text">Meedoen aan eenvoudige communicatie</span>
+                                    <span class="text-body">Meedoen aan eenvoudige communicatie</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q8" value="2">
                                     <span class="quiz-option-letter">B</span>
-                                    <span class="quiz-option-text">Zelfverzekerder en vlotter reageren</span>
+                                    <span class="text-body">Zelfverzekerder and vlotter reageren</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q8" value="3">
                                     <span class="quiz-option-letter">C</span>
-                                    <span class="quiz-option-text">Vrijer en gevarieerder communiceren</span>
+                                    <span class="text-body">Vrijer and gevarieerder communiceren</span>
                                 </label>
                             </div>
                         </div>
                     </div>
 
-
-
                     <!-- Question 9: Current challenge -->
                     <div class="quiz-step" data-question="9">
-                        <div class="quiz-step-card">
-                            <div class="quiz-step-header">
-                                <span class="quiz-step-number">09</span>
-                                <span class="quiz-step-label">Huidige uitdaging</span>
+                        <div class="card-base quiz-step-card">
+                            <div class="flex items-center gap-4 mb-6 opacity-80">
+                                <span class="text-subheading accent">09</span>
+                                <span class="text-body font-semibold uppercase tracking-widest">Huidige uitdaging</span>
                             </div>
-                            <h2 class="quiz-step-question">Waar loop je nu tegenaan?</h2>
-                            <div class="quiz-step-options">
+                            <h2 class="text-subheading mb-6">Waar loop je nu tegenaan?</h2>
+                            <div class="flex flex-col gap-4">
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q9" value="1">
                                     <span class="quiz-option-letter">A</span>
-                                    <span class="quiz-option-text">Ik kom niet goed op gang</span>
+                                    <span class="text-body">Ik kom niet goed op gang</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q9" value="2">
                                     <span class="quiz-option-letter">B</span>
-                                    <span class="quiz-option-text">Ik wil uitbreiden wat ik al kan</span>
+                                    <span class="text-body">Ik wil uitbreiden wat ik al kan</span>
                                 </label>
                                 <label class="quiz-step-option">
                                     <input type="radio" name="q9" value="3">
                                     <span class="quiz-option-letter">C</span>
-                                    <span class="quiz-option-text">Ik wil verfijnen en verdiepen</span>
+                                    <span class="text-body">Ik wil verfijnen and verdiepen</span>
                                 </label>
                             </div>
                         </div>
@@ -364,30 +362,30 @@
 
                     <!-- Results Screen -->
                     <div class="quiz-step quiz-results-screen" id="quiz-results">
-                        <div class="quiz-results-card">
-                            <div class="quiz-results-recommendation" id="results-recommendation">
-                                <span class="recommendation-label">Wij raden aan:</span>
-                                <span class="recommendation-level" id="result-level">Start Groep</span>
+                        <div class="card-base quiz-results-card">
+                            <div class="flex flex-col gap-2 mb-10 p-6" id="results-recommendation" style="background-color: rgba(207, 228, 234, 0.1); border: 1px solid var(--color-light-blue); border-radius: 1.5rem; align-items: center;">
+                                <span class="text-body font-semibold uppercase tracking-widest opacity-80">Wij raden aan:</span>
+                                <span class="text-subheading accent" id="result-level" style="font-size: 1.5rem;">Start Groep</span>
                             </div>
 
-                            <p class="quiz-results-explanation text-small" id="result-explanation">
-                                Je richt je op het opbouwen van basiskennis: begrijpen, reageren en meedoen aan eenvoudige communicatie.
+                            <p class="text-body opacity-90 mb-10" id="result-explanation">
+                                Je richt je op het opbouwen van basiskennis: begrijpen, reageren and meedoen aan eenvoudige communicatie.
                             </p>
 
-                            <div class="quiz-results-actions">
+                            <div class="flex flex-wrap justify-center gap-6 mb-10">
                                 <a href="groepslessen.html" class="button button-primary" id="result-link">
-                                    <span class="material-symbols-rounded">school</span>
+                                    <span class="material-symbols-rounded" style="font-size: inherit;">school</span>
                                     Bekijk dit niveau
                                 </a>
                                 <a href="#" class="button button-outline" id="request-advice-btn">
-                                    <span class="material-symbols-rounded">mail</span>
+                                    <span class="material-symbols-rounded" style="font-size: inherit;">mail</span>
                                     Vraag advies
                                 </a>
                             </div>
 
-                            <div class="quiz-results-secondary">
-                                <a href="index.html" class="button button-outline quiz-contact-btn">
-                                    <span class="material-symbols-rounded">home</span>
+                            <div class="flex justify-center">
+                                <a href="index.html" class="button button-outline">
+                                    <span class="material-symbols-rounded" style="font-size: inherit;">home</span>
                                     Terug naar home
                                 </a>
                             </div>

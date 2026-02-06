@@ -26,44 +26,44 @@ body.quiz-page {
 
 /* VARIABLES: design tokens (colors, fonts, transitions) */
 :root {
+    /* Color palette — strictly controlled (see AGENTS.md for rules) */
     --color-soft-cream: #F6E6C8;
     --color-dark-emerald: #0B5F58;
     --color-deep-navy: #0E1A2B;
     --color-light-blue: #CFE4EA;
+
+    /* Theme tokens */
     --background: var(--color-soft-cream);
     --foreground: var(--color-deep-navy);
     --font-sans: 'Montserrat', sans-serif;
     --transition-speed: 0.5s;
 
-    /* Typography sizes (standardized) */
-    --font-size-heading: 2.25rem;
-    /* main H1 */
-    --font-size-subheading: 1.25rem;
-    /* H2/H3 */
-    --font-size-lead: 1.125rem;
-    /* intro text */
-    --font-size-body: 1rem;
-    /* base body text */
-    --font-size-small: 0.875rem;
-    /* captions, hints */
+    --font-size-heading: 2.375rem;
+    --font-size-subheading: 1.375rem;
+    --font-size-body: 1.0625rem;
 
-    /* Global layout tokens for consistent gutters and section spacing */
+    /* Spacing & layout tokens */
     --page-gutter: 1.5rem;
-    /* horizontal side padding (mobile default) */
-    --section-vertical: 6rem;
-    /* vertical padding for sections (mobile default) */
-    --navbar-padding-x: 1rem;
-    /* internal horizontal padding for the navbar pill */
-    --content-max-width: 56rem;
-    /* Standardized box padding for card-like components */
+    --section-vertical: 4rem;
     --box-padding: 2.5rem;
-    --box-padding-lg: 2.5rem;
-    /* aligns with .max-w-4xl used in body */
+    --content-max-width: 56rem;
+    --navbar-padding-x: 1rem;
 }
 
-.dark {
-    --background: var(--color-dark-emerald);
-    --foreground: var(--color-soft-cream);
+@media (min-width: 768px) {
+    :root {
+        --page-gutter: 4rem;
+        --section-vertical: 6rem;
+        --font-size-heading: 3.75rem;
+        --font-size-subheading: 1.875rem;
+        --navbar-padding-x: 1.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --navbar-padding-x: 1.5rem;
+    }
 }
 
 * {
@@ -123,78 +123,26 @@ h3 {
 
 /* Utility classes for consistent sizing */
 .text-heading {
-    font-size: var(--font-size-heading) !important;
-    line-height: 1.1 !important;
-    letter-spacing: -0.02em !important;
-    font-weight: 600 !important;
+    font-size: var(--font-size-heading);
+    font-weight: 600;
+    line-height: 1.1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .text-subheading {
-    font-size: var(--font-size-subheading) !important;
-    line-height: 1.3 !important;
-    letter-spacing: -0.01em !important;
-    font-weight: 600 !important;
+    font-size: var(--font-size-subheading);
+    font-weight: 600;
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .text-body {
-    font-size: var(--font-size-body) !important;
-    line-height: 1.6 !important;
-    font-weight: 400 !important;
-}
-
-.text-small {
-    font-size: var(--font-size-small) !important;
-    line-height: 1.5 !important;
-    font-weight: 400 !important;
-}
-
-/* Responsive scaling for the core types */
-@media (min-width: 768px) {
-    .text-heading {
-        font-size: 3.5rem !important;
-    }
-
-    .text-subheading {
-        font-size: 1.75rem !important;
-    }
-
-    .text-lead {
-        font-size: 1.35rem !important;
-    }
-}
-
-/* Backwards-compatibility: map legacy utility classes to the standardized tokens */
-.text-6xl,
-.text-5xl,
-.text-4xl {
-    font-size: var(--font-size-heading);
-}
-
-.text-3xl,
-.text-2xl {
-    font-size: var(--font-size-subheading);
-}
-
-.text-xl,
-.text-lg {
     font-size: var(--font-size-body);
-}
-
-@media (min-width: 768px) {
-
-    .md-text-8xl,
-    .md-text-7xl,
-    .md-text-6xl,
-    .md-text-5xl,
-    .md-text-4xl {
-        font-size: 3.5rem;
-    }
-
-    .md-text-3xl,
-    .md-text-2xl,
-    .md-text-xl {
-        font-size: 1.75rem;
-    }
+    line-height: 1.6;
 }
 
 /* Color utility classes */
@@ -224,13 +172,6 @@ h3 {
 }
 
 .font-normal {
-    font-weight: 400 !important;
-}
-
-/* Text lead - intro paragraphs */
-.text-lead {
-    font-size: var(--font-size-lead) !important;
-    line-height: 1.6 !important;
     font-weight: 400 !important;
 }
 
@@ -280,57 +221,17 @@ a {
 /* LAYOUT: section spacing and layout */
 .section {
     padding: var(--section-vertical) var(--page-gutter);
-    min-height: 60vh;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-@media (min-width: 768px) {
-
-    /* increase global gutter and vertical spacing on larger screens */
-    :root {
-        --page-gutter: 4rem;
-        --section-vertical: 8rem;
-        --navbar-padding-x: 1.25rem;
-    }
-}
-
-@media (min-width: 1024px) {
-
-    /* on very wide screens, give a bit more horizontal breathing room */
-    :root {
-        --page-gutter: 6rem;
-        --section-vertical: 8rem;
-        --navbar-padding-x: 1.5rem;
-    }
-}
-
-.section-container {
-    max-width: 72rem;
+.container, .section-container {
+    max-width: var(--content-max-width);
     margin: 0 auto;
     width: 100%;
-}
-
-.max-w-4xl {
-    max-width: 56rem;
-}
-
-.max-w-5xl {
-    max-width: 64rem;
-}
-
-.max-w-2xl {
-    max-width: 42rem;
-}
-
-.max-w-3xl {
-    max-width: 48rem;
-}
-
-.mx-auto {
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .section-beige {
@@ -341,49 +242,49 @@ a {
 .section-green {
     background-color: var(--color-dark-emerald);
     color: var(--color-soft-cream);
-    min-height: auto;
-    padding-top: 1.75rem;
-    /* reduced vertical padding */
-    padding-bottom: 1.75rem;
 }
 
-/* Allow making the whole green section full-bleed when needed (adds full-viewport width breakout) */
-.section-green.full-bleed {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    padding-left: 0;
-    padding-right: 0;
-}
-
-@media (min-width: 768px) {
-
-    /* A bit more vertical spacing on larger screens */
-    .section-green {
-        padding-top: 3rem;
-        /* slightly larger on tablet/desktop */
-        padding-bottom: 3rem;
-    }
-
-    /* Reduce horizontal gap between text and flag specifically for the green intro */
-    .section-green .section-container {
-        gap: 0.5rem;
-        /* tightened to bring the flag much closer to the text */
-    }
-}
-
-.accent {
-    color: inherit;
-}
-
-.section-beige .accent {
-    color: var(--color-dark-emerald);
-}
+.accent { color: var(--color-dark-emerald); }
 
 .section-green .accent {
     color: var(--color-light-blue);
 }
 
+/* Theming adjustments for components inside sections */
+.section-green .button-primary {
+    background-color: var(--color-soft-cream);
+    color: var(--color-dark-emerald);
+}
+
+.section-green .button-outline {
+    border-color: var(--color-soft-cream);
+    color: var(--color-soft-cream);
+}
+
+.section-green .card-normal {
+    background-color: rgba(246, 230, 200, 0.06);
+    border: 1px solid rgba(246, 230, 200, 0.1);
+    color: var(--color-soft-cream);
+}
+
+.section-green .card-filled {
+    background-color: var(--color-soft-cream);
+    color: var(--color-dark-emerald);
+}
+
+.section-green .input-field {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(246, 230, 200, 0.2);
+    color: var(--color-soft-cream);
+}
+
+.max-w-4xl { max-width: 56rem; }
+.max-w-5xl { max-width: 64rem; }
+.max-w-2xl { max-width: 42rem; }
+.max-w-3xl { max-width: 48rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Buttons */
 .button {
     display: inline-flex;
     align-items: center;
@@ -394,10 +295,11 @@ a {
     font-size: var(--font-size-subheading);
     transition: all 0.3s ease;
     gap: 0.75rem;
-    /* Prevent the label from breaking onto two lines */
     white-space: nowrap;
-    /* Ensure a sensible minimum width so short labels don't collapse */
     min-width: 8.5rem;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
 }
 
 .button-primary {
@@ -405,67 +307,37 @@ a {
     color: var(--color-soft-cream);
 }
 
-.section-green .button-primary {
-    background-color: var(--color-soft-cream);
-    color: var(--color-dark-emerald);
-}
-
-.button-primary:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-}
-
-.button-small {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-    border-radius: 9999px;
-}
-
-/* Prevent button overflow on very small screens - keep labels on one line */
-@media (max-width: 420px) {
-    .button {
-        padding: 0.7rem 1rem;
-        font-size: var(--font-size-body);
-        min-width: 6.5rem;
-    }
-}
-
-/* Add spacing around buttons inside cards (e.g., Aanbod page) */
-.card .button {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-/* Utility: outline button variant for secondary actions */
 .button-outline {
     border: 2px solid var(--color-dark-emerald);
     color: var(--color-dark-emerald);
     background: transparent;
 }
 
-.section-green .button-outline {
-    border-color: var(--color-soft-cream);
-    color: var(--color-soft-cream);
-}
-
-.button-outline:hover {
-    opacity: 0.95;
+.button:hover {
+    opacity: 0.9;
     transform: translateY(-1px);
 }
 
-/* Icon utilities */
-.icon-card {
-    font-size: 2.5rem;
-    color: var(--color-dark-emerald);
+/* Input Field */
+.input-field {
     display: block;
-    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 25rem;
+    padding: 1.125rem 2rem;
+    border-radius: 9999px;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body);
+    border: 2px solid rgba(11, 95, 88, 0.2);
+    background-color: white;
+    color: var(--color-deep-navy);
+    transition: border-color 0.3s ease;
 }
 
-@media (min-width: 768px) {
-    .icon-card {
-        font-size: 3rem;
-    }
+.input-field:focus {
+    outline: none;
+    border-color: var(--color-dark-emerald);
 }
+
 
 /* Button icons: size and alignment consistency */
 .button .material-symbols-rounded {
@@ -513,6 +385,18 @@ a {
 /* Small helpers */
 .text-center {
     text-align: center;
+}
+
+.max-w-full {
+    max-width: 100% !important;
+}
+
+.gap-2 {
+    gap: 0.5rem !important;
+}
+
+.icon-inherit {
+    font-size: inherit !important;
 }
 
 /* Simple grid helpers used throughout HTML */
@@ -652,36 +536,24 @@ a {
     box-shadow: 0 8px 20px rgba(14, 26, 43, 0.06);
 }
 
-/* COMPONENTS: shared base for card-like components */
-.component,
-.card,
-.contact-card,
-.price-card,
-.quiz-card,
-.quiz-step-card,
-.quiz-intro-card,
-.quiz-results-card,
-.card-outline,
-.card-filled {
-    padding: var(--box-padding) !important;
-    border-radius: 2rem !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    border: 1px solid rgba(11, 95, 88, 0.08) !important;
-    background-color: rgba(11, 95, 88, 0.04);
-    /* No important here to allow overrides */
+/* Cards */
+.card-base {
+    padding: var(--box-padding);
+    border-radius: 2rem;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-/* Slightly stronger hover for card-like components */
-.card:hover,
-.contact-card:hover,
-.price-card:hover,
-.quiz-card:hover,
-.card-outline:hover,
-.card-filled:hover {
-    box-shadow: 0 8px 20px rgba(14, 26, 43, 0.06);
+.card-normal {
+    background-color: rgba(11, 95, 88, 0.04);
+    border: 1px solid rgba(11, 95, 88, 0.08);
+}
+
+.card-filled {
+    background-color: var(--color-dark-emerald);
+    color: var(--color-soft-cream);
 }
 
 .contact-icon {
