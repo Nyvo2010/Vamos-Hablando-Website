@@ -243,6 +243,16 @@
             color: var(--color-dark-emerald);
         }
 
+        /* Dark variants for cards in green sections */
+        .section-green .price-card {
+            background-color: #236D63;
+            color: var(--color-soft-cream);
+            border: 1px solid rgba(246, 230, 200, 0.06);
+        }
+        .section-green .price-card .price-amount {
+            color: var(--color-soft-cream);
+        }
+
         /*
            Component: Sections
         */
@@ -381,20 +391,30 @@
         <!-- BUTTONS -->
         <section class="showcase-section">
             <span class="showcase-label">02. Buttons</span>
+            <p class="text-small mb-6">Buttons use a 9999px border-radius (pill shape) and Montserrat SemiBold.</p>
+
             <div class="variant-grid">
                 <div>
-                    <p class="text-small mb-4">Primary Button</p>
+                    <p class="text-small mb-4">Primary - Light Background</p>
                     <a href="#" class="button button-primary">
                         <span class="material-symbols-rounded">auto_stories</span>
                         Button Text
                     </a>
                 </div>
                 <div>
-                    <p class="text-small mb-4">Outline Button</p>
+                    <p class="text-small mb-4">Outline - Light Background</p>
                     <a href="#" class="button button-outline">
                         <span class="material-symbols-rounded">event</span>
                         Button Text
                     </a>
+                </div>
+                <div class="section-green" style="padding: 1.5rem; border-radius: 1.5rem;">
+                    <p class="text-small mb-4">Primary - Dark Background</p>
+                    <a href="#" class="button button-primary">Button Text</a>
+                </div>
+                <div class="section-green" style="padding: 1.5rem; border-radius: 1.5rem;">
+                    <p class="text-small mb-4">Outline - Dark Background</p>
+                    <a href="#" class="button button-outline">Button Text</a>
                 </div>
                 <div>
                     <p class="text-small mb-4">Small Variant</p>
@@ -410,41 +430,60 @@
             <div class="section section-beige">
                 <h3 class="text-subheading mb-4">Template A — Section Beige</h3>
                 <p class="text-body mb-6">The standard light theme used for most content. High readability with Deep Navy text on Soft Cream background.</p>
-                <a href="#" class="button button-primary">Primary Action</a>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#" class="button button-primary">Primary Action</a>
+                    <a href="#" class="button button-outline">Secondary Action</a>
+                </div>
             </div>
 
             <div class="section section-green">
                 <h3 class="text-subheading mb-4">Template B — Section Green</h3>
                 <p class="text-body mb-6">High-impact dark theme. Uses Soft Cream text on Dark Emerald background with <span class="accent font-semibold">Light Blue accents</span>.</p>
-                <a href="#" class="button button-primary">Primary Action</a>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#" class="button button-primary">Primary Action</a>
+                    <a href="#" class="button button-outline">Secondary Action</a>
+                </div>
             </div>
         </section>
 
         <!-- CARDS -->
         <section class="showcase-section">
-            <span class="showcase-label">04. Cards</span>
+            <span class="showcase-label">04. Cards & Boxes</span>
+            <p class="text-small mb-6">All card components use a 2rem border-radius and consistent box-padding.</p>
+
             <div class="variant-grid">
                 <!-- Standard Card -->
                 <div class="card-base card">
                     <span class="material-symbols-rounded mb-4 accent" style="font-size: 2.5rem;">groups</span>
                     <h3 class="text-subheading mb-2">Standard Card</h3>
-                    <p class="text-body opacity-80">Used for features or offerings. Subtle background with rounded corners.</p>
+                    <p class="text-body opacity-80">Used for features or offerings on light backgrounds.</p>
                 </div>
 
                 <!-- Filled Card -->
                 <div class="card-base card-filled">
                     <h3 class="text-subheading mb-2">Filled Card</h3>
-                    <p class="text-body opacity-90">Used for CTAs or level tests. Uses the <span class="accent">Dark Emerald</span> theme.</p>
+                    <p class="text-body opacity-90">Used for high-impact CTAs. Uses the <span class="accent">Dark Emerald</span> theme.</p>
                     <div style="margin-top: auto; padding-top: 1.5rem;">
                         <a href="#" class="button button-primary" style="background-color: var(--color-soft-cream); color: var(--color-dark-emerald);">Action</a>
                     </div>
                 </div>
 
-                <!-- Price Card -->
+                <!-- Price Card Light -->
                 <div class="card-base price-card">
+                    <p class="text-small opacity-60">Price Card - Light</p>
                     <h3 class="text-subheading accent">Early Bird</h3>
                     <p class="price-amount">€250</p>
                     <p class="text-small opacity-80">Geldig tot 1 maand voor start</p>
+                </div>
+
+                <!-- Price Card Dark -->
+                <div class="section-green" style="padding: 0; border-radius: 2rem;">
+                    <div class="card-base price-card" style="height: 100%;">
+                        <p class="text-small opacity-60">Price Card - Dark</p>
+                        <h3 class="text-subheading accent">Regulier</h3>
+                        <p class="price-amount">€300</p>
+                        <p class="text-small opacity-80">Standaard tarief</p>
+                    </div>
                 </div>
 
                 <!-- Contact Card -->
@@ -526,9 +565,9 @@
 
     <!-- HTML Comments to separate component groups as requested -->
     <!-- Component Group: Typography - Defines standard sizes and weights -->
-    <!-- Component Group: Buttons - Defines primary and secondary actions -->
+    <!-- Component Group: Buttons - Defines primary and secondary actions across all themes -->
     <!-- Component Group: Sections - Defines global background themes -->
-    <!-- Component Group: Cards - Defines various content containers -->
+    <!-- Component Group: Cards & Boxes - Defines various content containers and their color variants -->
     <!-- Component Group: Navigation - Structural placeholders for header/footer -->
     <!-- Component Group: Interactive - Defines quiz and form elements -->
 
