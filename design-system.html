@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+    <!--
+    CONCEPTUAL DESIGN SYSTEM PLAN:
+    - Review all pages to identify recurring components (Headings, Buttons, Cards, Inputs).
+    - Simplify the design language to only include the most prevalent and requested elements.
+    - Implement a strict typography system with exactly 3 types (Heading, Subheading, Body).
+    - Standardize button and input field dimensions for visual consistency.
+    - Define a cross-theme card logic (Normal vs Filled) for both Beige and Green sections.
+    - Consolidate all styles into a single, internal CSS block for portability.
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Design System - ¡Vamos Hablando!</title>
@@ -9,10 +18,6 @@
     <!-- Material Symbols Rounded -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <style>
-        /*
-           DESIGN SYSTEM STYLES
-           Mimicking style.css variables and core patterns
-        */
         :root {
             --color-soft-cream: #F6E6C8;
             --color-dark-emerald: #0B5F58;
@@ -25,9 +30,7 @@
 
             --font-size-heading: 2.25rem;
             --font-size-subheading: 1.25rem;
-            --font-size-lead: 1.125rem;
             --font-size-body: 1rem;
-            --font-size-small: 0.875rem;
 
             --page-gutter: 1.5rem;
             --section-vertical: 4rem;
@@ -39,6 +42,8 @@
             :root {
                 --page-gutter: 4rem;
                 --section-vertical: 6rem;
+                --font-size-heading: 3.5rem;
+                --font-size-subheading: 1.75rem;
             }
         }
 
@@ -62,33 +67,23 @@
             padding: 0 var(--page-gutter);
         }
 
-        /*
-           Utility Classes
-        */
+        /* Utility Classes */
         .text-heading {
             font-size: var(--font-size-heading);
             font-weight: 600;
             line-height: 1.1;
-        }
-        @media (min-width: 768px) {
-            .text-heading { font-size: 3.5rem; }
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .text-subheading {
             font-size: var(--font-size-subheading);
             font-weight: 600;
             line-height: 1.3;
-        }
-        @media (min-width: 768px) {
-            .text-subheading { font-size: 1.75rem; }
-        }
-
-        .text-lead {
-            font-size: var(--font-size-lead);
-            line-height: 1.6;
-        }
-        @media (min-width: 768px) {
-            .text-lead { font-size: 1.35rem; }
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
         .text-body {
@@ -96,24 +91,12 @@
             line-height: 1.6;
         }
 
-        .text-small {
-            font-size: var(--font-size-small);
-            line-height: 1.5;
-        }
-
         .accent { color: var(--color-dark-emerald); }
         .font-semibold { font-weight: 600; }
-        .italic { font-style: italic; }
-        .opacity-80 { opacity: 0.8; }
-        .opacity-60 { opacity: 0.6; }
-        .mb-2 { margin-bottom: 0.5rem; }
         .mb-4 { margin-bottom: 1rem; }
         .mb-6 { margin-bottom: 1.5rem; }
-        .space-y-6 > * + * { margin-top: 1.5rem; }
 
-        /*
-           Showcase Specific Styles
-        */
+        /* Showcase Specific Styles */
         .showcase-header {
             background-color: var(--color-dark-emerald);
             color: var(--color-soft-cream);
@@ -137,19 +120,7 @@
             padding-bottom: 0.5rem;
         }
 
-        .variant-grid {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: 1fr;
-            margin-top: 2rem;
-        }
-        @media (min-width: 768px) {
-            .variant-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        /*
-           Component: Buttons
-        */
+        /* Buttons */
         .button {
             display: inline-flex;
             align-items: center;
@@ -157,7 +128,7 @@
             padding: 1.125rem 2.25rem;
             border-radius: 9999px;
             font-weight: 600;
-            font-size: var(--font-size-subheading);
+            font-size: 1.25rem;
             transition: all 0.3s ease;
             gap: 0.75rem;
             white-space: nowrap;
@@ -178,19 +149,32 @@
             background: transparent;
         }
 
-        .button-small {
-            padding: 0.6rem 1.2rem;
-            font-size: 0.9rem;
-        }
-
         .button:hover {
             opacity: 0.9;
             transform: translateY(-1px);
         }
 
-        /*
-           Component: Cards
-        */
+        /* Input Field */
+        .input-field {
+            display: block;
+            width: 100%;
+            max-width: 25rem;
+            padding: 1.125rem 2rem;
+            border-radius: 9999px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            border: 2px solid rgba(11, 95, 88, 0.2);
+            background-color: white;
+            color: var(--color-deep-navy);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--color-dark-emerald);
+        }
+
+        /* Cards */
         .card-base {
             padding: var(--box-padding);
             border-radius: 2rem;
@@ -198,64 +182,19 @@
             display: flex;
             flex-direction: column;
             width: 100%;
+        }
+
+        .card-normal {
+            background-color: rgba(11, 95, 88, 0.04);
             border: 1px solid rgba(11, 95, 88, 0.08);
         }
 
-        .card-base:hover {
-            box-shadow: 0 8px 20px rgba(14, 26, 43, 0.06);
-            transform: translateY(-2px);
-        }
-
-        .card {
-            background-color: rgba(11, 95, 88, 0.04);
-        }
-
-        .card-filled, .quiz-step-card {
+        .card-filled {
             background-color: var(--color-dark-emerald);
             color: var(--color-soft-cream);
-            border-color: rgba(246, 230, 200, 0.1);
         }
 
-        .card-filled .accent { color: var(--color-light-blue); }
-
-        .price-card {
-            text-align: center;
-            align-items: center;
-            gap: 0.75rem;
-            background-color: rgba(11, 95, 88, 0.04);
-        }
-
-        .price-amount {
-            font-size: 2.25rem;
-            font-weight: 600;
-            color: var(--color-dark-emerald);
-        }
-
-        .contact-card {
-            text-decoration: none;
-            color: inherit;
-            background-color: rgba(11, 95, 88, 0.04);
-        }
-
-        .contact-label {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--color-dark-emerald);
-        }
-
-        /* Dark variants for cards in green sections */
-        .section-green .price-card {
-            background-color: #236D63;
-            color: var(--color-soft-cream);
-            border: 1px solid rgba(246, 230, 200, 0.06);
-        }
-        .section-green .price-card .price-amount {
-            color: var(--color-soft-cream);
-        }
-
-        /*
-           Component: Sections
-        */
+        /* Sections */
         .section {
             padding: var(--section-vertical) var(--page-gutter);
             border-radius: 2rem;
@@ -272,96 +211,41 @@
             color: var(--color-soft-cream);
         }
 
-        .section-green .accent { color: var(--color-light-blue); }
+        /* Theming adjustments for components inside sections */
         .section-green .button-primary {
             background-color: var(--color-soft-cream);
             color: var(--color-dark-emerald);
         }
+
         .section-green .button-outline {
             border-color: var(--color-soft-cream);
             color: var(--color-soft-cream);
         }
 
-        /*
-           Component: Forms (Quiz Style)
-        */
-        .quiz-step-options {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 100%;
-        }
-
-        .quiz-step-option {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            padding: 1.25rem 2rem;
-            border-radius: 9999px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(246, 230, 200, 0.1);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .quiz-step-option:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateX(8px);
-        }
-
-        .quiz-option-letter {
-            width: 2.25rem;
-            height: 2.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            font-weight: 600;
-        }
-
-        /*
-           Component: Navbar/Footer placeholders
-        */
-        .navbar-placeholder {
-            background: white;
-            padding: 1rem 2rem;
-            border-radius: 9999px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .nav-links-placeholder {
-            display: flex;
-            gap: 2rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .footer-placeholder {
-            background-color: var(--color-dark-emerald);
+        .section-green .card-normal {
+            background-color: rgba(246, 230, 200, 0.06);
+            border: 1px solid rgba(246, 230, 200, 0.1);
             color: var(--color-soft-cream);
-            padding: 4rem 2rem;
-            border-radius: 2rem;
+        }
+
+        .section-green .card-filled {
+            background-color: var(--color-soft-cream);
+            color: var(--color-dark-emerald);
+        }
+
+        .section-green .input-field {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(246, 230, 200, 0.2);
+            color: var(--color-soft-cream);
+        }
+
+        .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
+            gap: 2rem;
+            grid-template-columns: 1fr;
         }
-
-        .footer-col h4 {
-            color: var(--color-light-blue);
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            opacity: 0.7;
+        @media (min-width: 768px) {
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -369,207 +253,92 @@
 
     <header class="showcase-header">
         <div class="container">
-            <h1 class="text-heading">Design System Showcase</h1>
-            <p class="text-lead opacity-80">¡Vamos Hablando! Recurring UI Components & Patterns</p>
+            <h1 class="text-heading">Design System</h1>
+            <p class="text-body opacity-80">Simplified UI Components & Patterns</p>
         </div>
     </header>
 
     <main class="container">
 
-        <!-- TYPOGRAPHY -->
+        <!-- TYPOGRAPHY SECTION: Heading, Subheading, Body with Icons -->
         <section class="showcase-section">
-            <span class="showcase-label">01. Typography</span>
-            <div class="space-y-6">
-                <h1 class="text-heading">Heading One <span class="accent italic">Accent</span></h1>
-                <h2 class="text-subheading">Subheading or Section Title</h2>
-                <p class="text-lead">Lead paragraph text for introductions and high-impact messaging. <span class="font-semibold">SemiBold for emphasis.</span></p>
-                <p class="text-body">Standard body text for general content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                <p class="text-small opacity-60">Small text for captions, hints, or secondary information.</p>
-            </div>
-        </section>
+            <span class="showcase-label">01. Typography (Only 3 Types)</span>
+            <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+                <div>
+                    <h1 class="text-heading mb-4">
+                        <span class="material-symbols-rounded accent" style="font-size: inherit;">star</span>
+                        Heading One
+                    </h1>
+                    <p class="text-body opacity-60">Used for page titles and main section headers.</p>
+                </div>
 
-        <!-- BUTTONS -->
-        <section class="showcase-section">
-            <span class="showcase-label">02. Buttons</span>
-            <p class="text-small mb-6">Buttons use a 9999px border-radius (pill shape) and Montserrat SemiBold.</p>
+                <div>
+                    <h2 class="text-subheading mb-4">
+                        <span class="material-symbols-rounded accent" style="font-size: inherit;">auto_stories</span>
+                        Subheading Title
+                    </h2>
+                    <p class="text-body opacity-60">Used for subsections and component titles.</p>
+                </div>
 
-            <div class="variant-grid">
                 <div>
-                    <p class="text-small mb-4">Primary - Light Background</p>
-                    <a href="#" class="button button-primary">
-                        <span class="material-symbols-rounded">auto_stories</span>
-                        Button Text
-                    </a>
-                </div>
-                <div>
-                    <p class="text-small mb-4">Outline - Light Background</p>
-                    <a href="#" class="button button-outline">
-                        <span class="material-symbols-rounded">event</span>
-                        Button Text
-                    </a>
-                </div>
-                <div class="section-green" style="padding: 1.5rem; border-radius: 1.5rem;">
-                    <p class="text-small mb-4">Primary - Dark Background</p>
-                    <a href="#" class="button button-primary">Button Text</a>
-                </div>
-                <div class="section-green" style="padding: 1.5rem; border-radius: 1.5rem;">
-                    <p class="text-small mb-4">Outline - Dark Background</p>
-                    <a href="#" class="button button-outline">Button Text</a>
-                </div>
-                <div>
-                    <p class="text-small mb-4">Small Variant</p>
-                    <a href="#" class="button button-primary button-small">Small Button</a>
+                    <p class="text-body">Standard body text for general content. Montserrat Regular 16px (1rem). Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                    <p class="text-body opacity-60 mt-2">Used for paragraphs and long-form reading.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SECTIONS -->
+        <!-- BUTTONS & INPUTS SECTION: Primary, Outline and Wide Input -->
         <section class="showcase-section">
-            <span class="showcase-label">03. Sections (Theming)</span>
+            <span class="showcase-label">02. Buttons & Inputs</span>
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                    <a href="#" class="button button-primary">Primary Button</a>
+                    <a href="#" class="button button-outline">Outline Button</a>
+                </div>
+                <div>
+                    <input type="text" class="input-field" placeholder="Input Field (Wide)">
+                </div>
+            </div>
+        </section>
 
-            <div class="section section-beige">
-                <h3 class="text-subheading mb-4">Template A — Section Beige</h3>
-                <p class="text-body mb-6">The standard light theme used for most content. High readability with Deep Navy text on Soft Cream background.</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="#" class="button button-primary">Primary Action</a>
-                    <a href="#" class="button button-outline">Secondary Action</a>
+        <!-- CARDS SECTION: 4 variants across Beige and Green backgrounds -->
+        <section class="showcase-section">
+            <span class="showcase-label">03. Cards (4 Variants)</span>
+
+            <div class="section section-beige" style="margin-bottom: 4rem;">
+                <p class="text-body mb-4 font-semibold">On Beige Background (Normal):</p>
+                <div class="grid-2">
+                    <!-- Normal Card on Beige -->
+                    <div class="card-base card-normal">
+                        <h3 class="text-subheading mb-4">Normal Card</h3>
+                        <p class="text-body">Standard card with subtle background on beige.</p>
+                    </div>
+                    <!-- Filled Card on Beige (Green Card) -->
+                    <div class="card-base card-filled">
+                        <h3 class="text-subheading mb-4">Filled Card</h3>
+                        <p class="text-body">High-impact card using the Emerald theme.</p>
+                    </div>
                 </div>
             </div>
 
             <div class="section section-green">
-                <h3 class="text-subheading mb-4">Template B — Section Green</h3>
-                <p class="text-body mb-6">High-impact dark theme. Uses Soft Cream text on Dark Emerald background with <span class="accent font-semibold">Light Blue accents</span>.</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="#" class="button button-primary">Primary Action</a>
-                    <a href="#" class="button button-outline">Secondary Action</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- CARDS -->
-        <section class="showcase-section">
-            <span class="showcase-label">04. Cards & Boxes</span>
-            <p class="text-small mb-6">All card components use a 2rem border-radius and consistent box-padding.</p>
-
-            <div class="variant-grid">
-                <!-- Standard Card -->
-                <div class="card-base card">
-                    <span class="material-symbols-rounded mb-4 accent" style="font-size: 2.5rem;">groups</span>
-                    <h3 class="text-subheading mb-2">Standard Card</h3>
-                    <p class="text-body opacity-80">Used for features or offerings on light backgrounds.</p>
-                </div>
-
-                <!-- Filled Card -->
-                <div class="card-base card-filled">
-                    <h3 class="text-subheading mb-2">Filled Card</h3>
-                    <p class="text-body opacity-90">Used for high-impact CTAs. Uses the <span class="accent">Dark Emerald</span> theme.</p>
-                    <div style="margin-top: auto; padding-top: 1.5rem;">
-                        <a href="#" class="button button-primary" style="background-color: var(--color-soft-cream); color: var(--color-dark-emerald);">Action</a>
+                <p class="text-body mb-4 font-semibold">On Green Background:</p>
+                <div class="grid-2">
+                    <!-- Normal Card on Green -->
+                    <div class="card-base card-normal">
+                        <h3 class="text-subheading mb-4">Normal Card</h3>
+                        <p class="text-body">Standard card with subtle background on emerald.</p>
                     </div>
-                </div>
-
-                <!-- Price Card Light -->
-                <div class="card-base price-card">
-                    <p class="text-small opacity-60">Price Card - Light</p>
-                    <h3 class="text-subheading accent">Early Bird</h3>
-                    <p class="price-amount">€250</p>
-                    <p class="text-small opacity-80">Geldig tot 1 maand voor start</p>
-                </div>
-
-                <!-- Price Card Dark -->
-                <div class="section-green" style="padding: 0; border-radius: 2rem;">
-                    <div class="card-base price-card" style="height: 100%;">
-                        <p class="text-small opacity-60">Price Card - Dark</p>
-                        <h3 class="text-subheading accent">Regulier</h3>
-                        <p class="price-amount">€300</p>
-                        <p class="text-small opacity-80">Standaard tarief</p>
-                    </div>
-                </div>
-
-                <!-- Contact Card -->
-                <a href="#" class="card-base contact-card">
-                    <span class="material-symbols-rounded accent" style="font-size: 2.5rem; margin-bottom: 1.5rem;">chat</span>
-                    <div>
-                        <span class="contact-label">WhatsApp</span><br>
-                        <span class="text-small opacity-60">+31 6 0000 0000</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- NAVIGATION & FOOTER -->
-        <section class="showcase-section">
-            <span class="showcase-label">05. Navigation & Footer</span>
-
-            <p class="text-small mb-4">Navbar Pattern (Scrolled State)</p>
-            <nav class="navbar-placeholder">
-                <div class="accent font-semibold">¡Vamos Hablando!</div>
-                <div class="nav-links-placeholder">
-                    <span>Home</span>
-                    <span class="accent" style="text-decoration: underline;">Aanbod</span>
-                    <span>Contact</span>
-                </div>
-            </nav>
-
-            <p class="text-small mb-4" style="margin-top: 3rem;">Footer Pattern</p>
-            <footer class="footer-placeholder">
-                <div class="footer-col">
-                    <div class="font-semibold mb-4" style="font-size: 1.25rem;">¡Vamos Hablando!</div>
-                    <p class="text-small opacity-70">Spaans leer je door het te gebruiken. Van online lessen tot taalreizen.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Navigatie</h4>
-                    <ul class="footer-list">
-                        <li>Home</li>
-                        <li>Aanbod</li>
-                        <li>Over mij</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <ul class="footer-list">
-                        <li>WhatsApp</li>
-                        <li>Instagram</li>
-                        <li>E-mail</li>
-                    </ul>
-                </div>
-            </footer>
-        </section>
-
-        <!-- FORMS / QUIZ -->
-        <section class="showcase-section">
-            <span class="showcase-label">06. Interactive / Forms</span>
-
-            <div class="card-base quiz-step-card">
-                <div class="text-small opacity-60 mb-4" style="letter-spacing: 0.1em; text-transform: uppercase;">Question 01</div>
-                <h2 class="text-subheading mb-6">Sample Quiz Question: How do you feel about learning Spanish?</h2>
-
-                <div class="quiz-step-options">
-                    <div class="quiz-step-option">
-                        <span class="quiz-option-letter">A</span>
-                        <span>Option description text goes here</span>
-                    </div>
-                    <div class="quiz-step-option" style="border-color: var(--color-light-blue); background-color: rgba(207, 228, 234, 0.15);">
-                        <span class="quiz-option-letter" style="background-color: var(--color-light-blue); color: var(--color-dark-emerald);">B</span>
-                        <span style="color: var(--color-light-blue);">Selected option variant</span>
-                    </div>
-                    <div class="quiz-step-option">
-                        <span class="quiz-option-letter">C</span>
-                        <span>Another option for the user</span>
+                    <!-- Filled Card on Green (Beige Card) -->
+                    <div class="card-base card-filled">
+                        <h3 class="text-subheading mb-4">Filled Card</h3>
+                        <p class="text-body">High-impact card using the Beige theme.</p>
                     </div>
                 </div>
             </div>
         </section>
 
     </main>
-
-    <!-- HTML Comments to separate component groups as requested -->
-    <!-- Component Group: Typography - Defines standard sizes and weights -->
-    <!-- Component Group: Buttons - Defines primary and secondary actions across all themes -->
-    <!-- Component Group: Sections - Defines global background themes -->
-    <!-- Component Group: Cards & Boxes - Defines various content containers and their color variants -->
-    <!-- Component Group: Navigation - Structural placeholders for header/footer -->
-    <!-- Component Group: Interactive - Defines quiz and form elements -->
 
 </body>
 </html>
