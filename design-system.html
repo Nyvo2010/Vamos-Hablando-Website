@@ -18,20 +18,37 @@
     <!-- Material Symbols Rounded -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <style>
+        /* ------------------------------------------------------------------ */
+        /* Design tokens & system notes (authoritative source for the site)   */
+        /* - Keep color values in this block only; don't hard-code elsewhere. */
+        /* - Typography tokens control global text sizing.                 */
+        /* ------------------------------------------------------------------ */
         :root {
+            /* Color palette — strictly controlled (see AGENTS.md for rules) */
             --color-soft-cream: #F6E6C8;
             --color-dark-emerald: #0B5F58;
             --color-deep-navy: #0E1A2B;
             --color-light-blue: #CFE4EA;
 
+            /* Theme tokens */
             --background: var(--color-soft-cream);
             --foreground: var(--color-deep-navy);
             --font-sans: 'Montserrat', sans-serif;
 
-            --font-size-heading: 2.25rem;
-            --font-size-subheading: 1.25rem;
-            --font-size-body: 1rem;
+            /* Typography sizes — increased a tiny bit for improved legibility
+               Note: Change these tokens only; components should reference them. */
+            /* Heading: bumped slightly from 2.25rem -> 2.375rem */
+            --font-size-heading: 2.375rem;
+            /* Subheading: small bump from 1.25rem -> 1.375rem */
+            --font-size-subheading: 1.375rem;
+            /* Body: slight increase from 1rem -> ~1.0625rem (≈17px) */
+            --font-size-body: 1.0625rem;
 
+            /* ENFORCEMENT NOTE: Use ONLY these three tokens for all text. Avoid any other
+               `font-size` values in CSS or inline styles. If you need visual hierarchy,
+               use color, weight (SemiBold), spacing, or opacity rather than extra sizes. */
+
+            /* Spacing & layout tokens */
             --page-gutter: 1.5rem;
             --section-vertical: 4rem;
             --box-padding: 2.5rem;
@@ -42,8 +59,9 @@
             :root {
                 --page-gutter: 4rem;
                 --section-vertical: 6rem;
-                --font-size-heading: 3.5rem;
-                --font-size-subheading: 1.75rem;
+                /* Larger screen adjustments — tiny increases for headings */
+                --font-size-heading: 3.75rem;
+                --font-size-subheading: 1.875rem;
             }
         }
 
@@ -110,7 +128,8 @@
 
         .showcase-label {
             display: block;
-            font-size: 0.75rem;
+            /* Use body token for labels — visual reduction achieved via opacity/letter-spacing, not a separate font-size */
+            font-size: var(--font-size-body);
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--color-dark-emerald);
@@ -121,14 +140,16 @@
         }
 
         /* Buttons */
+        /* Buttons: round, roomy, semi-bold (use 600 not bold). Use primary for CTAs */
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             padding: 1.125rem 2.25rem;
             border-radius: 9999px;
-            font-weight: 600;
-            font-size: 1.25rem;
+            font-weight: 600; /* SemiBold only per design rules */
+            /* Buttons use the Subheading token to stay consistent with the system */
+            font-size: var(--font-size-subheading);
             transition: all 0.3s ease;
             gap: 0.75rem;
             white-space: nowrap;
@@ -155,6 +176,7 @@
         }
 
         /* Input Field */
+        /* Input fields: comfortable hit target and readable text. Keep pill shape. */
         .input-field {
             display: block;
             width: 100%;
@@ -162,7 +184,8 @@
             padding: 1.125rem 2rem;
             border-radius: 9999px;
             font-family: var(--font-sans);
-            font-size: 1rem;
+            /* Inputs use the Body token to match paragraph text */
+            font-size: var(--font-size-body);
             border: 2px solid rgba(11, 95, 88, 0.2);
             background-color: white;
             color: var(--color-deep-navy);
@@ -261,6 +284,15 @@
     <main class="container">
 
         <!-- TYPOGRAPHY SECTION: Heading, Subheading, Body with Icons -->
+        <!--
+            Usage Notes — Typography:
+            - Only 3 roles: Heading (`.text-heading`), Subheading (`.text-subheading`), Body (`.text-body`).
+            - Heading: for main page and section titles (use `font-weight: 600`, never bold).
+            - Subheading: for component titles and emphasized lines.
+            - Body: general copy; prefer line-length and legibility over decoration.
+            - Accent color (`.accent`) = Dark Emerald; max one accent per slide.
+            - Pronunciation/phonetic text should be smaller (~60-65%) and italic when used.
+        -->
         <section class="showcase-section">
             <span class="showcase-label">01. Typography (Only 3 Types)</span>
             <div style="display: flex; flex-direction: column; gap: 2.5rem;">
@@ -288,6 +320,13 @@
         </section>
 
         <!-- BUTTONS & INPUTS SECTION: Primary, Outline and Wide Input -->
+        <!--
+            Buttons & Inputs guidelines:
+            - Use `.button-primary` for primary CTAs (Dark Emerald on Beige, inverted on Green).
+            - Use `.button-outline` for secondary actions; outline must remain Emerald (or Cream on green bg).
+            - Buttons: keep SemiBold, rounded, and with accessible contrast.
+            - Inputs: keep pill shape, large hit area, and match body text sizing.
+        -->
         <section class="showcase-section">
             <span class="showcase-label">02. Buttons & Inputs</span>
             <div style="display: flex; flex-direction: column; gap: 2rem;">
@@ -302,6 +341,13 @@
         </section>
 
         <!-- CARDS SECTION: 4 variants across Beige and Green backgrounds -->
+        <!--
+            Cards guidelines:
+            - Two states: `.card-normal` (subtle) and `.card-filled` (high-impact).
+            - On Beige: filled uses Dark Emerald; on Green: filled uses Soft Cream (inverted).
+            - Use `.card-base` for padding and radius consistency — change tokens, not component CSS.
+            - Cards should be used for grouped content, CTAs, and highlights; avoid overuse.
+        -->
         <section class="showcase-section">
             <span class="showcase-label">03. Cards (4 Variants)</span>
 
