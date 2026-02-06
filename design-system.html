@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <!--
-    CONCEPTUAL DESIGN SYSTEM PLAN:
-    - Review all pages to identify recurring components (Headings, Buttons, Cards, Inputs).
-    - Simplify the design language to only include the most prevalent and requested elements.
-    - Implement a strict typography system with exactly 3 types (Heading, Subheading, Body).
-    - Standardize button and input field dimensions for visual consistency.
-    - Define a cross-theme card logic (Normal vs Filled) for both Beige and Green sections.
-    - Consolidate all styles into a single, internal CSS block for portability.
-    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Design System - ¡Vamos Hablando!</title>
@@ -35,13 +26,8 @@
             --foreground: var(--color-deep-navy);
             --font-sans: 'Montserrat', sans-serif;
 
-            /* Typography sizes — increased a tiny bit for improved legibility
-               Note: Change these tokens only; components should reference them. */
-            /* Heading: bumped slightly from 2.25rem -> 2.375rem */
             --font-size-heading: 2.375rem;
-            /* Subheading: small bump from 1.25rem -> 1.375rem */
             --font-size-subheading: 1.375rem;
-            /* Body: slight increase from 1rem -> ~1.0625rem (≈17px) */
             --font-size-body: 1.0625rem;
 
             /* ENFORCEMENT NOTE: Use ONLY these three tokens for all text. Avoid any other
@@ -59,7 +45,6 @@
             :root {
                 --page-gutter: 4rem;
                 --section-vertical: 6rem;
-                /* Larger screen adjustments — tiny increases for headings */
                 --font-size-heading: 3.75rem;
                 --font-size-subheading: 1.875rem;
             }
@@ -291,7 +276,7 @@
             - Subheading: for component titles and emphasized lines.
             - Body: general copy; prefer line-length and legibility over decoration.
             - Accent color (`.accent`) = Dark Emerald; max one accent per slide.
-            - Pronunciation/phonetic text should be smaller (~60-65%) and italic when used.
+            - Pronunciation/phonetic text should be italic when used.
         -->
         <section class="showcase-section">
             <span class="showcase-label">01. Typography (Only 3 Types)</span>
