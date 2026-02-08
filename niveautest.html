@@ -14,7 +14,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body class="quiz-locked quiz-page">
+<body class="quiz-page">
     <!-- NAV: site header + navigation -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -68,45 +68,9 @@
         <!-- Quiz Stepper Section - Full Height Single Question View -->
         <section class="section section-beige section-quiz-stepper animate-on-scroll">
             <div class="section-container max-w-4xl space-y-16">
-                <div class="space-y-6">
-                    <h1 class="text-heading flex items-center gap-6">
-                        <span class="material-symbols-rounded heading-icon" aria-hidden="true">school</span>
-                        <span>Niveautest <span class="accent">Spaans</span></span>
-                    </h1>
-                    <p class="text-lead leading-relaxed opacity-90 max-w-3xl">
-                        Test je niveau in 10 vragen.
-                    </p>
-                </div>
-
-                <!-- Quiz Intro Gate -->
-                <div class="quiz-intro-card" id="quiz-intro-card">
-                    <div class="quiz-intro-header">
-                        <span class="material-symbols-rounded" aria-hidden="true">person</span>
-                        <h2 class="text-subheading">Voordat we starten</h2>
-                    </div>
-                    <p class="text-body opacity-90">
-                        Vul je gegevens in om de test te starten.
-                    </p>
-                    <form class="quiz-intro-form" id="intro-form" novalidate>
-                        <div class="quiz-intro-group">
-                            <label class="quiz-intro-label" for="user-name">Naam <span class="required">*</span></label>
-                            <input type="text" id="user-name" name="user-name" class="quiz-intro-input" placeholder="Je naam" autocomplete="name" required aria-describedby="name-hint">
-                            <span class="quiz-intro-hint" id="name-hint"></span>
-                        </div>
-                        <div class="quiz-intro-group">
-                            <label class="quiz-intro-label" for="user-email">E-mail <span class="required">*</span></label>
-                            <input type="email" id="user-email" name="user-email" class="quiz-intro-input" placeholder="je@email.nl" autocomplete="email" required aria-describedby="email-hint">
-                            <span class="quiz-intro-hint" id="email-hint"></span>
-                        </div>
-                        <button type="submit" class="button button-primary">
-                            <span class="material-symbols-rounded">arrow_forward</span>
-                            Start
-                        </button>
-                    </form>
-                </div>
 
                 <!-- Quiz Stepper Container -->
-                <div class="quiz-stepper" id="quiz-stepper" aria-hidden="true">
+                <div class="quiz-stepper" id="quiz-stepper" aria-hidden="false">
 
                     <!-- Question 1: Understanding spoken Spanish -->
                     <div class="quiz-step active" data-question="1">
@@ -383,6 +347,32 @@
                                     <span class="material-symbols-rounded">mail</span>
                                     Vraag advies
                                 </a>
+                            </div>
+
+                            <div class="quiz-advice-panel" id="quiz-advice-panel" aria-hidden="true">
+                                <div class="quiz-advice-header">
+                                    <span class="material-symbols-rounded" aria-hidden="true">mail</span>
+                                    <h3 class="text-subheading">Advies aanvragen</h3>
+                                </div>
+                                <p class="text-body opacity-90">
+                                    Laat je naam en e-mailadres achter, klik op 'Verstuur advies', je stuurt dan een mail naar ons toe met jouw quizresultaten en we nemen binnen 2 werkdagen contact met je op voor een persoonlijk adviesgesprek. 
+                                </p>
+                                <form class="quiz-advice-form" id="advice-form" novalidate>
+                                    <div class="quiz-advice-group">
+                                        <label class="quiz-advice-label" for="advice-name">Naam <span class="required">*</span></label>
+                                        <input type="text" id="advice-name" name="advice-name" class="quiz-advice-input" placeholder="Je naam" autocomplete="name" required aria-describedby="advice-name-hint">
+                                        <span class="quiz-advice-hint" id="advice-name-hint"></span>
+                                    </div>
+                                    <div class="quiz-advice-group">
+                                        <label class="quiz-advice-label" for="advice-email">E-mail <span class="required">*</span></label>
+                                        <input type="email" id="advice-email" name="advice-email" class="quiz-advice-input" placeholder="je@email.nl" autocomplete="email" required aria-describedby="advice-email-hint">
+                                        <span class="quiz-advice-hint" id="advice-email-hint"></span>
+                                    </div>
+                                    <button type="submit" class="button button-primary">
+                                        <span class="material-symbols-rounded">send</span>
+                                        Verstuur advies
+                                    </button>
+                                </form>
                             </div>
 
                             <div class="quiz-results-secondary">

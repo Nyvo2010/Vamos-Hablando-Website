@@ -51,12 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
    
-    document.addEventListener('bindGalleryEvents', function() {  });
-
-   
     (function initGallery() {
         const galleryCards = document.querySelectorAll('.gallery-card');
-        const galleryContainer = document.querySelector('.stacked-gallery');
 
         if (!galleryCards.length) return;
 

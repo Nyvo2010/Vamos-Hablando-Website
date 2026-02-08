@@ -14,8 +14,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check if we're on the quiz page
-    const quizIntro = document.getElementById('quiz-intro-card');
-    if (!quizIntro) return;
+    const quizStepper = document.getElementById('quiz-stepper');
+    if (!quizStepper) return;
 
     // ============================================
     // STATE
@@ -28,11 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     // DOM ELEMENTS
     // ============================================
-    const introForm = document.getElementById('intro-form');
-    const nameInput = document.getElementById('user-name');
-    const emailInput = document.getElementById('user-email');
-    const nameHint = document.getElementById('name-hint');
-    const emailHint = document.getElementById('email-hint');
+    const advicePanel = document.getElementById('quiz-advice-panel');
+    const adviceForm = document.getElementById('advice-form');
+    const adviceNameInput = document.getElementById('advice-name');
+    const adviceEmailInput = document.getElementById('advice-email');
+    const adviceNameHint = document.getElementById('advice-name-hint');
+    const adviceEmailHint = document.getElementById('advice-email-hint');
     const questions = document.querySelectorAll('.quiz-step');
     const resultsScreen = document.getElementById('quiz-results');
     const resultLevel = document.getElementById('result-level');
@@ -71,82 +72,20 @@ document.addEventListener('DOMContentLoaded', () => {
             radio.checked = false;
         });
 
-        // Setup intro form
-        setupIntroForm();
-
         // Setup question options
         setupQuestionListeners();
-    }
 
-    // ============================================
-    // INTRO FORM
-    // ============================================
-    function setupIntroForm() {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // Setup request advice flow
+        setupRequestAdvice();
 
-        introForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const name = nameInput.value.trim();
-            const email = emailInput.value.trim();
-            let valid = true;
-
-            // Validate name
-            if (!name) {
-                nameInput.classList.add('error');
-                nameHint.textContent = 'Vul je naam in';
-                valid = false;
-            } else {
-                nameInput.classList.remove('error');
-                nameHint.textContent = '';
-            }
-
-            // Validate email
-            if (!email || !emailRegex.test(email)) {
-                emailInput.classList.add('error');
-                emailHint.textContent = 'Vul een geldig e-mailadres in';
-                valid = false;
-            } else {
-                emailInput.classList.remove('error');
-                emailHint.textContent = '';
-            }
-
-            if (!valid) return;
-
-            // Store user data
-            user.name = name;
-            user.email = email;
-
-            // Start quiz
-            startQuiz();
-        });
-
-        // Clear errors on input
-        nameInput.addEventListener('input', () => {
-            nameInput.classList.remove('error');
-            nameHint.textContent = '';
-        });
-
-        emailInput.addEventListener('input', () => {
-            emailInput.classList.remove('error');
-            emailHint.textContent = '';
-        });
+        // Start quiz immediately
+        startQuiz();
     }
 
     // ============================================
     // QUIZ FLOW
     // ============================================
     function startQuiz() {
-        // Unlock quiz view
-        document.body.classList.remove('quiz-locked');
-        document.body.classList.add('quiz-started');
-        
-        // Make stepper visible for screen readers
-        const stepper = document.getElementById('quiz-stepper');
-        if (stepper) {
-            stepper.setAttribute('aria-hidden', 'false');
-        }
-
         // Show first question
         currentQuestion = 1;
         showQuestion(1);
@@ -175,11 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Store answer
                 answers[`q${questionNum}`] = value;
 
-                // Visual feedback
-                const siblings = option.closest('.quiz-step-options').querySelectorAll('.quiz-step-option');
-                siblings.forEach(s => s.classList.remove('selected'));
-                option.classList.add('selected');
-
                 // Advance after short delay
                 setTimeout(() => {
                     if (questionNum < TOTAL_QUESTIONS) {
@@ -207,6 +141,10 @@ document.addEventListener('DOMContentLoaded', () => {
              resultsScreen.style.opacity = '1';
         }
 
+        if (resultsScreen) {
+            resultsScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
         const score = calculateScore();
         let levelData;
 
@@ -221,6 +159,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (resultLevel) resultLevel.textContent = levelData.name;
         if (resultExplanation) resultExplanation.textContent = levelData.explanation;
         if (resultLink) resultLink.href = levelData.link;
+
+        if (advicePanel) {
+            advicePanel.classList.remove('open');
+            advicePanel.setAttribute('aria-hidden', 'true');
+        }
+
+        if (adviceForm) {
+            adviceForm.reset();
+        }
         
         // Remove 'quiz-started' class to potentially allow header to show? 
         // No, user wants box to stay centered. 
@@ -230,8 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             createConfetti();
         }
 
-        // Setup request advice button
-        setupRequestAdvice();
+        // Keep request advice flow ready
     }
 
     function calculateScore() {
@@ -244,83 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return total;
     }
 
-    function getLevel(score) {
-        if (score <= 14) {
-            return levels.start;
-        } else if (score <= 20) {
-            return levels.startIntermediate;
-        } else {
-            levelEl.textContent = 'Spaans spreken verdieping';
-            anchor = 'niveau-verdieping';
-        }
-
-        // Update link to scroll to correct level section
-        if (levelLink) {
-            levelLink.href = `groepslessen.html#${anchor}`;
-        }
-    }
-
-    /**
-     * Build the answer breakdown list
-     */
-    function buildBreakdown(results) {
-        if (!breakdownList) return;
-
-        breakdownList.innerHTML = results.map(r => `
-            <div class="breakdown-item">
-                <div class="breakdown-icon ${r.isCorrect ? 'correct' : 'incorrect'}">
-                    <span class="material-symbols-rounded">${r.isCorrect ? 'check' : 'close'}</span>
-                </div>
-                <div class="breakdown-text">
-                    <div class="breakdown-question">Vraag ${r.question}: ${r.questionText}</div>
-                    <div class="breakdown-answer">${r.isCorrect ? 'Correct!' : `Juist: ${r.correctAnswer}`}</div>
-                </div>
-            </div>
-        `).join('');
-
-        // Store results for sharing
-        window.quizResults = results;
-    }
-
-    /**
-     * Setup share results button
-     */
-    function setupShareResults() {
-        const shareBtn = document.getElementById('share-results-btn');
-        if (!shareBtn) return;
-
-        shareBtn.addEventListener('click', () => {
-            if (!quizUser.name || !quizUser.email) {
-                alert('Vul eerst je naam en e-mailadres in om de resultaten te versturen.');
-                return;
-            }
-
-            const scoreEl = document.getElementById('final-score');
-            const levelEl = document.getElementById('recommendation-level');
-            const score = scoreEl ? scoreEl.textContent : '?';
-            const level = levelEl ? levelEl.textContent : 'Onbekend';
-            
-            // Build email body with results
-            let emailBody = `Hallo!\n\nMijn naam is ${quizUser.name} en ik heb de niveautest van ¡Vamos Hablando! gemaakt.\n`;
-            emailBody += `Mijn e-mailadres: ${quizUser.email}\n\n`;
-            emailBody += `Mijn score: ${score}/10\n`;
-            emailBody += `Aanbevolen niveau: ${level}\n\n`;
-            
-            if (window.quizResults) {
-                emailBody += `Antwoorden:\n`;
-                window.quizResults.forEach(r => {
-                    const status = r.isCorrect ? '✓' : '✗';
-                    emailBody += `${status} Vraag ${r.question}: ${r.isCorrect ? 'Correct' : 'Fout (juist: ' + r.correctAnswer + ')'}\n`;
-                });
-            }
-            
-            emailBody += `\nGraag hoor ik van u welke cursus het beste bij mij past.\n\nMet vriendelijke groet,\n${quizUser.name}`;
-            
-            // Open email client
-            const mailtoLink = `mailto:info@vamoshablando.nl?subject=${encodeURIComponent('Niveautest resultaat - ' + quizUser.name)}&body=${encodeURIComponent(emailBody)}`;
-            window.location.href = mailtoLink;
-        });
-    }
 
     // Question data for building email
     const questionData = [
@@ -340,10 +209,50 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function setupRequestAdvice() {
         const requestAdviceBtn = document.getElementById('request-advice-btn');
-        if (!requestAdviceBtn) return;
+        if (!requestAdviceBtn || !advicePanel || !adviceForm || !adviceNameInput || !adviceEmailInput) return;
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         requestAdviceBtn.addEventListener('click', (e) => {
             e.preventDefault();
+
+            const isOpen = advicePanel.classList.toggle('open');
+            advicePanel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+
+            if (isOpen) {
+                adviceNameInput.focus();
+            }
+        });
+
+        adviceForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = adviceNameInput.value.trim();
+            const email = adviceEmailInput.value.trim();
+            let valid = true;
+
+            if (!name) {
+                adviceNameInput.classList.add('error');
+                adviceNameHint.textContent = 'Vul je naam in';
+                valid = false;
+            } else {
+                adviceNameInput.classList.remove('error');
+                adviceNameHint.textContent = '';
+            }
+
+            if (!email || !emailRegex.test(email)) {
+                adviceEmailInput.classList.add('error');
+                adviceEmailHint.textContent = 'Vul een geldig e-mailadres in';
+                valid = false;
+            } else {
+                adviceEmailInput.classList.remove('error');
+                adviceEmailHint.textContent = '';
+            }
+
+            if (!valid) return;
+
+            user.name = name;
+            user.email = email;
 
             const score = calculateScore();
             const levelData = score <= 14 ? levels.start : score <= 20 ? levels.startIntermediate : levels.intermediate;
@@ -370,17 +279,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const mailtoLink = `mailto:info@vamoshablando.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
             window.location.href = mailtoLink;
         });
-    }
 
-    /**
-     * Setup breakdown toggle functionality
-     */
-    function setupBreakdownToggle() {
-        if (!breakdownToggle || !breakdownList) return;
+        adviceNameInput.addEventListener('input', () => {
+            adviceNameInput.classList.remove('error');
+            adviceNameHint.textContent = '';
+        });
 
-        breakdownToggle.addEventListener('click', () => {
-            breakdownToggle.classList.toggle('open');
-            breakdownList.classList.toggle('open');
+        adviceEmailInput.addEventListener('input', () => {
+            adviceEmailInput.classList.remove('error');
+            adviceEmailHint.textContent = '';
         });
     }
 
@@ -390,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createConfetti() {
         if (!confettiContainer) return;
 
-        const colors = ['#F6E6C8', '#CFE4EA', '#0B5F58', '#69f0ae', '#ffeb3b'];
+        const colors = ['#F6E6C8', '#CFE4EA', '#0B5F58', '#0E1A2B'];
         const confettiCount = 50;
 
         for (let i = 0; i < confettiCount; i++) {
