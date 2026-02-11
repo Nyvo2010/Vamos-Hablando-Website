@@ -83,53 +83,60 @@
         </div>
     </nav>
 
-    <main class="pt-20">
-        <section class="section section-beige animate-on-scroll">
-            <div class="section-container max-w-4xl space-y-16">
-                <div class="space-y-6">
-                    <h1 class="text-heading leading-tight flex items-center gap-6">
-                        <span class="material-symbols-rounded heading-icon" aria-hidden="true">auto_stories</span>
-                        <span>Aanbod van <span class="accent">¡Vamos Hablando!</span></span>
-                    </h1>
-                    <p class="text-lead opacity-90 max-w-3xl">
-                        Kies wat past bij jouw leerdoel: leren in een kleine online groep, individuele begeleiding met
-                        privéles, of deelnemen aan een contextgebonden taalreis in Malaga voor scholen. Elk programma is
-                        gericht op betekenisvol taalgebruik en een duidelijke opbouw.
-                    </p>
-                </div>
+    <main>
+        <!-- AANBOD INTRO -->
+        <section class="section section-beige">
+            <div class="container">
+                <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+                    <div>
+                        <h1 class="text-heading mb-6">
+                            <span class="material-symbols-rounded accent" style="font-size: inherit;">auto_stories</span>
+                            Aanbod van <span class="accent">¡Vamos Hablando!</span>
+                        </h1>
+                        <p class="text-body opacity-80" style="max-width: 40rem;">
+                            Kies wat past bij jouw leerdoel: leren in een kleine online groep, individuele begeleiding met
+                            privéles, of deelnemen aan een contextgebonden taalreis in Malaga voor scholen.
+                        </p>
+                    </div>
 
-                <div class="grid md-grid-cols-2 gap-8">
-                    <!-- Groepslessen -->
-                    <div class="card text-left">
-                        <span class="material-symbols-rounded mb-4 icon-xl text-dark-emerald">groups</span>
-                        <h3 class="text-subheading mb-2">Groepslessen</h3>
-                        <p class="opacity-80 mb-6">Spreken in kleine groepen — veel oefentijd en interactie.</p>
-                        <div class="mt-auto">
-                            <a href="groepslessen.html" class="button button-primary">Lees meer</a>
+                    <div class="grid-2">
+                        <!-- Groepslessen -->
+                        <div class="card-base card-normal card-scale">
+                            <span class="material-symbols-rounded accent mb-4" style="font-size: 2.5rem;">groups</span>
+                            <h3 class="text-subheading mb-4">Groepslessen</h3>
+                            <p class="text-body mb-6">Spreken in kleine groepen — veel oefentijd en interactie.</p>
+                            <div style="margin-top: auto;">
+                                <a href="groepslessen.html" class="button button-primary" style="width: 100%;">Lees meer</a>
+                            </div>
+                        </div>
+
+                        <!-- Privélessen -->
+                        <div class="card-base card-normal card-scale">
+                            <span class="material-symbols-rounded accent mb-4" style="font-size: 2.5rem;">person</span>
+                            <h3 class="text-subheading mb-4">Privélessen</h3>
+                            <p class="text-body mb-6">Persoonlijke begeleiding, afgestemd op jouw doelen en tempo.</p>
+                            <div style="margin-top: auto;">
+                                <a href="priveles.html" class="button button-primary" style="width: 100%;">Lees meer</a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Privélessen -->
-                    <div class="card text-left">
-                        <span class="material-symbols-rounded mb-4 icon-xl text-dark-emerald">person</span>
-                        <h3 class="text-subheading mb-2">Privélessen</h3>
-                        <p class="opacity-80 mb-6">Persoonlijke begeleiding, afgestemd op jouw doelen en tempo.</p>
-                        <div class="mt-auto">
-                            <a href="priveles.html" class="button button-primary">Lees meer</a>
-                        </div>
-                    </div>
-
-                    <!-- Taalreizen (wide) -->
-                    <div class="card card-wide md-col-span-2 text-left">
-                        <div class="card-wide-inner">
-                            <span class="material-symbols-rounded mb-4 icon-xl text-dark-emerald">flight_takeoff</span>
-                            <div>
-                                <h3 class="text-subheading mb-2">Taalreizen</h3>
-                                <p class="opacity-80 mb-6">Contextgebonden taalreizen in Malaga voor scholen — leren
-                                    door doen.</p>
-                                <div class="mt-auto">
-                                    <a href="taalreis.html" class="button button-primary">Lees meer</a>
+                    <!-- Taalreizen (Wide Card using grid-2 logic or just container) -->
+                    <div class="card-base card-filled card-scale">
+                        <div class="grid-2" style="align-items: center;">
+                            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <span class="material-symbols-rounded accent" style="font-size: 2.5rem;">flight_takeoff</span>
+                                    <h3 class="text-subheading">Taalreizen</h3>
                                 </div>
+                                <p class="text-body opacity-90">
+                                    Contextgebonden taalreizen in Malaga voor scholen — leren door doen.
+                                </p>
+                            </div>
+                            <div style="display: flex; justify-content: flex-end;">
+                                <a href="taalreis.html" class="button button-outline">
+                                    Lees meer
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -137,18 +144,23 @@
             </div>
         </section>
 
-        <section class="section section-beige section-compact animate-on-scroll">
-            <div class="section-container max-w-4xl space-y-12">
-                <h2 class="text-heading leading-tight">
-                    Wil je ontdekken wat <span class="accent">¡Vamos Hablando!</span> voor jou kan betekenen?
-                </h2>
-                <p class="text-lead opacity-80 max-w-2xl">
-                    Of je nu als individu wilt starten of als school interesse hebt in een taalreis op maat, ik denk
-                    graag met je mee.
-                </p>
-                <div class="pt-4">
-                    <a href="contact.html" class="button button-primary"><span
-                            class="material-symbols-rounded">event</span> Plan een kennismaking</a>
+        <!-- CTA SECTION -->
+        <section class="section section-green">
+            <div class="container">
+                <div style="max-width: 40rem; margin: 0 auto; text-align: center; display: flex; flex-direction: column; gap: 1.5rem;">
+                    <h2 class="text-subheading" style="justify-content: center;">
+                        Ontdek wat <span class="accent">¡Vamos Hablando!</span> kan betekenen
+                    </h2>
+                    <p class="text-body opacity-90">
+                        Of je nu als individu wilt starten of als school interesse hebt in een taalreis op maat, ik denk
+                        graag met je mee.
+                    </p>
+                    <div style="padding-top: 1rem;">
+                        <a href="contact.html" class="button button-primary">
+                            <span class="material-symbols-rounded">event</span> 
+                            Kennismaken
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
