@@ -1824,7 +1824,7 @@ footer {
 }
 
 /* Mobile specific: Normal Horizontal Scroll (Netflix-style) */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .gallery-wrapper {
         display: block;
         padding: 0;
@@ -1979,7 +1979,7 @@ footer {
     color: var(--color-soft-cream);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .quiz-step-question {
         font-size: 1.35rem;
         margin-bottom: 1.5rem;
@@ -2470,5 +2470,238 @@ body.quiz-page+footer {
     color: var(--color-soft-cream);
 }
 
+/* ==========================================
+   MOBILE RESPONSIVE POLISH (0–767px)
+   ========================================== */
 
+/* Section-compact: reduced vertical padding for CTA-like end sections */
+.section-compact {
+    min-height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
 
+@media (max-width: 767px) {
+
+    /* --- Global spacing reductions --- */
+    :root {
+        --section-vertical: 3.5rem;
+        --box-padding: 1.5rem;
+        --box-padding-lg: 1.5rem;
+    }
+
+    /* Reduce section min-height so short-content sections don't have awkward whitespace */
+    .section {
+        min-height: auto;
+    }
+
+    .section-compact {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    /* --- Typography mobile scaling --- */
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.15rem;
+    }
+
+    .text-heading {
+        font-size: 1.75rem !important;
+    }
+
+    .text-subheading {
+        font-size: 1.15rem !important;
+    }
+
+    .text-lead {
+        font-size: 1rem !important;
+    }
+
+    /* --- Heading + icon layout --- */
+    .text-heading.flex.items-center.gap-6,
+    h1.flex.items-center.gap-6,
+    h2.flex.items-center.gap-6 {
+        gap: 0.75rem !important;
+    }
+
+    .heading-icon {
+        font-size: 1.5rem !important;
+    }
+
+    /* --- Space-y reductions on mobile --- */
+    .space-y-16 > * + * {
+        margin-top: 2.5rem;
+    }
+
+    .space-y-12 > * + * {
+        margin-top: 2rem;
+    }
+
+    .space-y-10 > * + * {
+        margin-top: 1.75rem;
+    }
+
+    /* --- Card mobile padding --- */
+    .card,
+    .card-base,
+    .card-outline,
+    .card-filled,
+    .contact-card {
+        padding: 1.5rem !important;
+    }
+
+    .card-base.card-filled {
+        padding: 1.5rem !important;
+    }
+
+    /* --- Button mobile refinement --- */
+    .button {
+        padding: 0.85rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .button-small {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    /* --- Grid-2 collapses to single column --- */
+    .grid-2,
+    .grid-2x3 {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- Footer mobile: single column on small screens --- */
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .footer-container > :first-child {
+        grid-column: auto;
+    }
+
+    .footer-bottom {
+        margin-top: 3rem;
+        padding-top: 2rem;
+    }
+
+    /* --- Contact grid mobile --- */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- Price card mobile --- */
+    .price-card {
+        min-height: 180px;
+    }
+
+    /* --- Taalreis mobile --- */
+    .taalreis-hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .taalreis-hero-image {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .taalreis-day-card {
+        grid-template-columns: 1fr;
+        padding: 1.25rem;
+    }
+
+    .taalreis-day-photos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* --- Profile hero mobile --- */
+    .profile-hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .profile-photo {
+        order: -1;
+    }
+
+    .docent-photo-hero {
+        max-width: 240px;
+    }
+
+    /* --- Hero section mobile --- */
+    .hero-wrapper {
+        min-height: 70vh;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    /* --- Gap reductions --- */
+    .gap-8 {
+        gap: 1.5rem;
+    }
+
+    .gap-10 {
+        gap: 1.5rem;
+    }
+
+    .gap-12 {
+        gap: 2rem;
+    }
+
+    .gap-16 {
+        gap: 2.5rem;
+    }
+
+    /* --- Icon sizing mobile --- */
+    .icon-xl {
+        font-size: 2rem !important;
+    }
+
+    .icon-hero {
+        font-size: 4rem !important;
+    }
+
+    /* --- Gallery card photo border reduction --- */
+    .gallery-card {
+        border-width: 4px;
+    }
+
+    /* --- Ensure inline style buttons inside cards don't overflow --- */
+    .card .button,
+    .card-base .button {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* Extra small screens (< 375px, e.g. iPhone SE) */
+@media (max-width: 374px) {
+    :root {
+        --page-gutter: 1rem;
+        --box-padding: 1.25rem;
+    }
+
+    .text-heading {
+        font-size: 1.5rem !important;
+    }
+
+    .button {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+        min-width: auto;
+    }
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!-- Page: 404 Error — Fun, branded error page -->
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <meta name="theme-color" content="#F6E6C8">
+    <title>¡Ay, caramba! - Pagina niet gevonden - ¡Vamos Hablando!</title>
+    <meta name="description" content="Oeps! Deze pagina is niet gevonden. Maar geen zorgen, we helpen je de weg terug te vinden.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        /* Specific styles for 404 page elements if needed, keeping it inline for simplicity or could go to style.css */
+        .error-content {
+            text-align: center;
+            padding: 4rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .spanish-phrase-card {
+            background-color: #0B5F58; /* Dark Emerald */
+            color: #F6E6C8; /* Soft Cream */
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem auto;
+            max-width: 500px;
+            text-align: left;
+        }
+        .spanish-phrase-card .phrase {
+            font-size: 1.5rem;
+            font-weight: 600; /* SemiBold */
+            color: #CFE4EA; /* Light Blue Accent */
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .spanish-phrase-card .pronunciation {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-style: italic;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        .spanish-phrase-card .translation {
+            font-size: 1.1rem;
+        }
+        .big-number {
+            font-size: clamp(8rem, 25vw, 16rem);
+            font-weight: 800;
+            color: #0B5F58;
+            line-height: 0.9;
+            margin-bottom: 0.5rem;
+            display: block;
+            pointer-events: none; /* purely decorative/informative */
+        }
+        h1 {
+            margin-top: -1rem; /* Pull up closer to the number or overlap slightly */
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAV: site header + navigation (desktop + mobile) -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo logo-link" aria-label="¡Vamos Hablando! home">
+                <img src="Images/Logo-Donker.png" alt="¡Vamos Hablando! logo"
+                    class="logo-image logo-desktop" width="180" height="40" loading="eager">
+                <img src="Images/Klein-Logo-Licht.png" alt="¡Vamos Hablando! small icon"
+                    class="logo-image logo-mobile" width="40" height="40" loading="eager">
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="aanbod.html" class="nav-link">Aanbod</a>
+                <a href="voor-wie.html" class="nav-link">Voor wie</a>
+                <a href="over-mij.html" class="nav-link">Over mij</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- MOBILE MENU: full-screen mobile navigation overlay -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <a href="index.html" class="logo logo-link" aria-label="¡Vamos Hablando! home">
+                    <img src="Images/Logo-Donker.png" alt="¡Vamos Hablando! logo"
+                        class="logo-image logo-desktop" width="180" height="40" loading="eager">
+                    <img src="Images/Klein-Logo-Licht.png" alt="¡Vamos Hablando! small icon"
+                        class="logo-image logo-mobile" width="40" height="40" loading="eager">
+                </a>
+                <button class="mobile-menu-close" aria-label="Close menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="mobile-nav-links">
+                <a href="index.html" class="mobile-nav-link">
+                    <span class="material-symbols-rounded">home</span>
+                    Home
+                </a>
+                <a href="aanbod.html" class="mobile-nav-link">
+                    <span class="material-symbols-rounded">auto_stories</span>
+                    Aanbod
+                </a>
+                <a href="voor-wie.html" class="mobile-nav-link">
+                    <span class="material-symbols-rounded">how_to_reg</span>
+                    Voor wie
+                </a>
+                <a href="over-mij.html" class="mobile-nav-link">
+                    <span class="material-symbols-rounded">person</span>
+                    Over mij
+                </a>
+                <a href="contact.html" class="mobile-nav-link">
+                    <span class="material-symbols-rounded">mail</span>
+                    Contact
+                </a>
+            </div>
+
+            <div class="mobile-footer">
+                <p class="accent text-subheading mb-4">¡Vamos Hablando!</p>
+                <p class="text-body opacity-60 leading-relaxed">Spaans leer je door het te gebruiken. Van de eerste kennismaking tot communicatie in Malaga.</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN: 404 Content -->
+    <main>
+        <section class="section section-beige animate-on-scroll">
+            <div class="container">
+                <div class="error-content">
+                    <span class="big-number">404</span>
+                    <h1>¡Ay, caramba!</h1>
+                    <p class="text-body text-large mb-8">
+                        De pagina die je zoekt houdt helaas een siësta.
+                    </p>
+
+                    <a href="index.html" class="btn btn-primary">
+                        Terug naar Home
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+        <div class="footer-bottom">
+            &copy; 2026 ¡Vamos Hablando!. Alle rechten voorbehouden.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
