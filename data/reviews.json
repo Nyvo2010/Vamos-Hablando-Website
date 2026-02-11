@@ -1,0 +1,38 @@
+[
+  {
+    "name": "persoon1",
+    "role": "vwo 6",
+    "text": "Bas is een geweldige docent die echt luistert naar wat je nodig hebt. De lessen vliegen voorbij.",
+    "stars": 5
+  },
+  {
+    "name": "persoon2",
+    "role": "vwo 5",
+    "text": "Bas is een geweldige docent die echt luistert naar wat je nodig hebt. De lessen vliegen voorbij.",
+    "stars": 5
+  },
+  {
+    "name": "persoon3",
+    "role": "vwo 4",
+    "text": "Bas is een geweldige docent die echt luistert naar wat je nodig hebt. De lessen vliegen voorbij.",
+    "stars": 4
+  },
+  {
+    "name": "persoon4",
+    "role": "Volwassenen",
+    "text": "Bas is een geweldige docent die echt luistert naar wat je nodig hebt. De lessen vliegen voorbij.",
+    "stars": 5
+  },
+  {
+    "name": "persoon5",
+    "role": "beginner",
+    "text": "Bas is een geweldige docent die echt luistert naar wat je nodig hebt. De lessen vliegen voorbij.",
+    "stars": 5
+  },
+  {
+    "name": "persoon6",
+    "role": "groep 8",
+    "text": "Bas is een geweldige docent die echt luistert naar wat je nodig hebt. De lessen vliegen voorbij.",
+    "stars": 5
+  }
+]

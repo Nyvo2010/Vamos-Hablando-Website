@@ -83,7 +83,7 @@
     </nav>
 
     <!-- MAIN: audience descriptions and cards -->
-    <main class="pt-20">
+    <main>
         <section class="section section-beige animate-on-scroll">
             <div class="section-container max-w-4xl space-y-16">
                 <div class="space-y-6">
@@ -96,23 +96,23 @@
                     </p>
                 </div>
 
-                <!-- TARGET AUDIENCE CARDS: short descriptions for each group -->
-                <div class="grid md-grid-cols-2 gap-8">
-                    <div class="card text-left">
-                        <span class="material-symbols-rounded icon-xl text-dark-emerald mb-4">person</span>
-                        <p class="text-subheading">Volwassenen die Spaans willen leren vanaf de basis</p>
+                <!-- TARGET AUDIENCE CARDS: compact horizontal layout -->
+                <div class="grid md-grid-cols-2 gap-6">
+                    <div class="card-base card-normal" style="flex-direction: row; align-items: center; gap: 1rem; padding: 1.5rem 2rem;">
+                        <span class="material-symbols-rounded accent" style="font-size: 2rem;">person</span>
+                        <p class="text-body font-semibold">Volwassenen die Spaans willen leren vanaf de basis</p>
                     </div>
-                    <div class="card text-left">
-                        <span class="material-symbols-rounded icon-xl text-dark-emerald mb-4">home</span>
-                        <p class="text-subheading">Mensen die Spaans willen gebruiken in het dagelijks leven</p>
+                    <div class="card-base card-normal" style="flex-direction: row; align-items: center; gap: 1rem; padding: 1.5rem 2rem;">
+                        <span class="material-symbols-rounded accent" style="font-size: 2rem;">home</span>
+                        <p class="text-body font-semibold">Mensen die Spaans willen gebruiken in het dagelijks leven</p>
                     </div>
-                    <div class="card text-left">
-                        <span class="material-symbols-rounded icon-xl text-dark-emerald mb-4">school</span>
-                        <p class="text-subheading">Studenten en scholieren</p>
+                    <div class="card-base card-normal" style="flex-direction: row; align-items: center; gap: 1rem; padding: 1.5rem 2rem;">
+                        <span class="material-symbols-rounded accent" style="font-size: 2rem;">school</span>
+                        <p class="text-body font-semibold">Studenten en scholieren</p>
                     </div>
-                    <div class="card text-left">
-                        <span class="material-symbols-rounded icon-xl text-dark-emerald mb-4">domain</span>
-                        <p class="text-subheading">Onderwijsinstellingen en organisaties</p>
+                    <div class="card-base card-normal" style="flex-direction: row; align-items: center; gap: 1rem; padding: 1.5rem 2rem;">
+                        <span class="material-symbols-rounded accent" style="font-size: 2rem;">domain</span>
+                        <p class="text-body font-semibold">Onderwijsinstellingen en organisaties</p>
                     </div>
                 </div>
             </div>
@@ -204,41 +204,18 @@
                     </p>
                 </div>
 
-                <div class="grid md-grid-cols-2 gap-8">
-                    <article class="card card-scale text-left">
-                        <p class="text-small opacity-80">Rosalie · vwo 6</p>
-                        <p>"Recentie text leerling Recentie text leerling Recentie text leerling."</p>
-                    </article>
-
-                    <article class="card card-scale text-left">
-                        <p class="text-small opacity-80" dir="rtl">Bram · vwo 6</p>
-                        <p dir="rtl">"Recentie text leerling Recentie text leerling Recentie text leerling."</p>
-                    </article>
-
-                    <article class="card card-scale text-left">
-                        <p class="text-small opacity-80">Rutger · vwo 6</p>
-                        <p>"Recentie text leerling Recentie text leerling Recentie text leerling."</p>
-                    </article>
-
-                    <article class="card card-scale text-left">
-                        <p class="text-small opacity-80">Rosalie · vwo 6</p>
-                        <p>"Recentie text leerling Recentie text leerling Recentie text leerling."</p>
-                    </article>
-
-                    <article class="card card-scale text-left">
-                        <p class="text-small opacity-80" dir="rtl">Bram · vwo 6</p>
-                        <p dir="rtl">"Recentie text leerling Recentie text leerling Recentie text leerling."</p>
-                    </article>
-
-                    <article class="card card-scale text-left">
-                        <p class="text-small opacity-80">Rutger · vwo 6</p>
-                        <p>"Recentie text leerling Recentie text leerling Recentie text leerling."</p>
-                    </article>
+                <div id="reviews-container" class="grid md-grid-cols-2 gap-8">
+                    <!-- Reviews will be loaded dynamically via JS -->
+                    <div class="card card-scale text-left">
+                        <p class="text-small opacity-80">Laden...</p>
+                    </div>
                 </div>
             </div>
         </section>
+            </div>
+        </section>
 
-        <section class="section section-beige section-compact">
+        <section class="section section-beige section-compact animate-on-scroll">
             <div class="section-container max-w-4xl space-y-12">
                 <h2 class="text-heading leading-tight">
                     Wil je ontdekken wat <span class="accent">¡Vamos Hablando!</span> voor jou kan betekenen?
@@ -299,6 +276,7 @@
     </footer>
     <!-- Scripts: main JS for UI interactions (mobile menu, nav scroll, active links) -->
     <script src="js/main.js"></script>
+    <script src="js/reviews.js"></script>
 </body>
 
 </html>

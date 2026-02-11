@@ -1905,7 +1905,8 @@ footer {
 /* Scroll offset for level anchors on groepslessen page */
 #niveau-start,
 #niveau-verder,
-#niveau-verdieping {
+#niveau-verdieping,
+#mijn-werkwijze {
     scroll-margin-top: 7rem;
 }
 

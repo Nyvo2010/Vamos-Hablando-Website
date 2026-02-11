@@ -21,9 +21,9 @@
         <div class="navbar-container">
             <a href="index.html" class="logo logo-link" aria-label="¡Vamos Hablando! home">
                 <img src="Images/Logo-Donker.png" alt="¡Vamos Hablando! logo"
-                    class="logo-image logo-desktop">
+                    class="logo-image logo-desktop" width="180" height="40" loading="eager">
                 <img src="Images/Klein-Logo-Licht.png" alt="¡Vamos Hablando! small icon"
-                    class="logo-image logo-mobile">
+                    class="logo-image logo-mobile" width="40" height="40" loading="eager">
             </a>
 
             <div class="nav-links">
@@ -49,9 +49,9 @@
             <div class="mobile-menu-header">
                 <a href="index.html" class="logo logo-link" aria-label="¡Vamos Hablando! home">
                     <img src="Images/Logo-Donker.png" alt="¡Vamos Hablando! logo"
-                        class="logo-image logo-desktop">
+                        class="logo-image logo-desktop" width="180" height="40" loading="eager">
                     <img src="Images/Klein-Logo-Licht.png" alt="¡Vamos Hablando! small icon"
-                        class="logo-image logo-mobile">
+                        class="logo-image logo-mobile" width="40" height="40" loading="eager">
                 </a>
                 <button class="mobile-menu-close" aria-label="Close menu">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -96,7 +96,7 @@
     <!-- MAIN: main content for this page -->
     <main>
         <!-- HERO SECTION -->
-        <section class="section section-beige">
+        <section class="section section-beige animate-on-scroll">
             <div class="container">
                 <div style="max-width: 40rem; margin: 0 auto; text-align: center;">
                     <h1 class="text-heading mb-6" style="justify-content: center;">
@@ -122,7 +122,7 @@
         </section>
 
         <!-- VALUE PROPOSITION -->
-        <section class="section section-green">
+        <section class="section section-green animate-on-scroll">
             <div class="container">
                 <div class="grid-2" style="align-items: center;">
                     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
@@ -142,7 +142,7 @@
         </section>
 
         <!-- ABOUT ME TEASER -->
-        <section class="section section-beige">
+        <section class="section section-beige animate-on-scroll">
             <div class="container">
                 <div style="max-width: 40rem; margin: 0 auto; text-align: center; display: flex; flex-direction: column; gap: 1.5rem;">
                     <h2 class="text-heading" style="justify-content: center;">
@@ -162,25 +162,19 @@
         </section>
 
         <!-- LEVEL TEST BANNER -->
-        <section class="section section-beige" style="padding-top: 0;">
+        <section class="section section-beige animate-on-scroll" style="padding-top: 0;">
             <div class="container">
-                <div class="card-base card-filled">
-                    <div class="grid-2" style="align-items: center;">
-                        <div style="display: flex; flex-direction: column; gap: 1rem;">
-                            <h3 class="text-subheading">
-                                Niet zeker over je <span class="accent">niveau</span>?
-                            </h3>
-                            <p class="text-body opacity-90">
-                                Doe de gratis niveautest. Binnen enkele minuten weet je precies waar je staat.
-                            </p>
-                        </div>
-                        <div style="display: flex; justify-content: flex-end;">
-                            <a href="niveautest.html" class="button button-outline">
-                                <span class="material-symbols-rounded">quiz</span>
-                                Start test
-                            </a>
-                        </div>
-                    </div>
+                <div class="card-base card-filled" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; padding: 3rem 2rem;">
+                    <h3 class="text-subheading" style="margin-bottom: 0.5rem;">
+                        Niet zeker over je <span class="accent">niveau</span>?
+                    </h3>
+                    <p class="text-body opacity-90" style="max-width: 32rem;">
+                        Doe de gratis niveautest. Binnen enkele minuten weet je precies waar je staat.
+                    </p>
+                    <a href="niveautest.html" class="button" style="background-color: var(--color-soft-cream); color: var(--color-dark-emerald); border: none;">
+                        <span class="material-symbols-rounded">quiz</span>
+                        Start test
+                    </a>
                 </div>
             </div>
         </section>
