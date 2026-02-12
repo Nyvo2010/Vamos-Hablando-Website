@@ -92,47 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showQuestion(num) {
-        const prevActive = document.querySelector('.quiz-step.active');
-        
+        // Hide all questions
+        questions.forEach(q => q.classList.remove('active'));
+
         // Show target question
-        let target;
-        if (num === 'results') {
-            target = resultsScreen;
-        } else {
-            target = document.querySelector(`.quiz-step[data-question="${num}"]`);
-        }
-
-        if (!target) return;
-
-        if (prevActive) {
-            prevActive.classList.remove('active');
-            prevActive.classList.add('exiting');
-            
-            // Wait for animation to finish
-            const onAnimationEnd = () => {
-                prevActive.classList.remove('exiting');
-                prevActive.removeEventListener('animationend', onAnimationEnd);
-            };
-            
-            prevActive.addEventListener('animationend', onAnimationEnd);
-            
-            // Fallback in case animationend doesn't fire
-            setTimeout(() => {
-                prevActive.classList.remove('exiting');
-                prevActive.removeEventListener('animationend', onAnimationEnd);
-            }, 600);
-        }
-
-        // Activate new target
-        target.classList.add('active');
-        
-        // Smooth scroll to top if needed, mainly for mobile
-        const quizStepper = document.getElementById('quiz-stepper');
-        if (quizStepper) {
-            const rect = quizStepper.getBoundingClientRect();
-            if (rect.top < 0) {
-                window.scrollTo({ top: window.scrollY + rect.top - 100, behavior: 'smooth' });
-            }
+        const target = document.querySelector(`.quiz-step[data-question="${num}"]`);
+        if (target) {
+            target.classList.add('active');
         }
     }
 
@@ -165,13 +131,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // RESULTS
     // ============================================
     function showResults() {
-        // Use the new sliding transition
-        showQuestion('results');
+        // Hide all questions
+        questions.forEach(q => q.classList.remove('active'));
+
+        // Show results screen
+        if (resultsScreen) {
+             resultsScreen.classList.add('active');
+             resultsScreen.style.display = 'block';
+             resultsScreen.style.opacity = '1';
+        }
 
         if (resultsScreen) {
-            setTimeout(() => {
-                resultsScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
+            resultsScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         const score = calculateScore();
