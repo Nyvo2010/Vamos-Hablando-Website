@@ -422,6 +422,17 @@ a {
     transform: translateY(-1px);
 }
 
+/* Beige button for dark backgrounds */
+.button-greenback {
+    background-color: var(--color-soft-cream);
+    color: var(--color-dark-emerald);
+}
+
+.button-greenback:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
 .button-small {
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
@@ -820,12 +831,14 @@ a {
 
 /* Groepslessen Specific Layout Fixes (Laptop & Mobile) */
 /* User Requirement: Text must be long/wide, overlap/run-over the Lees Meer box. */
+/* Updated Requirement: Button is primary and smaller. Extra text (subtitle) UNDER title. */
 
 /* 1. Reset Header Layout for Overlap */
 .accordion-header {
     display: block !important; /* Allow absolute positioning within relative container */
     position: relative !important;
     width: 100%;
+    min-height: 4rem; /* Ensure height for button overlap */
 }
 
 .accordion-header > div {
@@ -836,34 +849,67 @@ a {
 /* 2. Text Container - Full Width Flow */
 /* Target the div containing H2 and P */
 .accordion-header > div > div:nth-child(2) {
-    display: inline !important; /* Flow text */
+    display: block !important; /* Back to block to STACK title and subtitle */
     width: 100% !important;
     padding-right: 0; /* Let it run behind/under button if needed */
 }
 
 .accordion-header h2 {
-    display: inline !important;
-    margin-right: 0.5rem !important;
-    margin-bottom: 0 !important;
+    display: block !important; /* Stack */
+    margin-right: 0 !important;
+    margin-bottom: 0.25rem !important; /* Space between title and subtitle */
 }
 
 .accordion-header p.opacity-60 {
-    display: inline !important;
+    display: block !important; /* Stack */
     margin-bottom: 0 !important;
 }
 
 /* 3. Button - Positioned to intersect/overlap */
-.accordion-header .button-secondary {
+/* Now targeting .button-primary inside header as requested */
+.accordion-header .button-primary {
     position: absolute !important;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    border: 1px solid var(--color-dark-emerald) !important; /* Outline Requirement */
-    background-color: rgba(255, 255, 255, 0.8) !important; /* Semi-transparent background to read text if it runs under? */
+    /* Remove previous outline styles if they conflict, primary has its own */
+    background-color: var(--color-dark-emerald) !important; 
+    color: var(--color-soft-cream) !important;
     z-index: 10;
     display: inline-flex !important;
     align-items: center !important; 
     gap: 0.5rem !important;
+    /* User said "smaller" */
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+    border: none !important; /* No outline for primary unless requested, user asked for outline previously on secondary? 
+                              "De lees meer box moet ook een outline hebben." 
+                              Wait, usually primary is filled. 
+                              The user said: "boxes have the primary button ... and smaller. ... De lees meer box moet ook een outline hebben."
+                              So Primary Button + Outline? 
+                              Or just "outline" implies border. Primary implies filled. 
+                              Let's give it a border too just in case or use button-outline style but with primary colors?
+                              I will stick to standard Primary (Filled) but maybe add a white border if it overlaps text? 
+                              Or maybe the user means "Outline Style" but "Primary Color"?
+                              Let's assume Filled Primary Button based on class name, and maybe add a border if explicitly asked "outline" again.
+                              Actually, let's add a border to the primary button to satisfy "outline".
+                           */
+    border: 1px solid var(--color-soft-cream) !important; /* Visible against dark bg, or dark against light? */
+    /* Wait, the background is beige/dark. On beige, primary is dark green. Border should be... dark green? or white? */
+    border: 2px solid rgba(255,255,255,0.2) !important; /* Subtle outline */
+}
+
+/* On mobile, careful with overlap if text is long */
+@media (max-width: 767px) {
+    .accordion-header .button-primary {
+        /* If text is really long, we might need to push it down or let it wrap? 
+           User said "text ... run over the lees meer box" (overheenlopen). 
+           So text BEHIND button.
+        */
+        right: 0; 
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.8rem !important;
+    }
 }
 
 /* 4. Icon Alignment in Lists (Wat kan je verwachten / Praktisch) */
