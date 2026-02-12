@@ -539,7 +539,7 @@ a {
 
 @media (min-width: 768px) {
     .md-grid-cols-2 {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .md-grid-cols-3 {
@@ -714,11 +714,11 @@ a {
 
 @media (min-width: 768px) {
     .grid-2 {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .grid-2x3 {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -730,6 +730,9 @@ a {
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
     border: 1px solid rgba(11, 95, 88, 0.08);
     background-color: rgba(11, 95, 88, 0.04);
 }
@@ -1830,9 +1833,8 @@ footer {
         padding: 0;
         /* Break out of parent padding to allow full-width scroll */
         width: 100vw;
-        margin-left: -1.5rem;
-        /* Assumes mobile gutter is 1.5rem */
-        margin-right: -1.5rem;
+        margin-left: calc(-1 * var(--page-gutter));
+        margin-right: calc(-1 * var(--page-gutter));
         overflow-y: hidden;
     }
 
@@ -2485,7 +2487,7 @@ body.quiz-page+footer {
 
     /* --- Global spacing reductions --- */
     :root {
-        --section-vertical: 3.5rem;
+        --section-vertical: 3rem;
         --box-padding: 1.5rem;
         --box-padding-lg: 1.5rem;
     }
@@ -2495,9 +2497,21 @@ body.quiz-page+footer {
         min-height: auto;
     }
 
+    /* Offset for fixed navbar so content isn't hidden behind it */
+    .section:first-child,
+    main > .section:first-child {
+        padding-top: calc(var(--section-vertical) + 3.5rem);
+    }
+
+    /* Fix double horizontal padding: .section already provides --page-gutter */
+    .section .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     .section-compact {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
     }
 
     /* --- Typography mobile scaling --- */
@@ -2534,15 +2548,15 @@ body.quiz-page+footer {
 
     /* --- Space-y reductions on mobile --- */
     .space-y-16 > * + * {
-        margin-top: 2.5rem;
-    }
-
-    .space-y-12 > * + * {
         margin-top: 2rem;
     }
 
+    .space-y-12 > * + * {
+        margin-top: 1.5rem;
+    }
+
     .space-y-10 > * + * {
-        margin-top: 1.75rem;
+        margin-top: 1.5rem;
     }
 
     /* --- Card mobile padding --- */
@@ -2551,48 +2565,89 @@ body.quiz-page+footer {
     .card-outline,
     .card-filled,
     .contact-card {
-        padding: 1.5rem !important;
+        padding: 1.25rem !important;
     }
 
     .card-base.card-filled {
-        padding: 1.5rem !important;
+        padding: 1.25rem !important;
     }
 
     /* --- Button mobile refinement --- */
     .button {
-        padding: 0.85rem 1.5rem;
-        font-size: 0.95rem;
+        padding: 0.7rem 1.25rem;
+        font-size: 0.875rem;
     }
 
     .button-small {
-        padding: 0.5rem 1rem;
-        font-size: 0.85rem;
+        padding: 0.45rem 0.85rem;
+        font-size: 0.8rem;
     }
 
-    /* --- Grid-2 collapses to single column --- */
+    /* --- Grid-2 & grid-2x3: keep 2 columns on mobile for compact layout --- */
     .grid-2,
     .grid-2x3 {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
     }
 
-    /* --- Footer mobile: single column on small screens --- */
+    /* md-grid-cols-2 also stays 2-col on mobile */
+    .grid.md-grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+
+    /* Wide card should still span full width */
+    .md-col-span-2 {
+        grid-column: 1 / -1;
+    }
+
+    /* --- Footer mobile: compact 2-column layout --- */
+    footer {
+        padding: 2rem var(--page-gutter);
+    }
+
     .footer-container {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem 1rem;
     }
 
     .footer-container > :first-child {
-        grid-column: auto;
+        grid-column: 1 / -1;
+    }
+
+    .footer-logo .logo-footer {
+        height: 36px;
+    }
+
+    .footer-text {
+        font-size: 0.875rem;
+        margin-top: 0.75rem;
+        line-height: 1.5;
+    }
+
+    .footer-column h4 {
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+    }
+
+    .footer-list {
+        gap: 0.6rem;
+    }
+
+    .footer-link {
+        font-size: 0.875rem;
     }
 
     .footer-bottom {
-        margin-top: 3rem;
-        padding-top: 2rem;
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        font-size: 0.75rem;
     }
 
     /* --- Contact grid mobile --- */
     .contact-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
     }
 
     /* --- Price card mobile --- */
@@ -2680,11 +2735,61 @@ body.quiz-page+footer {
     /* --- Ensure inline style buttons inside cards don't overflow --- */
     .card .button,
     .card-base .button {
-        margin-top: 1rem;
-        margin-bottom: 0.5rem;
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
         width: 100%;
         text-align: center;
         justify-content: center;
+        padding: 0.6rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    /* --- Card icon sizing for compact 2-col --- */
+    .card-base .material-symbols-rounded[style*="font-size: 2.5rem"] {
+        font-size: 1.75rem !important;
+    }
+
+    /* SVG icons inside cards (e.g. Instagram) */
+    .card-base svg[style*="width: 2.5rem"] {
+        width: 1.75rem !important;
+        height: 1.75rem !important;
+    }
+
+    .card-base .mb-6 {
+        margin-bottom: 0.75rem !important;
+    }
+
+    .card-base .mb-4 {
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Tighten text in grid cards */
+    .grid-2 .card-base .text-subheading,
+    .grid-2x3 .card-base .text-subheading,
+    .grid.md-grid-cols-2 .card .text-subheading {
+        font-size: 1rem !important;
+    }
+
+    .grid-2 .card-base .text-body,
+    .grid-2x3 .card-base .text-body,
+    .grid.md-grid-cols-2 .card .text-body {
+        font-size: 0.85rem !important;
+    }
+
+    /* --- Override inline row layout on audience cards for small screens --- */
+    .card-base.card-normal[style*="flex-direction"] {
+        padding: 1.25rem 1.5rem !important;
+    }
+
+    /* --- Section inline padding overrides: normalize on mobile --- */
+    .section[style*="padding-top: 0"] {
+        padding-top: 0 !important;
+    }
+
+    .section[style*="padding-bottom: 2rem"],
+    .section[style*="padding-top: 2rem"] {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
     }
 }
 
