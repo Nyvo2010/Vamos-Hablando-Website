@@ -91,6 +91,13 @@ body {
 
 main {
     flex-grow: 1;
+    padding-top: 1rem; /* Significantly reduced top padding for mobile */
+}
+
+@media (min-width: 768px) {
+    main {
+        padding-top: 8rem; 
+    }
 }
 
 h1,
@@ -629,14 +636,47 @@ a {
 
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr); /* 2 cols on mobile */
+    gap: 0.75rem;
     width: 100%;
+}
+
+@media (max-width: 767px) {
+    .contact-grid .contact-card,
+    .contact-grid .card-base {
+        padding: 1rem !important;
+        min-height: 0 !important; /* Remove huge min-height */
+        gap: 1rem;
+    }
+    
+    .contact-grid h3 {
+        font-size: 1rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    
+    .contact-grid p {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .contact-grid svg, .contact-grid .material-symbols-rounded {
+        width: 2rem !important;
+        height: 2rem !important;
+        font-size: 2rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .contact-grid .button {
+        width: 100%;
+        padding: 0.5rem !important;
+        font-size: 0.85rem !important;
+    }
 }
 
 @media (min-width: 768px) {
     .contact-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem; /* Restore gap */
     }
 }
 
@@ -701,33 +741,54 @@ a {
 
 .grid-2 {
     display: grid;
-    gap: 2rem;
-    grid-template-columns: 1fr;
-}
-
-.grid-2x3 {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: 1fr;
+    gap: 0.75rem; /* Tight gap for mobile */
+    grid-template-columns: repeat(2, 1fr); /* 2 cols on mobile */
+    align-items: stretch;
 }
 
 .grid-3 {
     display: grid;
     gap: 2rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Keep 3-grid as 1 col on mobile? Or 2? Let's stick to user request "most boxes next to each other" but usually 3-grid content is denser. Let's keep 3-grid stacked for now as it might be too small, or make it 2-col? Let's keep 1 col for grid-3 unless requested */
 }
 
 @media (min-width: 768px) {
     .grid-2 {
+        gap: 2rem;
         grid-template-columns: repeat(2, 1fr);
     }
-
-    .grid-2x3 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
+    
     .grid-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Mobile optimizations for cards in the dense 2-column grid */
+@media (max-width: 767px) {
+    .grid-2 .card, .grid-2 .card-base {
+        padding: 1rem !important;
+    }
+    
+    .grid-2 h3, .grid-2 .text-subheading {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important; 
+        hyphens: auto;
+    }
+    
+    .grid-2 p, .grid-2 .text-body {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    .grid-2 .material-symbols-rounded, .grid-2 svg, .grid-2 .accent {
+        font-size: 2rem !important; /* Smaller icons */
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .grid-2 .button {
+        padding: 0.6rem 0.5rem !important;
+        width: 100%;
+        font-size: 0.85rem !important;
     }
 }
 
@@ -744,6 +805,77 @@ a {
     justify-content: space-between;
     width: 100%;
 }
+
+/* Groepslessen Specific Layout Fixes */
+
+/* 1. Header Text Stretching (Title and Subtitle horizontal) */
+/* Target the text container (2nd child of the flex container inside header) */
+.accordion-header > div > div:nth-child(2) {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: baseline !important;
+    gap: 0.5rem !important;
+}
+
+/* Groepslessen Specific Layout Fixes (Laptop & Mobile) */
+/* User Requirement: Text must be long/wide, overlap/run-over the Lees Meer box. */
+
+/* 1. Reset Header Layout for Overlap */
+.accordion-header {
+    display: block !important; /* Allow absolute positioning within relative container */
+    position: relative !important;
+    width: 100%;
+}
+
+.accordion-header > div {
+    display: block !important;
+    width: 100%;
+}
+
+/* 2. Text Container - Full Width Flow */
+/* Target the div containing H2 and P */
+.accordion-header > div > div:nth-child(2) {
+    display: inline !important; /* Flow text */
+    width: 100% !important;
+    padding-right: 0; /* Let it run behind/under button if needed */
+}
+
+.accordion-header h2 {
+    display: inline !important;
+    margin-right: 0.5rem !important;
+    margin-bottom: 0 !important;
+}
+
+.accordion-header p.opacity-60 {
+    display: inline !important;
+    margin-bottom: 0 !important;
+}
+
+/* 3. Button - Positioned to intersect/overlap */
+.accordion-header .button-secondary {
+    position: absolute !important;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid var(--color-dark-emerald) !important; /* Outline Requirement */
+    background-color: rgba(255, 255, 255, 0.8) !important; /* Semi-transparent background to read text if it runs under? */
+    z-index: 10;
+    display: inline-flex !important;
+    align-items: center !important; 
+    gap: 0.5rem !important;
+}
+
+/* 4. Icon Alignment in Lists (Wat kan je verwachten / Praktisch) */
+.accordion-content ul li {
+    align-items: flex-start !important;
+}
+
+.accordion-content ul li .material-symbols-rounded {
+    margin-top: -2px; 
+    min-width: 1.5rem; /* Ensure icon doesn't shrink */
+}
+
 
 .accordion-content {
     max-height: 0;
@@ -882,6 +1014,11 @@ a {
     .taalreis-hero-grid {
         grid-template-columns: 0.8fr 1.2fr; /* give media column more space */
         align-items: center;
+    }
+    
+    /* Restore visual order: Text (default order 0) Left, Media Right */
+    .taalreis-hero-media {
+        order: 2;
     }
 
     .taalreis-day-card {
@@ -1456,6 +1593,28 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+}
+
+/* Mobile: Optimize footer items to be next to each other */
+@media (max-width: 767px) {
+    .footer-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem 1.5rem;
+    }
+
+    .footer-column h4 {
+        margin-bottom: 1rem;
+    }
+
+    .footer-link {
+        font-size: 1rem;
+    }
+
+    .footer-text {
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
 }
 
 .footer-link {
@@ -2636,14 +2795,51 @@ body.quiz-page+footer {
         grid-template-columns: 1fr;
     }
 
-    /* --- Footer mobile: single column on small screens --- */
+/* Mobile Footer Optimization */
+@media (max-width: 767px) {
+    /* --- Main Layout Fixes --- */
+    main {
+        /* Header must not block text. Assuming ~80px fixed header. */
+        padding-top: 5rem !important; 
+    }
+
+    /* Prevent horizontal overflow globally */
+    body, .section-container, .container {
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    /* Home Hero */
+    .hero-home {
+        min-height: auto !important;
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    /* --- Footer --- */
     .footer-container {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Main sections horizontal */
+        gap: 1.5rem;
     }
 
     .footer-container > :first-child {
-        grid-column: auto;
+        grid-column: 1 / -1; /* Logo/Text full width on top */
+        margin-bottom: 1rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(246, 230, 200, 0.1);
+        text-align: center;
+    }
+
+    .footer-list {
+        display: flex;
+        flex-direction: column !important; /* Sub-elements vertical */
+        gap: 0.75rem;
+    }
+
+    .footer-column h4 {
+        margin-bottom: 0.75rem;
+        font-size: 1rem; 
     }
 
     .footer-bottom {
@@ -2653,7 +2849,9 @@ body.quiz-page+footer {
 
     /* --- Contact grid mobile --- */
     .contact-grid {
-        grid-template-columns: 1fr;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem !important;
     }
 
     /* --- Price card mobile --- */
@@ -2663,35 +2861,95 @@ body.quiz-page+footer {
 
     /* --- Taalreis mobile --- */
     .taalreis-hero-grid {
-        grid-template-columns: 1fr;
+        display: block !important; /* Block for float support */
     }
 
+    .taalreis-hero-media {
+        float: right !important; /* Float Right */
+        width: 45% !important;
+        margin-left: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
+        /* Ensure it clears or interacts properly */
+    }
+    
     .taalreis-hero-image {
-        max-width: 320px; /* increased from 280px */
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        border-radius: 0.75rem !important;
     }
 
     .taalreis-day-card {
-        grid-template-columns: 1fr;
-        padding: 1.25rem;
+        display: grid !important;
+        grid-template-columns: 1.1fr 0.9fr !important; /* Slightly more room for text */
+        align-items: stretch !important; /* Make image fill box height */
+        padding: 0 !important; /* Remove padding to let image reach edges */
+        gap: 0 !important;
+        min-height: 180px;
+        overflow: hidden; /* Keep border radius clean */
+    }
+
+    .taalreis-day-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem;
     }
 
     .taalreis-day-photos {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr !important; /* Stack photos inside the small column */
+        height: 100%;
+        gap: 0 !important;
+    }
+
+    .taalreis-day-photo {
+        height: 100% !important;
+        width: 100% !important;
+        aspect-ratio: auto !important; /* Allow it to stretch */
+        border-radius: 0 !important; /* Image fills the right half completely */
+        object-fit: cover !important;
     }
 
     /* --- Profile hero mobile --- */
+    /* Layout: Image floated left (50% w), Text wraps around it */
     .profile-hero {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+        display: block !important;
+        width: 100% !important;
     }
 
     .profile-photo {
-        order: -1;
+        display: block !important;
+        float: left !important;
+        width: 50% !important; /* Exactly half width */
+        margin-right: 1rem !important;
+        margin-bottom: 0.5rem !important;
+        padding: 0 !important; /* Ensure no padding steals space */
+    }
+    
+    .docent-photo-hero {
+        width: 100% !important;
+        max-width: 100% !important; /* Override desktop max-width */
+        height: auto !important;
+        border-radius: 0.75rem !important;
     }
 
-    .docent-photo-hero {
-        max-width: 240px;
+    .intro-text {
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+        display: block !important; 
+        /* Block display ensures text flows around the float */
     }
+    
+    /* Ensure the icon flows with the text or sits nicely */
+    .intro-text .material-symbols-rounded {
+        display: none !important; /* Optional: Hide the icon to save space/clean layout on mobile? 
+                                     Or keep it. User didn't ask to remove. 
+                                     But an icon block might break the flow if it's width:100% */
+    }
+    
+    /* If we keep the icon, ensure it doesn't clear */
+    /* Actually, the icon has 'mb-4' and is a span. likely inline-block. */
+
 
     /* --- Hero section mobile --- */
     .hero-wrapper {
@@ -2699,28 +2957,20 @@ body.quiz-page+footer {
     }
 
     .hero-title {
-        font-size: 1.75rem;
+        font-size: 1.75rem !important;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 1rem !important;
     }
 
     /* --- Gap reductions --- */
-    .gap-8 {
-        gap: 1.5rem;
+    .gap-8, .gap-10 {
+        gap: 1.5rem !important;
     }
 
-    .gap-10 {
-        gap: 1.5rem;
-    }
-
-    .gap-12 {
-        gap: 2rem;
-    }
-
-    .gap-16 {
-        gap: 2.5rem;
+    .gap-12, .gap-16 {
+        gap: 2rem !important;
     }
 
     /* --- Icon sizing mobile --- */
@@ -2737,16 +2987,100 @@ body.quiz-page+footer {
         border-width: 4px;
     }
 
-    /* --- Ensure inline style buttons inside cards don't overflow --- */
-    .card .button,
-    .card-base .button {
-        margin-top: 1rem;
-        margin-bottom: 0.5rem;
-        width: 100%;
-        text-align: center;
-        justify-content: center;
+    /* --- GENERAL 2-COLUMN GRID FORCED --- */
+    .grid-2,
+    .grid-3,
+    .md-grid-cols-2 /* For Voor Wie boxes */
+    {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem !important;
+    }
+
+    /* --- Aanbod - Typography Hierarchy --- */
+    /* Bold Title > Non-bold subtext */
+    .grid-2 h3, 
+    .card-base h3,
+    .card h3, 
+    .text-subheading {
+        font-weight: 700 !important;
+        font-size: 1.15rem !important;
+        margin-bottom: 0.25rem;
+    }
+
+    .grid-2 p,
+    .card-base p,
+    .card p,
+    .text-body {
+        font-weight: 400 !important;
+        font-size: 0.9rem !important;
+        opacity: 0.9;
+    }
+
+    /* --- Voor Wie Adjustments --- */
+    /* Stack icon and text inside the small tile */
+    .md-grid-cols-2 .card-base {
+        flex-direction: column !important; 
+        align-items: flex-start !important;
+        padding: 1rem !important;
+        text-align: left;
+        gap: 0.5rem !important;
+    }
+
+    /* Hide Werkwijze description text, keep title */
+    #mijn-werkwijze .card-base p.text-lead,
+    #mijn-werkwijze .card p.text-lead {
+        display: none !important;
+    }
+    
+    #mijn-werkwijze .card-base, #mijn-werkwijze .card {
+        min-height: auto !important;
+        padding: 1.5rem !important;
+    }
+
+    /* Fix potential sidebar overflow from reviews */
+    #reviews-container {
+        width: 100% !important;
+        grid-template-columns: 1fr !important;
+        margin: 0 !important;
+    }
+
+    /* --- Over Mij - Typography Consistency --- */
+    .intro-text p,
+    section p.text-lead,
+    section p {
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+        font-family: var(--font-sans) !important;
+        font-weight: 400 !important;
+    }
+
+    /* --- Reduce padding in cards --- */
+    .grid-2 .card-base, .grid-2 .card,
+    .grid-3 .card-base, .grid-3 .card,
+    .contact-grid .card-base
+    {
+        padding: 0.75rem !important;
+    }
+
+    /* --- Icon scaling for small cards --- */
+    .grid-2 .material-symbols-rounded, 
+    .contact-grid .material-symbols-rounded,
+    .md-grid-cols-2 .material-symbols-rounded 
+    {
+        font-size: 2rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* --- Button sizes in grids --- */
+    .grid-2 .button, .contact-grid .button {
+        width: 100% !important;
+        padding: 0.5rem !important;
+        font-size: 0.8rem !important;
+        min-width: 0 !important;
     }
 }
+
 
 /* Extra small screens (< 375px, e.g. iPhone SE) */
 @media (max-width: 374px) {
