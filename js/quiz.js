@@ -292,29 +292,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Create confetti celebration effect
+     * Confetti — safe, self-contained implementation.
+     * Creates a temporary container if none exists and uses inline styles + keyframes so
+     * this feature doesn't rely on external DOM/CSS (prevents runtime errors).
      */
     function createConfetti() {
-        if (!confettiContainer) return;
-
-        const colors = ['#F6E6C8', '#CFE4EA', '#0B5F58', '#0E1A2B'];
-        const confettiCount = 50;
-
-        for (let i = 0; i < confettiCount; i++) {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.left = `${Math.random() * 100}%`;
-            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.animationDelay = `${Math.random() * 2}s`;
-            confetti.style.animationDuration = `${2 + Math.random() * 2}s`;
-            confetti.style.width = `${8 + Math.random() * 8}px`;
-            confetti.style.height = `${8 + Math.random() * 8}px`;
-            confettiContainer.appendChild(confetti);
+        // create or reuse container
+        let confettiContainer = document.getElementById('confetti-container');
+        if (!confettiContainer) {
+            confettiContainer = document.createElement('div');
+            confettiContainer.id = 'confetti-container';
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.overflow = 'hidden';
+            confettiContainer.style.zIndex = '9999';
+            document.body.appendChild(confettiContainer);
         }
 
-        // Clean up confetti after animation
-        setTimeout(() => {
-            confettiContainer.innerHTML = '';
-        }, 5000);
+        // inject minimal keyframes/styles once
+        if (!document.getElementById('confetti-keyframes')) {
+            const style = document.createElement('style');
+            style.id = 'confetti-keyframes';
+            style.textContent = `
+                @keyframes confetti-fall { 0%{transform:translateY(-10vh) rotate(0deg);opacity:1} 100%{transform:translateY(110vh) rotate(360deg);opacity:0} }
+                .confetti-piece{position:absolute;top:-10vh;width:8px;height:8px;border-radius:2px;opacity:0.95;animation-name:confetti-fall;animation-timing-function:linear}
+            `;
+            document.head.appendChild(style);
+        }
+
+        const colors = ['#F6E6C8', '#CFE4EA', '#0B5F58', '#0E1A2B'];
+        const confettiCount = 30;
+
+        for (let i = 0; i < confettiCount; i++) {
+            const el = document.createElement('div');
+            el.className = 'confetti-piece';
+            el.style.left = `${Math.random() * 100}%`;
+            el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            el.style.animationDuration = `${2 + Math.random() * 3}s`;
+            el.style.animationDelay = `${Math.random() * 0.5}s`;
+            el.style.transform = `rotate(${Math.random() * 360}deg)`;
+            confettiContainer.appendChild(el);
+        }
+
+        // cleanup
+        setTimeout(() => { confettiContainer.innerHTML = ''; }, 6000);
     }
 });
