@@ -64,9 +64,19 @@
 
     <!-- MAIN CONTENT -->
     <main>
-        <!-- Quiz Stepper Section - Full Height Single Question View -->
-        <section class="section section-beige section-quiz-stepper animate-on-scroll">
-            <div class="section-container max-w-4xl space-y-16">
+        <!-- NIVEAUTEST INTRO + QUIZ -->
+        <section class="section section-beige pt-24 animate-on-scroll">
+            <div class="section-container max-w-4xl quiz-layout space-y-8">
+                <!-- Intro text -->
+                <div class="space-y-6">
+                    <h1 class="text-heading leading-tight flex items-center gap-6">
+                        <span class="material-symbols-rounded heading-icon" aria-hidden="true">quiz</span>
+                        <span>Spaanse <span class="accent">Niveautest</span></span>
+                    </h1>
+                    <p class="text-lead opacity-90 leading-relaxed max-w-2xl">
+                        Ontdek in 9 vragen welk leertraject het beste bij jou past. Doe de test en krijg direct resultaat en een persoonlijk advies.
+                    </p>
+                </div>
 
                 <!-- Quiz Stepper Container -->
                 <div class="quiz-stepper" id="quiz-stepper" aria-hidden="false">
@@ -329,11 +339,12 @@
                     <div class="quiz-step quiz-results-screen" id="quiz-results">
                         <div class="quiz-results-card">
                             <div class="quiz-results-recommendation" id="results-recommendation">
-                                <span class="recommendation-label">Wij raden aan:</span>
+                                <span class="material-symbols-rounded" style="font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--color-light-blue);">workspace_premium</span>
+                                <span class="recommendation-label">Onze aanbeveling:</span>
                                 <span class="recommendation-level" id="result-level">Start Groep</span>
                             </div>
 
-                            <p class="quiz-results-explanation text-small" id="result-explanation">
+                            <p class="quiz-results-explanation text-body opacity-90 mb-10" id="result-explanation">
                                 Je richt je op het opbouwen van basiskennis: begrijpen, reageren en meedoen aan eenvoudige communicatie.
                             </p>
 
@@ -372,13 +383,6 @@
                                         Verstuur advies
                                     </button>
                                 </form>
-                            </div>
-
-                            <div class="quiz-results-secondary">
-                                <a href="index.html" class="button button-outline quiz-contact-btn">
-                                    <span class="material-symbols-rounded">home</span>
-                                    Terug naar home
-                                </a>
                             </div>
                         </div>
                     </div>

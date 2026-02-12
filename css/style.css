@@ -93,6 +93,11 @@ main {
     flex-grow: 1;
 }
 
+/* Ensure first section has extra padding to clear fixed header */
+main > section:first-of-type {
+    padding-top: calc(var(--section-vertical) + 4rem);
+}
+
 h1,
 h2,
 h3,
@@ -279,11 +284,16 @@ a {
 
 /* LAYOUT: section spacing and layout */
 .section {
-    padding: var(--section-vertical) var(--page-gutter);
+    padding: var(--section-vertical) 0;
     min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+/* Home hero tweak — center hero lower on viewport */
+.hero-home {
+    min-height: 80vh;
 }
 
 @media (min-width: 768px) {
@@ -310,6 +320,11 @@ a {
     max-width: 72rem;
     margin: 0 auto;
     width: 100%;
+}
+
+/* Specific tighter gap for quiz layout */
+.section-container.quiz-layout {
+    gap: 3rem !important;
 }
 
 .max-w-4xl {
@@ -356,6 +371,21 @@ a {
     padding-right: 0;
 }
 
+/* Make beige sections full-bleed when needed (used for the Taalreis hero) */
+.section-beige.full-bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* keep the internal content aligned with the site gutters when the section is full-bleed */
+.section-beige.full-bleed .section-container {
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
+}
+
 @media (min-width: 768px) {
 
     /* A bit more vertical spacing on larger screens */
@@ -398,6 +428,9 @@ a {
     white-space: nowrap;
     /* Ensure a sensible minimum width so short labels don't collapse */
     min-width: 8.5rem;
+    /* Keep visual size identical for outline and filled buttons */
+    box-sizing: border-box;
+    border: 2px solid transparent; /* makes filled & outline buttons the same outer size */
 }
 
 .button-primary {
@@ -694,9 +727,9 @@ a {
 
 /* Design-system layout utilities */
 .container {
-    max-width: var(--content-max-width);
+    max-width: calc(var(--content-max-width) + (2 * var(--navbar-padding-x)));
     margin: 0 auto;
-    padding: 0 var(--page-gutter);
+    padding: 0 var(--navbar-padding-x);
     width: 100%;
 }
 
@@ -1499,8 +1532,21 @@ footer {
     padding-top: 3rem;
 }
 
+.pt-24 {
+    padding-top: 6rem;
+}
+
+.pt-32 {
+    padding-top: 8rem;
+}
+
 .pt-4 {
     padding-top: 1rem;
+}
+
+/* Utility: remove bottom padding when needed (used on niveautest intro section) */
+.pb-0 {
+    padding-bottom: 0 !important;
 }
 
 /* Margin utilities */
@@ -1919,17 +1965,55 @@ footer {
 .quiz-stepper {
     width: 100%;
     position: relative;
+    min-height: 480px;
 }
 
 .quiz-step {
     display: none;
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
 }
 
 .quiz-step.active {
     display: block;
-    opacity: 1;
+    position: relative;
+    z-index: 1;
+    will-change: transform, opacity;
+    animation: quizFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.1s;
+}
+
+.quiz-step.exiting {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+    will-change: transform, opacity;
+    animation: quizFadeOutUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes quizFadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px) scale(0.98); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1.0); 
+    }
+}
+
+@keyframes quizFadeOutUp {
+    from { 
+        opacity: 1; 
+        transform: translateY(0) scale(1.0); 
+    }
+    to { 
+        opacity: 0; 
+        transform: translateY(-20px) scale(0.98); 
+    }
 }
 
 /* Quiz Step Card - The green card containing each question */
@@ -2105,7 +2189,8 @@ body.quiz-page+footer {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1.5rem;
-    margin-bottom: 3rem;
+    /* remove large bottom margin so the card's padding controls spacing */
+    margin-bottom: 0;
 }
 
 .quiz-results-explanation {
@@ -2118,7 +2203,8 @@ body.quiz-page+footer {
 
 .quiz-advice-panel {
     display: none;
-    margin-top: 2rem;
+    /* slightly reduced top margin to align with card padding */
+    margin-top: 1.25rem;
     text-align: left;
     background-color: rgba(246, 230, 200, 0.08);
     border: 1px solid rgba(246, 230, 200, 0.2);
@@ -2199,8 +2285,10 @@ body.quiz-page+footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(246, 230, 200, 0.1);
 }
 
 .quiz-contact-btn {
