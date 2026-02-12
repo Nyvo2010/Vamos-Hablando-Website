@@ -98,4 +98,56 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
     });
+
+    // --- ACCORDION LOGIC ---
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    
+    // Function to open accordion by hash (ID used in URL)
+    const openAccordionByHash = () => {
+        const hash = window.location.hash;
+        if (hash) {
+            const id = hash.substring(1);
+            const targetItem = document.getElementById(id);
+            if (targetItem && targetItem.classList.contains('accordion-item')) {
+                targetItem.classList.add('active');
+                
+                // Update button text for pre-expanded item
+                const btnText = targetItem.querySelector('.accordion-toggle-text');
+                if (btnText) btnText.textContent = 'Minder info';
+                
+                // Scroll to wait for any layout shifts
+                setTimeout(() => {
+                    targetItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            }
+        }
+    };
+
+    openAccordionByHash();
+    window.addEventListener('hashchange', openAccordionByHash);
+
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        if (!header) return;
+
+        header.addEventListener('click', (e) => {
+            // If clicking a link inside the header, don't toggle
+            if (e.target.closest('a')) return;
+            
+            e.stopPropagation();
+            const isActive = item.classList.contains('active');
+            
+            if (!isActive) {
+                item.classList.add('active');
+                // Update text if the button exists
+                const btnText = item.querySelector('.accordion-toggle-text');
+                if (btnText) btnText.textContent = 'Minder info';
+            } else {
+                item.classList.remove('active');
+                // Update text if the button exists
+                const btnText = item.querySelector('.accordion-toggle-text');
+                if (btnText) btnText.textContent = 'Lees meer';
+            }
+        });
+    });
 });

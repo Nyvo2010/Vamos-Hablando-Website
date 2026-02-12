@@ -712,6 +712,12 @@ a {
     grid-template-columns: 1fr;
 }
 
+.grid-3 {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+}
+
 @media (min-width: 768px) {
     .grid-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -720,6 +726,59 @@ a {
     .grid-2x3 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* --- Accordion / Expandable Cards --- */
+.accordion-item {
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.3s ease;
+    opacity: 0;
+}
+
+.accordion-item.active {
+    cursor: default;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 2000px; /* Large enough for content */
+    opacity: 1;
+    padding-top: 2rem;
+}
+
+.accordion-arrow {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+}
+
+.accordion-item.active .accordion-arrow {
+    transform: rotate(180deg);
+}
+
+/* Hover effect on header when closed */
+.accordion-item:not(.active):hover {
+    background-color: rgba(11, 95, 88, 0.08);
+}
+
+.section-green .accordion-item:not(.active):hover {
+    background-color: rgba(246, 230, 200, 0.12);
 }
 
 /* Design-system card variants */
